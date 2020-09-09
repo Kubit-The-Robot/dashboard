@@ -13,7 +13,9 @@
   "plugins": ["prettier"],
   "rules": {
     "import/prefer-default-export": "off",
+    "react/no-children-prop": "off",
     "no-unused-vars": "warn",
+    "no-use-before-define": ["error", { "functions": false }],
     "prettier/prettier": ["error"]
   }
 }
