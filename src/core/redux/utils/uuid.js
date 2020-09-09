@@ -8,6 +8,4 @@ function v4() {
     });
 }
 
-export {
-    v4
-}
+export { v4 };

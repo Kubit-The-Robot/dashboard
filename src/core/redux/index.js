@@ -1,10 +1,8 @@
-import {
-    Store
-} from "./store";
+import { Store } from './store';
 
 class Redux {
-    store = null
-    
+    store = null;
+
     constructor(store = new Store()) {
         this.store = store;
         if (!store) {
@@ -13,6 +11,4 @@ class Redux {
     }
 }
 
-export {
-    Redux
-};
+export default new Redux();
