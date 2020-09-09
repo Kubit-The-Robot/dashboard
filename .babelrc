@@ -7,6 +7,13 @@
       }
     ]
   ],
+  "plugins": [
+    ["@babel/plugin-transform-react-jsx", {
+      "pragma": "OverReact.createElement",
+      "pragmaFrag": "'fragment'",
+      "throwIfNamespace": false
+    }]
+  ],
   "env": {
     "test": {
       "plugins": ["@babel/plugin-transform-modules-commonjs"]
