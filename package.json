@@ -11,6 +11,8 @@
     "webpack-dev-server": "webpack-dev-server",
     "build:dev": "webpack -d --mode=development",
     "build:prod": "webpack -p --mode=production",
+    "lint": "eslint --ext js src",
+    "lint:fix": "eslint --fix",
     "start:dev": "webpack-dev-server --mode=development",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
@@ -33,12 +35,16 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest-dom": "^3.2.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-testing-library": "^3.8.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
+    "husky": "^4.3.0",
     "jest": "^26.4.2",
+    "lint-staged": "^10.3.0",
     "mini-css-extract-plugin": "^0.11.1",
     "prettier": "^2.1.1",
     "style-loader": "^1.2.1",
@@ -47,9 +53,18 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --fix",
+      "jest --findRelatedTests --bail"
+    ],
+    "*.{json,css}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   }
 }
