@@ -2,10 +2,14 @@
   "presets": [
     [
       "@babel/preset-env",
-      "airbnb",
       {
         "modules": false
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    }
+  }
 }
