@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createElement should return a DOM object with an props and children 1`] = `
+Object {
+  "props": Object {
+    "children": Array [
+      Object {
+        "props": Object {
+          "children": Array [],
+          "nodeValue": "Oi, eu sou um texto",
+        },
+        "type": "TEXT_ELEMENT",
+      },
+    ],
+  },
+  "type": "div",
+}
+`;
+
+exports[`createElement should return an object of type div without child elements 1`] = `
+Object {
+  "props": Object {
+    "children": Array [],
+  },
+  "type": "div",
+}
+`;
