@@ -1,5 +1,5 @@
 export function combineReducers(...reducers) {
-    return {
-        ...reducers,
-    };
+  return {
+    ...reducers,
+  };
 }
