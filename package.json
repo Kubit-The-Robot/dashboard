@@ -12,21 +12,30 @@
     "build:dev": "webpack -d --mode=development",
     "build:prod": "webpack -p --mode=production",
     "start:dev": "webpack-dev-server --mode=development",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "test:coverage": "NODE_ENV=test jest --coverage"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
+    "@testing-library/dom": "^7.24.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "babel-preset-airbnb": "^5.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
-    "eslint": "^7.8.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest-dom": "^3.2.2",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-testing-library": "^3.8.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
     "jest": "^26.4.2",
@@ -37,5 +46,10 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }
