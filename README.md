@@ -1,4 +1,20 @@
 # Kubit: The Game
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c8c7111-db30-4c68-b339-6e34f569fee3/deploy-status)](https://app.netlify.com/sites/kubit-the-game/deploys)
+
+## Configuração do projeto:
+#### Dependências
+O projeto utiliza apenas dependências em ambiente de desenvolvimento, necessárias para as configurações do `webpack`, permitindo a modularização do código, e uso de recursos do `ES6+`.
+
+> * Instalação de dependências  👉  `npm install`
+
+#### Iniciando a aplicação (`development`) 
+Para agilizar o desenvolvimento da aplicação, utilizando recursos como `hot reload` e `servidor web`, o projeto utiliza o pacote `webpack-dev-server` exclusivamente para o ambiente `development`.
+> *  Iniciar um servidor local  👉  `npm run start:dev`
+
+#### Build
+O projeto estará hospedado no serviço `netlify`. Durante o processo de deploy, em cada um dos ambientes, os comandos de build serão invocados, dando origem a pasta `/dist` com os arquivos estáticos do servidor:
+- `development`  👉  `npm run build:dev`
+- `production`  👉  `npm run build:prod`
 
 ## Em uma galáxia muito, muito distante...
 
