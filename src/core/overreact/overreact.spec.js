@@ -1,4 +1,4 @@
-import { createElement } from './humble-react';
+import { createElement } from './overreact';
 
 describe('createElement', () => {
   it('should return a DOM object', () => {
