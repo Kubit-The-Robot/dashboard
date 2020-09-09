@@ -1,5 +1,17 @@
 # Kubit: The Game
 
+## Instalação:
+#### Dependências
+- Instalação das dependências do projeto  ▶️  `npm install`
+
+#### Webserver (dev) 
+- Rodando em ambiente de dev  ▶️  `npm run start:dev`
+
+#### Build
+- Environment: `development`  ▶️  `npm run build:dev`
+- Environment: `production`  ▶️  `npm run build:dev`
+
+
 ## Em uma galáxia muito, muito distante...
 
 O **Kubit** é um robô cientista vindo de uma galáxia muito, muito distante, com a missão de pesquisar o nosso sistema solar.
