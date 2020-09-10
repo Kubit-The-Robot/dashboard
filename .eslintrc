@@ -94,6 +94,9 @@
       }
     ],
 	"react/react-in-jsx-scope": "off",
+	"react/jsx-filename-extension": "off",
+	"react/style-prop-object": "off",
+	"react/jsx-wrap-multilines": "off",
     "react/no-children-prop": "off",
     "space-in-parens": "warn"
   }
