@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createElement should return a DOM object with an array of DOM objects 1`] = `
+Object {
+  "props": Object {
+    "children": Array [
+      Object {
+        "props": Object {
+          "children": Array [
+            Object {
+              "props": Object {
+                "children": Array [],
+                "nodeValue": "Texto em negrito",
+              },
+              "type": "TEXT_ELEMENT",
+            },
+          ],
+        },
+        "type": "strong",
+      },
+      Object {
+        "props": Object {
+          "children": Array [
+            Object {
+              "props": Object {
+                "children": Array [],
+                "nodeValue": "Text em itálico",
+              },
+              "type": "TEXT_ELEMENT",
+            },
+          ],
+        },
+        "type": "i",
+      },
+    ],
+  },
+  "type": "div",
+}
+`;
+
 exports[`createElement should return a DOM object with an props and children 1`] = `
 Object {
   "props": Object {
