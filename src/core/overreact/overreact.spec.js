@@ -13,4 +13,15 @@ describe('createElement', () => {
 
     expect(element).toMatchSnapshot();
   });
+
+  it('should return a DOM object with an array of DOM objects', () => {
+    const element = (
+      <div>
+        <strong>Texto em negrito</strong>
+        <i>Text em itálico</i>
+      </div>
+    );
+
+    expect(element).toMatchSnapshot();
+  });
 });
