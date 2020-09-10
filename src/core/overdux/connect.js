@@ -22,7 +22,7 @@ import Overdux from './index';
  */
 export function connect(mapStateToProps, mapDispatchToProps) {
   return (component) => {
-    const componentProps = mapStateToProps(Overdux.store, component.props);
+    const componentProps = mapStateToProps(Overdux.store.state, component.props);
     const componentActions = mapDispatchToProps(Overdux.store.dispatch, component.props);
 
     const nonFunctions = [];
@@ -38,5 +38,7 @@ export function connect(mapStateToProps, mapDispatchToProps) {
     });
 
     component.props = { ...componentProps, ...componentActions };
+
+    return component;
   };
 }

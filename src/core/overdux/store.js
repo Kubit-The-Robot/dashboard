@@ -17,18 +17,18 @@ import { SETUP_STATE } from './constants';
  */
 
 class Store {
-  state = {};
-  reducers = {};
   /**
    * @param {Reducer} reducers - Defines the Reducers that will be stored into the application
    */
   constructor(reducers = {}) {
+    this.state = {};
+    this.reducers = {};
     for (const reducer in reducers) {
       if (!(reducers[reducer] instanceof Function)) {
         return new Error('All reducers must be Functions');
       }
 
-      const reducerState = reducers[reducer](null, `@${SETUP_STATE}/${v4()}`);
+      const reducerState = reducers[reducer](undefined, `@${SETUP_STATE}/${v4()}`);
 
       this.state = { ...this.state, ...reducerState };
     }
@@ -44,7 +44,10 @@ class Store {
     }
 
     for (const reducer in this.reducers) {
-      this.reducers[reducer](action.data, action.type);
+      this.state = {
+        ...this.state,
+        ...this.reducers[reducer](action.data, action.type),
+      };
     }
   }
 }
