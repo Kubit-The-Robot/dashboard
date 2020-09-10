@@ -1,11 +1,7 @@
-import OverReact, { useState, useEffect } from '../../core/overreact';
+import OverReact, { useState } from '../../core/overreact';
 
 function App() {
   const [state, setState] = useState(0);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <div className="vermelho" onClick={() => setState(c => c + 1)}>
