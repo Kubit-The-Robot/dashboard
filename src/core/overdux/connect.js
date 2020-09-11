@@ -27,7 +27,7 @@ export function connect(mapStateToProps, mapDispatchToProps) {
 
     const nonFunctions = [];
 
-    for (let componentAction in componentActions) {
+    for (const componentAction in componentActions) {
       if (!(componentActions[componentAction] instanceof Function)) {
         nonFunctions.concat(componentAction);
       }

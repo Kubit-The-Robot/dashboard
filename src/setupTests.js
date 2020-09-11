@@ -1,4 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* global global */
+
 import {
   getByLabelText,
   getByTestId,

@@ -1,9 +1,4 @@
-import {
-  createElement,
-  render,
-  useEffect,
-  useState,
-} from './overreact';
+import { createElement, render, useEffect, useState } from './overreact';
 
 const OverReact = {
   createElement,
@@ -11,10 +6,5 @@ const OverReact = {
   useEffect,
   useState,
 };
-
-export {
-  useEffect,
-  useState,
-}
 
 export default OverReact;
