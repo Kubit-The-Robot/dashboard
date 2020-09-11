@@ -20,6 +20,7 @@ module.exports = {
     containers: path.resolve(__dirname, './src/containers'),
     overreact: path.resolve(__dirname, './src/core/overreact'),
     overdux: path.resolve(__dirname, './src/core/overdux'),
+    modules: path.resolve(__dirname, './src/modules'),
   },
   module: {
     rules: [

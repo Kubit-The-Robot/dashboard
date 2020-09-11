@@ -2,7 +2,7 @@ import OverReact from 'overreact';
 import Overdux from 'overdux';
 
 import { Store } from 'overdux/store';
-import { combineReducers } from 'overdux/utils/combinereducers';
+import { combineReducers } from 'overdux/combinereducers';
 import { testReducer } from 'reducers';
 
 import './styles/global.styles.css';

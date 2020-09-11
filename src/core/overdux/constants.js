@@ -1,1 +1,5 @@
-export const SETUP_STATE = 'SETUP_STATE';
+import { keyMirror } from 'modules';
+
+export const OverduxConstants = keyMirror({
+  SETUP_STATE: undefined,
+});

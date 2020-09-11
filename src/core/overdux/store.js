@@ -1,6 +1,5 @@
-import { v4 } from './utils/uuid';
-
-import { SETUP_STATE } from './constants';
+import { OverduxConstants } from './constants';
+import { uuid } from 'modules';
 
 /**
  * Reducer Description
@@ -23,12 +22,16 @@ class Store {
   constructor(reducers = {}) {
     this.state = {};
     this.reducers = {};
+
     for (const reducer in reducers) {
       if (!(reducers[reducer] instanceof Function)) {
         return new Error('All reducers must be Functions');
       }
 
-      const reducerState = reducers[reducer](undefined, `@${SETUP_STATE}/${v4()}`);
+      const reducerState = reducers[reducer](
+        undefined,
+        `@${OverduxConstants.SETUP_STATE}/${uuid()}`
+      );
 
       this.state = { ...this.state, ...reducerState };
     }
