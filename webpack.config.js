@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,12 +14,19 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'kubit-engine.js',
   },
+  modules: [path.resolve(__dirname, './src'), 'node_modules'],
+  alias: {
+    components: path.resolve(__dirname, './src/components'),
+    containers: path.resolve(__dirname, './src/containers'),
+    overreact: path.resolve(__dirname, './src/core/overreact'),
+    overdux: path.resolve(__dirname, './src/core/overdux'),
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,

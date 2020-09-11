@@ -8,11 +8,26 @@
     ]
   ],
   "plugins": [
-    ["@babel/plugin-transform-react-jsx", {
-      "pragma": "OverReact.createElement",
-      "pragmaFrag": "'fragment'",
-      "throwIfNamespace": false
-    }]
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "OverReact.createElement",
+        "pragmaFrag": "'fragment'",
+        "throwIfNamespace": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "components": "./src/components",
+          "containers": "./src/containers",
+          "overreact": "./src/core/overreact",
+          "overdux": "./src/core/overdux"
+        }
+      }
+    ]
   ],
   "env": {
     "test": {

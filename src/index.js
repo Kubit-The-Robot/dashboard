@@ -1,9 +1,9 @@
-import OverReact from './core/overreact';
-import Overdux from './core/overdux';
+import OverReact from 'overreact';
+import Overdux from 'overdux';
 
-import { Store } from './core/overdux/store';
-import { combineReducers } from './core/overdux/utils/combinereducers';
-import { testReducer } from './reducers';
+import { Store } from 'overdux/store';
+import { combineReducers } from 'overdux/utils/combinereducers';
+import { testReducer } from 'reducers';
 
 import './styles/global.styles.css';
 
