@@ -1,4 +1,5 @@
 export * from './keymirror';
-export * from './uuid';
 export * from './localstorage';
+export * from './logger';
 export * from './throtle-debounce';
+export * from './uuid';

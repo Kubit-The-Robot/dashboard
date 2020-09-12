@@ -2,8 +2,6 @@ import OverReact from 'overreact';
 import store from './store';
 import { debounce, saveState } from 'modules';
 
-console.log({ debounce, saveState });
-
 import './styles/global.styles.css';
 
 import Counter from 'containers/Counter';
