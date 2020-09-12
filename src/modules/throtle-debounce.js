@@ -5,7 +5,7 @@
 export function throttle(fn, wait = 100) {
   let timer = null;
 
-  return function (...args) {
+  return function(...args) {
     if (timer == null) {
       timer = setTimeout(() => {
         fn.apply(this, args);
@@ -24,10 +24,10 @@ export function throttle(fn, wait = 100) {
 export function debounce(fn, wait, immediate) {
   let timeout;
 
-  return function () {
+  return function() {
     const context = this,
       args = arguments;
-    const later = function () {
+    const later = function() {
       timeout = null;
 
       if (!immediate) {

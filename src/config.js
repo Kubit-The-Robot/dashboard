@@ -1,9 +1,9 @@
 /**
- * Global Configuration Files
+ * Global Configuration Rules
  */
 
-const config = {
+const gameConfig = {
   GAME_NAME: 'kubit',
 };
 
-export default config;
+export default gameConfig;

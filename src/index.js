@@ -4,7 +4,7 @@ import { debounce, saveState } from 'modules';
 
 import './styles/global.styles.scss';
 
-import Game from './Game';
+import Game from 'containers/Game';
 
 const render = () => {
   OverReact.render(<Game store={store} />, document.getElementById('game-canvas'));
