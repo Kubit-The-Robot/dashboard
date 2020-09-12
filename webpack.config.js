@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const devMode = process.env.NODE_ENV !== 'production';
+
 module.exports = {
   entry: './src/index.js',
   devServer: {
@@ -40,18 +42,17 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: MiniCssExtractPlugin.loader,
             options: {
-              importLoaders: 1,
-              modules: true,
+              hmr: process.env.NODE_ENV === 'development',
             },
           },
+          'css-loader',
+          'sass-loader',
         ],
-        include: /\.module\.css$/,
       },
       {
         test: /\.svg$/,
