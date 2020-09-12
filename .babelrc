@@ -22,10 +22,13 @@
         "root": ["./src"],
         "alias": {
           "components": "./src/components",
+          "config": "./src/config.js",
           "containers": "./src/containers",
-          "overreact": "./src/core/overreact",
+          "dux": "./src/core/dux",
+          "modules": "./src/modules",
           "overdux": "./src/core/overdux",
-          "modules": "./src/modules"
+          "overreact": "./src/core/overreact",
+          "store": "./src/store/"
         }
       }
     ]
