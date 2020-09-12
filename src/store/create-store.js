@@ -14,7 +14,6 @@ export const createStore = (reducer, persistedState) => {
   const getState = () => state;
 
   const dispatch = (action) => {
-    console.log(reducer(state, action));
     state = reducer(state, action);
     listeners.forEach((listener) => listener());
   };
