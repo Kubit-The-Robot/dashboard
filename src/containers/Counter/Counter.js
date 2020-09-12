@@ -1,6 +1,5 @@
 import OverReact from 'overreact';
 import store from 'store';
-import '@lottiefiles/lottie-player';
 
 function Counter() {
   const { getState, dispatch } = store;

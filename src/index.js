@@ -1,4 +1,6 @@
 import OverReact from 'overreact';
+import '@lottiefiles/lottie-player';
+
 import store from './store';
 import { debounce, saveState } from 'modules';
 
