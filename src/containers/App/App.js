@@ -2,11 +2,11 @@ import OverReact from 'overreact';
 
 const { useEffect, useState } = OverReact;
 
-function App(...args) {
+function App({ ...props }) {
   const [state, setState] = useState(0);
 
   useEffect(() => {
-    console.log({ args });
+    console.log({ props });
   }, [state]);
 
   return (

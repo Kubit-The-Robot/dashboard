@@ -1,14 +1,22 @@
 import OverReact from 'overreact';
-import Overdux from 'overdux';
+import store from './store';
+import { debounce, saveState } from 'modules';
 
-import { Store } from 'overdux/store';
-import { combineReducers } from 'overdux/combinereducers';
-import { testReducer } from 'reducers';
+console.log({ debounce, saveState });
 
 import './styles/global.styles.css';
 
-Overdux.store = new Store(combineReducers(testReducer));
+import Counter from 'containers/Counter';
 
-const App = require('./containers/App')['default'];
+const render = () => {
+  OverReact.render(<Counter store={store} />, document.getElementById('game-canvas'));
+};
 
-OverReact.render(<App />, document.getElementById('game-canvas'));
+store.subscribe(render);
+store.subscribe(
+  debounce(() => {
+    saveState(store.getState);
+  })
+);
+
+render();
