@@ -14,13 +14,18 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'kubit-engine.js',
   },
-  modules: [path.resolve(__dirname, './src'), 'node_modules'],
-  alias: {
-    components: path.resolve(__dirname, './src/components'),
-    containers: path.resolve(__dirname, './src/containers'),
-    overreact: path.resolve(__dirname, './src/core/overreact'),
-    overdux: path.resolve(__dirname, './src/core/overdux'),
-    modules: path.resolve(__dirname, './src/modules'),
+  resolve: {
+    modules: [path.resolve(__dirname, './src'), 'node_modules'],
+    alias: {
+      components: path.resolve(__dirname, './src/components'),
+      config: path.resolve(__dirname, './src/config.js'),
+      containers: path.resolve(__dirname, './src/containers'),
+      dux: path.resolve(__dirname, './src/core/dux'),
+      modules: path.resolve(__dirname, './src/modules'),
+      overdux: path.resolve(__dirname, './src/core/overdux'),
+      overreact: path.resolve(__dirname, './src/core/overreact'),
+      store: path.resolve(__dirname, './src/store'),
+    },
   },
   module: {
     rules: [
