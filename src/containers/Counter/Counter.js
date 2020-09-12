@@ -1,5 +1,6 @@
 import OverReact from 'overreact';
 import store from 'store';
+import '@lottiefiles/lottie-player';
 
 function Counter() {
   const { getState, dispatch } = store;
@@ -18,6 +19,11 @@ function Counter() {
       <h1>Clicou {count} vezes e atualizou da store global</h1>
       <button onClick={addItem}>+</button>
       <button onClick={removeItem}>-</button>
+      <lottie-player
+        autoplay
+        loop
+        src="https://assets7.lottiefiles.com/packages/lf20_3BmVPt.json"
+      ></lottie-player>
     </div>
   );
 }
