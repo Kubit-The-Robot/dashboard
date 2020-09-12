@@ -2,12 +2,12 @@ import OverReact from 'overreact';
 import store from './store';
 import { debounce, saveState } from 'modules';
 
-import './styles/global.styles.css';
+import './styles/global.styles.scss';
 
-import Counter from 'containers/Counter';
+import Game from './Game';
 
 const render = () => {
-  OverReact.render(<Counter store={store} />, document.getElementById('game-canvas'));
+  OverReact.render(<Game store={store} />, document.getElementById('game-canvas'));
 };
 
 store.subscribe(render);

@@ -15,14 +15,14 @@ function Counter() {
   };
 
   return (
-    <div>
-      <h1>Clicou {count} vezes e atualizou da store global</h1>
+    <div className="game">
+      {/* <h1>Clicou {count} vezes e atualizou da store global</h1>
       <button onClick={addItem}>+</button>
-      <button onClick={removeItem}>-</button>
+      <button onClick={removeItem}>-</button> */}
       <lottie-player
         autoplay
         loop
-        src="https://assets7.lottiefiles.com/packages/lf20_3BmVPt.json"
+        src="https://assets3.lottiefiles.com/packages/lf20_cbXcz6.json"
       ></lottie-player>
     </div>
   );
