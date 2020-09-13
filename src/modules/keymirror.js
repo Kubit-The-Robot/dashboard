@@ -4,7 +4,7 @@
  * @returns {object} {}
  */
 
-export const keyMirror = (obj) => {
+export const keymirror = (obj) => {
   const mirrored = {};
   let key;
 

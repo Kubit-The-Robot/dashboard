@@ -1,3 +1,4 @@
+export * from './deepCopy';
 export * from './keymirror';
 export * from './localstorage';
 export * from './logger';
