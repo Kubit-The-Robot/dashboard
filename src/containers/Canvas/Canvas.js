@@ -1,20 +1,20 @@
 import OverReact from 'overreact';
 import store from 'store';
 
-function Counter() {
-  const { getState, dispatch } = store;
-  const { count } = getState.app;
+function Canvas() {
+  // const { getState, dispatch } = store;
+  // const { count } = getState.app;
 
-  const addItem = () => {
-    dispatch({ type: 'INCREMENT' });
-  };
+  // const addItem = () => {
+  //   dispatch({ type: 'INCREMENT' });
+  // };
 
-  const removeItem = () => {
-    dispatch({ type: 'DECREMENT' });
-  };
+  // const removeItem = () => {
+  //   dispatch({ type: 'DECREMENT' });
+  // };
 
   return (
-    <div className="game">
+    <div className="Canvas">
       {/* <h1>Clicou {count} vezes e atualizou da store global</h1>
       <button onClick={addItem}>+</button>
       <button onClick={removeItem}>-</button> */}
@@ -27,4 +27,4 @@ function Counter() {
   );
 }
 
-export default Counter;
+export default Canvas;

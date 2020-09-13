@@ -1,12 +1,15 @@
 import OverReact from 'overreact';
-import Counter from 'containers/Counter/';
-import MainScreen from 'containers/MainScreen';
+
+import Canvas from 'containers/Canvas/';
+import Viewport from 'containers/Viewport';
+import Status from 'containers/Status';
 
 function Game({ store }) {
   return (
-    <MainScreen>
-      <Counter store={store} />
-    </MainScreen>
+    <Viewport>
+      <Status />
+      <Canvas store={store} />
+    </Viewport>
   );
 }
 
