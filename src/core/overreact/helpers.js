@@ -27,7 +27,7 @@ export const isEvent = (key) => key.startsWith('on');
  * @param {string} key
  * @returns {*|boolean}
  */
-export const isStyle = (key) => key === 'style';
+export const isStyle = (key) => (key === 'style');
 /**
  * Checks if an element is a function component
  * @param type
@@ -48,7 +48,7 @@ export const isGone = (prev, next) => (key) => !(key in next);
  * @param {string} key
  * @returns {boolean|boolean}
  */
-export const isProperty = (key) => key !== 'children' && !isEvent(key) && !isStyle(key);
+export const isProperty = (key) => (key !== 'children') && !isEvent(key);
 
 /**
  * Checks if the next key is diferent from the previous
