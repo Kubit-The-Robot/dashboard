@@ -19,8 +19,10 @@ module.exports = {
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     alias: {
+      assets: path.resolve(__dirname, './src/assets'),
       components: path.resolve(__dirname, './src/components'),
       config: path.resolve(__dirname, './src/config.js'),
+      constants: path.resolve(__dirname, './src/constants'),
       containers: path.resolve(__dirname, './src/containers'),
       dux: path.resolve(__dirname, './src/core/dux'),
       modules: path.resolve(__dirname, './src/modules'),

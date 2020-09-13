@@ -21,8 +21,10 @@
       {
         "root": ["./src"],
         "alias": {
+          "assets": "./src/assets",
           "components": "./src/components",
           "config": "./src/config.js",
+          "constants": "./src/constants",
           "containers": "./src/containers",
           "dux": "./src/core/dux",
           "modules": "./src/modules",
