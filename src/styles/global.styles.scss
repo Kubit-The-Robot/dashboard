@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+
+  &:after {
+    box-sizing: inherit;
+  }
+
+  &:before {
+    box-sizing: inherit;
+  }
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;

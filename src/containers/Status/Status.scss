@@ -1,0 +1,100 @@
+$statusBarSizeMobile: 35px;
+$statusBarSizeDesktop: 50px;
+
+$progressBarSizeMobile: 20px;
+$progressBarSizeDesktop: 20px;
+
+.status {
+  align-items: center;
+  backface-visibility: hidden;
+  display: flex;
+  height: auto;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 10px;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    height: $statusBarSizeMobile;
+    margin-bottom: 5px;
+    position: relative;
+    width: 130px;
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    height: $statusBarSizeMobile;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    width: $statusBarSizeMobile;
+    z-index: 1;
+
+    & img {
+      height: 100%;
+    }
+  }
+
+  &__progress {
+    background-color: #35495e;
+    border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
+    height: $progressBarSizeMobile;
+    margin-left: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2),
+                      0 2px 0 rgba(40, 56, 72, 1);
+    width: calc(100% - 10px);
+    padding: 5px;
+
+    &__wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    &__bar {
+      height: 100%;
+      box-shadow: inset 1px 4px 0 rgba(255, 255, 255, 0.3);
+      border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
+      background-color: #f99e1d;
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      left: 0;
+      right: auto;
+    }
+  }
+
+  &__group--right {
+    .status__icon {
+      left: auto;
+      right: 0;
+    }
+
+    .status__progress {
+      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+
+    .status__progress__wrapper {
+      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
+    }
+  
+    .status__progress__bar {
+      right: 0;
+      left: auto;
+      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
+    }
+  }
+}
