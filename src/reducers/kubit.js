@@ -8,7 +8,7 @@ const initialState = {
   mood: '',
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+const countReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case KubitConstants.DECREASE_ENERGY: {
       const newValue = state.energy - payload.value;
@@ -76,4 +76,4 @@ const reducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default reducer;
+export default countReducer;

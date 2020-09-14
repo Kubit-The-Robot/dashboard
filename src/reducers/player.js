@@ -30,13 +30,6 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
 
-    case PlayerConstants.INCREASE_EXPERIENCE: {
-      return {
-        ...deepCopy(state),
-        experience: state.experience + payload.experience,
-      };
-    }
-
     case PlayerConstants.INCREASE_LEVEL: {
       return {
         ...deepCopy(state),

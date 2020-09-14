@@ -20,6 +20,7 @@ export const createStore = (reducer, persistedState) => {
 
   const subscribe = (listener) => {
     listeners.push(listener);
+    console.log({ listener });
 
     return () => {
       listeners = listeners.filter((l) => l !== listener);
