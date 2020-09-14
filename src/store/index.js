@@ -1,6 +1,6 @@
 import { combineReducers } from './combine-reducers';
 import { createStore } from './create-store';
-import { loadState } from 'modules';
+import { loadState, debounce, saveState } from 'modules';
 
 import gameReducer from 'reducers/game';
 import kubitReducer from 'reducers/kubit';

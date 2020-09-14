@@ -8,15 +8,10 @@ import './styles/global.styles.scss';
 
 import Game from 'containers/Game';
 
-const render = () => {
+const initGame = () => {
   OverReact.render(<Game store={store} />, document.getElementById('game-canvas'));
 };
 
-store.subscribe(render);
-store.subscribe(
-  debounce(() => {
-    saveState(store.getState);
-  })
-);
+store.subscribe(initGame);
 
-render();
+initGame();

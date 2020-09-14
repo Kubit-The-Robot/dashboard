@@ -105,7 +105,7 @@ function performUnitOfWork(fiber) {
  * If there's not a next unit of work we commit the whole fiber tree to the DOM.
  * @param {object} deadline
  */
-export function workLoop(deadline) {
+function workLoop(deadline) {
   let shouldYield = false;
 
   while (nextUnitOfWork && !shouldYield) {
