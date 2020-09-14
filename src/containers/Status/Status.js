@@ -1,6 +1,10 @@
 import OverReact from 'overreact';
 
+import store from 'store';
+
 import StatusBar from './StatusBar';
+
+import { addEnergy } from 'actions';
 
 import thunderIcon from 'assets/ui/thunder.svg';
 import heartIcon from 'assets/ui/heart-1.svg';
@@ -9,35 +13,60 @@ import starIcon from 'assets/ui/star.svg';
 
 import './Status.scss';
 
-const value = 50;
+function connect(mapStateToProps = () => {}, mapDispatchToProps = () => {}) {
+  return function(WrappedComponent) {
 
-function Status() {
+    function myComp() {
+      const state = store.getState;
+      const props = mapStateToProps(state);
+
+      return <WrappedComponent {...props} />
+    }
+
+    store.subscribe(myComp);
+
+    return myComp;
+  }
+}
+
+function Status({ energy, happiness, experience, hungry }) {
+
+  console.log({ energy, happiness, experience, hungry });
+
+  const handleClick = (e) => {
+    e.preventDefault;
+
+    store.dispatch(addEnergy(5));
+  }
+
+
   return (
     <div className="status">
       <div className="status__group status__group--left">
         <StatusBar
           type="energy"
-          value={value}
+          value={energy}
           svgUrl={thunderIcon}
+          onClickHandler={handleClick}
         />
 
         <StatusBar
-          type="energy"
-          value={value}
+          type="experience"
+          value={experience}
           svgUrl={starIcon}
         />
       </div>
 
       <div className="status__group status__group--right">
         <StatusBar
-          type="energy"
-          value={value}
+          type="hungry"
+          value={hungry}
           svgUrl={foodIcon}
         />
 
         <StatusBar
-          type="life"
-          value={value}
+          type="happiness"
+          value={happiness}
           svgUrl={heartIcon}
         />
       </div>
@@ -45,4 +74,11 @@ function Status() {
   )
 }
 
-export default Status;
+const mapStateToProps = (state) => ({
+  energy: state.kubit.energy,
+  happiness: state.kubit.happiness,
+  experience: state.player.experience,
+  hungry: state.kubit.hungry,
+});
+
+export default connect(mapStateToProps)(Status);

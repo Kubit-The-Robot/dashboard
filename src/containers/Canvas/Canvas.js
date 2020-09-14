@@ -1,9 +1,7 @@
 import OverReact from 'overreact';
 import store from 'store';
 
-function Canvas({ store }) {
-  const { dispatch } = store;
-
+function Canvas() {
   return (
     <div
       className="Canvas"

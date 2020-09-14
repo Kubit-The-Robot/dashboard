@@ -16,11 +16,11 @@ export const createStore = (reducer, persistedState) => {
   const dispatch = (action) => {
     state = reducer(state, action);
     listeners.forEach((listener) => listener());
+    console.log({ listeners });
   };
 
   const subscribe = (listener) => {
     listeners.push(listener);
-    console.log({ listener });
 
     return () => {
       listeners = listeners.filter((l) => l !== listener);
