@@ -40,11 +40,23 @@ export const addLevel = () => {
 /**
  * @param {string} mood
  */
-export const setKubitMood = (mood) => {
+export const setPlayerMood = (mood) => {
   return {
     type: PlayerConstants.PLAYER_SET_MOOD,
     payload: {
       mood,
+    },
+  }
+};
+
+/**
+ * @param {string} mood
+ */
+export const setPlayerName = (name) => {
+  return {
+    type: PlayerConstants.PLAYER_SET_MOOD,
+    payload: {
+      name,
     },
   }
 };

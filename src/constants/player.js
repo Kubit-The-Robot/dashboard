@@ -5,4 +5,5 @@ export const PlayerConstants = keymirror({
   INCREASE_COINS: undefined,
   INCREASE_LEVEL: undefined,
   PLAYER_SET_MOOD: undefined,
+  PLAYER_SET_NAME: undefined,
 });

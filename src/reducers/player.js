@@ -6,8 +6,8 @@ const initialState = {
   experience: 0,
   level: 1,
   mood: '',
-  username: '',
-  hasUsername: false,
+  name: '',
+  hasName: false,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -41,6 +41,13 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         playerMood: payload.playerMood,
+      };
+    }
+
+    case PlayerConstants.PLAYER_SET_NAME: {
+      return {
+        ...deepCopy(state),
+        name: payload.name,
       };
     }
 
