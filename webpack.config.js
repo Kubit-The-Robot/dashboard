@@ -67,6 +67,15 @@ module.exports = {
         ],
       },
       {
+        test: /\.(mp3|wav|wma|ogg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[contenthash].[ext]',
+          }
+        }
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ['file-loader'],
       },
