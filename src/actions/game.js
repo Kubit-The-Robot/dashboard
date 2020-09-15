@@ -1,7 +1,16 @@
 import { GameConstants } from 'constants';
 
-// export const GameConstants = keymirror({
-//   GAME_START: undefined,
-//   GAME_PAUSED: undefined,
-//   GAME_END: undefined,
-// });
+/**
+ * @param {number} value
+ */
+export const setRoute = (route) => {
+  const url = new URL(route);
+  const { hash } = url;
+
+  return {
+    type: GameConstants.GAME_SET_ROUTE,
+    payload: {
+      route: hash,
+    },
+  }
+};

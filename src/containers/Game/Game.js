@@ -1,19 +1,64 @@
 import OverReact from 'overreact';
+import { connect } from 'store';
 
-import Canvas from 'containers/Canvas/';
-import Viewport from 'containers/Viewport';
+import { setRoute } from 'actions';
+
+import { ROUTES } from 'constants';
+
+import Canvas from 'containers/Canvas';
+import Router from 'containers/Router';
 import Status from 'containers/Status';
-import { Router } from 'containers/Router';
+import Viewport from 'containers/Viewport';
 
-function Game({ store }) {
+const { useEffect } = OverReact;
+
+function Game({ setRouteDispatcher }) {
+  const { hash } = window.location;
+
+  if (!hash) {
+    window.location.hash = ROUTES.START;
+  }
+
+  const onRouteChanged = (event) => {
+    const { newURL } = event;
+
+    setRouteDispatcher(newURL);
+  }
+
+  useEffect(() => {
+    window.addEventListener('hashchange', onRouteChanged);
+
+    return () => {
+      window.removeEventListener('hashchange', onRouteChanged)
+    }
+  }, [hash]);
+
+  let screen = (<h1>Olá Mundo</h1>);
+
+  if (hash === ROUTES.GAME) {
+    screen = (
+      <div>
+        <Status />
+        <Canvas />
+      </div>
+    )
+  }
+
   return (
     <Viewport>
       <Router>
-        <Status />
-        <Canvas store={store} />
+        {screen}
       </Router>
     </Viewport>
   );
 }
 
-export default Game;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setRouteDispatcher: (route) => {
+      dispatch(setRoute(route));
+    },
+  };
+};
+
+export default connect(() => {}, mapDispatchToProps)(Game);
