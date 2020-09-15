@@ -4,13 +4,36 @@ import { logger } from 'modules';
  * Combine multiple reducers into a single one
  * @param {*} reducers
  */
-export const combineReducers = (reducers) => (state = {}, action) => {
-  const nextState = Object.keys(reducers).reduce((nextState, key) => {
-    nextState[key] = reducers[key](state[key], action);
-    return nextState;
-  }, {});
+export const combineReducers = (reducers) => {
+  const reducerKeys = Object.keys(reducers);
+  const finalReducers = {};
 
-  logger(action, state, nextState);
+  for (let i = 0; i < reducerKeys.length; i++) {
+    const key = reducerKeys[i]
 
-  return nextState;
-};
+    if (typeof reducers[key] === 'function') {
+      finalReducers[key] = reducers[key];
+    }
+  }
+
+  const finalReducerKeys = Object.keys(finalReducers);
+
+  return function combination(state = {}, action) {
+    let hasChanged = false;
+    const nextState = {};
+
+    for (let i = 0; i < finalReducerKeys.length; i++) {
+      const key = finalReducerKeys[i];
+      const reducer = finalReducers[key];
+      const previousStateForKey = state[key];
+      const nextStateForKey = reducer(previousStateForKey, action);
+
+      nextState[key] = nextStateForKey
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey
+    }
+
+    logger(action, state, nextState);
+
+    return hasChanged ? nextState : state;
+  }
+}

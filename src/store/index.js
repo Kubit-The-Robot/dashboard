@@ -1,19 +1,28 @@
-import { combineReducers } from './combine-reducers';
+import OverReact from 'overreact';
 import { createStore } from './create-store';
 import { loadState, debounce, saveState } from 'modules';
 
-import gameReducer from 'reducers/game';
-import kubitReducer from 'reducers/kubit';
-import playerReducer from 'reducers/player';
-
-const rootReducers = combineReducers({
-  game: gameReducer,
-  kubit: kubitReducer,
-  player: playerReducer,
-});
+import rootReducers from 'reducers';
 
 const persistedState = loadState();
 
 const store = createStore(rootReducers, persistedState);
 
-export default store;
+function connect(mapStateToProps = () => {}, mapDispatchToProps = () => {}) {
+  return function(WrappedComponent) {
+
+    function ConnectedComponent() {
+      const state = store.getState;
+
+      return (<WrappedComponent
+        {...mapStateToProps(state)}
+        {...mapDispatchToProps(store.dispatch)}
+      />
+      )
+    }
+
+    return ConnectedComponent;
+  }
+}
+
+export { store, connect };

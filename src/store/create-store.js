@@ -1,33 +1,56 @@
 /**
- * Creates a global store
- * @param {*} reducer
- */
-/**
  * Create the game store
- * @param { function } reducer
+ * @param { function } currentReducer
  */
 
-export const createStore = (reducer, persistedState) => {
-  let state = persistedState || {};
-  let listeners = [];
+export const createStore = (currentReducer, persistedState) => {
+  let currentState = persistedState || {};
+  let currentListeners = [];
+  let nextListeners = currentListeners;
 
-  const getState = () => state;
+  const getState = () => currentState;
 
-  const dispatch = (action) => {
-    state = reducer(state, action);
-    listeners.forEach((listener) => listener());
-    console.log({ listeners });
-  };
+  const ensureCanMutateNextListeners = () => {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice();
+    }
+  }
 
   const subscribe = (listener) => {
-    listeners.push(listener);
+    let isSubscribed = true;
 
-    return () => {
-      listeners = listeners.filter((l) => l !== listener);
+    ensureCanMutateNextListeners();
+    nextListeners.push(listener);
+
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      isSubscribed = false;
+
+      ensureCanMutateNextListeners();
+
+      const index = nextListeners.indexOf(listener);
+
+      nextListeners.splice(index, 1);
     };
   };
 
-  dispatch({});
+  const dispatch = (action) => {
+    currentState = currentReducer(currentState, action);
+    const listeners = (currentListeners = nextListeners);
+
+    for (let i = 0; i < listeners.length; i++) {
+      const listener = listeners[i];
+
+      listener();
+    }
+
+    return action;
+  };
+
+  dispatch({ type: 'INIT_STORE' });
 
   return {
     get getState() {

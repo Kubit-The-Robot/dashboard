@@ -1,6 +1,6 @@
 import OverReact from 'overreact';
 
-import store from 'store';
+import { connect } from 'store';
 
 import StatusBar from './StatusBar';
 
@@ -13,33 +13,12 @@ import starIcon from 'assets/ui/star.svg';
 
 import './Status.scss';
 
-function connect(mapStateToProps = () => {}, mapDispatchToProps = () => {}) {
-  return function(WrappedComponent) {
-
-    function myComp() {
-      console.log('myComp has been called');
-      const state = store.getState;
-      const props = mapStateToProps(state);
-
-      return <WrappedComponent {...props} />
-    }
-
-    store.subscribe(myComp);
-
-    return myComp;
-  }
-}
-
-function Status({ energy, happiness, experience, hungry }) {
-
-  console.log({ energy, happiness, experience, hungry });
-
+function Status({ energy, happiness, experience, hungry, addEnergyDispatcher }) {
   const handleClick = (e) => {
     e.preventDefault;
 
-    store.dispatch(addEnergy(5));
+    addEnergyDispatcher(5);
   }
-
 
   return (
     <div className="status">
@@ -72,7 +51,7 @@ function Status({ energy, happiness, experience, hungry }) {
         />
       </div>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => ({
@@ -82,4 +61,12 @@ const mapStateToProps = (state) => ({
   hungry: state.kubit.hungry,
 });
 
-export default connect(mapStateToProps)(Status);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addEnergyDispatcher: (value) => {
+      dispatch(addEnergy(value));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Status);
