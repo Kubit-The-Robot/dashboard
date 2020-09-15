@@ -3,5 +3,7 @@ export * from './globalListeners';
 export * from './keymirror';
 export * from './localstorage';
 export * from './logger';
+export * from './messages';
+export * from './speechApi';
 export * from './throtle-debounce';
 export * from './uuid';
