@@ -1,11 +1,11 @@
 import OverReact from 'overreact';
-import loadingSrc from 'assets/kubit/kubit-idle-floating';
+import loadingSrc from 'assets/kubit/kubit-idle-loading';
 
-function Loading(props) {
+function Animation(props) {
   return (
     <div {...props}>
       <lottie-player
-        id="loading"
+        id="kubit-username"
         autoplay
         loop
         preserveAspectRatio="xMidYMid slice"
@@ -15,4 +15,4 @@ function Loading(props) {
   );
 }
 
-export default Loading;
+export default Animation;

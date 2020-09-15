@@ -1,41 +1,31 @@
 import OverReact from 'overreact';
 
-import Logo from 'components/Logo';
-import Loading from './Loading';
-import { ROUTES } from 'constants';
+import Animation from './Animation';
 
-import './Start.scss';
+import './Username.scss';
 
-import themeMusic from 'assets/musics/number-one.mp3';
-
-function Start() {
+function Username({ hasName = false }) {
   return (
-    <div className="screen-start">
-      <audio autoplay style={{display: 'none'}}>
-        <source src={themeMusic} type="audio/mp3" />
-      </audio>
+    <div className="screen-username">
+      <div className="screen-username__content">
+        <Animation className="screen-username__kubit" />
 
-      <div className="screen-start__content">
-        <Logo className="screen-start__logo" />
+        <div className="screen-username__wrapper">
+          <div className="screen-username__header">
+            <h2>NOME</h2>
+          </div>
 
-        <Loading className="screen-start__kubit" />
+          <input className="screen-username__input" type="text" autofocus />
 
-        <div className="screen-start__options">
-          <a href={ROUTES.USERNAME}>
-            <span>N</span>
-            <span>O</span>
-            <span>V</span>
-            <span>O</span>
-            <span>&nbsp;&nbsp;</span>
-            <span>J</span>
-            <span>0</span>
-            <span>G</span>
-            <span>O</span>
-          </a>
+          <div className="screen-username__footer">
+            <button className={`screen-username__button ${hasName ? 'is-active' : 'is-blocked'}`}>
+              COMEÇAR
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default Start;
+export default Username;

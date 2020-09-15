@@ -2,11 +2,11 @@
   box-sizing: border-box;
 
   &:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   &:before {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 }
 
@@ -96,6 +96,7 @@ textarea {
   color: inherit;
   font: inherit;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {

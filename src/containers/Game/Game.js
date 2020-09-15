@@ -5,10 +5,12 @@ import { setRoute } from 'actions';
 
 import { ROUTES } from 'constants';
 
-import Canvas from 'containers/Canvas';
 import Router from 'containers/Router';
+
+import Canvas from 'containers/Canvas';
 import Start from 'containers/Start';
 import Status from 'containers/Status';
+import Username from 'containers/Username';
 import Viewport from 'containers/Viewport';
 
 const { useEffect } = OverReact;
@@ -41,12 +43,7 @@ function Game({ setRouteDispatcher }) {
   }
 
   else if (hash === ROUTES.USERNAME) {
-    screen = (
-      <div>
-        <h1>USER NAME</h1>
-        <a href={ROUTES.INTRO}>próxima rota</a>
-      </div>
-    )
+    screen = (<Username />)
   }
 
   else if (hash === ROUTES.INTRO) {

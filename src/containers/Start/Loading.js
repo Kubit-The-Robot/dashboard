@@ -5,7 +5,7 @@ function Loading(props) {
   return (
     <div {...props}>
       <lottie-player
-        id="loading"
+        id="kubit-intro"
         autoplay
         loop
         preserveAspectRatio="xMidYMid slice"
