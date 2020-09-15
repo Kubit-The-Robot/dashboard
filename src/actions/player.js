@@ -54,7 +54,7 @@ export const setPlayerMood = (mood) => {
  */
 export const setPlayerName = (name) => {
   return {
-    type: PlayerConstants.PLAYER_SET_MOOD,
+    type: PlayerConstants.PLAYER_SET_NAME,
     payload: {
       name,
     },

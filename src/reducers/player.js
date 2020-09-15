@@ -47,7 +47,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case PlayerConstants.PLAYER_SET_NAME: {
       return {
         ...deepCopy(state),
-        name: payload.playerMood,
+        name: payload.name,
+        hasName: !!payload.name,
       };
     }
 
