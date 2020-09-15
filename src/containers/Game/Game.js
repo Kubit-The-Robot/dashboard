@@ -41,6 +41,7 @@ function Game({ setRouteDispatcher }) {
   let screen = (<h1>Olá Mundo</h1>);
 
   if (hash === ROUTES.START) {
+
     themeSound.play();
 
     screen = (<Start />)
