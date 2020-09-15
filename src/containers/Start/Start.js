@@ -6,9 +6,15 @@ import { ROUTES } from 'constants';
 
 import './Start.scss';
 
+import themeMusic from 'assets/musics/number-one.mp3';
+
 function Start() {
   return (
     <div className="screen-start">
+      <audio autoplay style={{display: 'none'}}>
+        <source src={themeMusic} type="audio/mp3" />
+      </audio>
+
       <div className="screen-start__content">
         <Logo className="screen-start__logo" />
 

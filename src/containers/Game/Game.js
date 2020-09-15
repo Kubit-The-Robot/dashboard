@@ -5,20 +5,11 @@ import { setRoute } from 'actions';
 
 import { ROUTES } from 'constants';
 
-import { debounce } from 'modules';
-
 import Canvas from 'containers/Canvas';
 import Router from 'containers/Router';
 import Start from 'containers/Start';
 import Status from 'containers/Status';
 import Viewport from 'containers/Viewport';
-
-import themeMusic from 'assets/musics/number-one.mp3';
-
-const themeSound = new Audio(themeMusic);
-
-console.log(themeSound);
-// themeSound.autoplay = false;
 
 const { useEffect } = OverReact;
 
@@ -46,13 +37,10 @@ function Game({ setRouteDispatcher }) {
   let screen = (<h1>Olá Mundo</h1>);
 
   if (hash === ROUTES.START) {
-    themeSound.play()
-
     screen = (<Start />)
   }
 
   else if (hash === ROUTES.USERNAME) {
-    console.log(themeSound.pause());
     screen = (
       <div>
         <h1>USER NAME</h1>
