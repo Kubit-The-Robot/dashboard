@@ -17,6 +17,7 @@ function connect(mapStateToProps = () => {}, mapDispatchToProps = () => {}) {
   return function(WrappedComponent) {
 
     function myComp() {
+      console.log('myComp has been called');
       const state = store.getState;
       const props = mapStateToProps(state);
 
