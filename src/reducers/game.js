@@ -1,5 +1,6 @@
 import { GameConstants } from 'constants';
 import { deepCopy } from 'modules';
+import { ROUTES } from 'constants';
 
 const initialState = {
   alerts: [],
@@ -10,7 +11,7 @@ const initialState = {
   isSpeechRecognitionActive: false,
   isStoreActive: false,
   skipIntro: false,
-  route: '#start',
+  route: ROUTES.START,
 };
 
 const reducer = (state = initialState, { type, payload }) => {

@@ -18,5 +18,4 @@ store.subscribe(debounce(() => {
   saveState(store.getState);
 }, 500));
 
-
 initGame();

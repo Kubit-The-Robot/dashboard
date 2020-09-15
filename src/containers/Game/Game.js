@@ -7,6 +7,7 @@ import { ROUTES } from 'constants';
 
 import Canvas from 'containers/Canvas';
 import Router from 'containers/Router';
+import Start from 'containers/Start';
 import Status from 'containers/Status';
 import Viewport from 'containers/Viewport';
 
@@ -35,17 +36,35 @@ function Game({ setRouteDispatcher }) {
 
   let screen = (<h1>Olá Mundo</h1>);
 
-  if (hash === ROUTES.GAME) {
+  if (hash === ROUTES.START) {
+    screen = (<Start />)
+  }
+
+  else if (hash === ROUTES.USERNAME) {
     screen = (
       <div>
-        <Status />
-        <Canvas />
+        <h1>USER NAME</h1>
+        <a href={ROUTES.INTRO}>próxima rota</a>
       </div>
     )
   }
 
+  else if (hash === ROUTES.INTRO) {
+    screen = (
+      <h1>INTRO</h1>
+    )
+  }
+
+  else if (hash === ROUTES.GAME) {
+    screen = (<div>
+      <Status />
+      <Canvas />
+    </div>
+    )
+  }
+
   return (
-    <Viewport>
+    <Viewport style={{background: '(url)' }}>
       <Router>
         {screen}
       </Router>

@@ -4,7 +4,7 @@ const { useEffect } = OverReact;
 
 function Router({ children }) {
   return (
-    <div className="router">
+    <div className="viewport__router">
       {children}
     </div>
   );

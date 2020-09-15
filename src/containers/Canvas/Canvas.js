@@ -4,7 +4,7 @@ import store from 'store';
 function Canvas() {
   return (
     <div
-      className="Canvas"
+      className="canvas"
     >
       <lottie-player
         autoplay
