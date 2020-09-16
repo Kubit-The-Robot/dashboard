@@ -6,10 +6,10 @@ import StatusBar from './StatusBar';
 
 import { addEnergy } from 'actions';
 
-import thunderIcon from 'assets/ui/thunder.svg';
-import heartIcon from 'assets/ui/heart-1.svg';
 import foodIcon from 'assets/ui/food.svg';
+import heartIcon from 'assets/ui/heart-1.svg';
 import starIcon from 'assets/ui/star.svg';
+import thunderIcon from 'assets/ui/thunder.svg';
 
 import './Status.scss';
 

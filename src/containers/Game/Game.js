@@ -2,14 +2,11 @@ import OverReact from 'overreact';
 import { connect } from 'store';
 
 import { setRoute } from 'actions';
-
 import { ROUTES } from 'constants';
 
 import Router from 'containers/Router';
-
-import Canvas from 'containers/Canvas';
+import Stages from 'containers/Stages';
 import Start from 'containers/Start';
-import Status from 'containers/Status';
 import Username from 'containers/Username';
 import Viewport from 'containers/Viewport';
 
@@ -36,28 +33,16 @@ function Game({ setRouteDispatcher }) {
     }
   }, [hash]);
 
-  let screen = (<h1>Olá Mundo</h1>);
+  let screen;
 
   if (hash === ROUTES.START) {
     screen = (<Start />)
   }
-
   else if (hash === ROUTES.USERNAME) {
     screen = (<Username />)
   }
-
-  else if (hash === ROUTES.INTRO) {
-    screen = (
-      <h1>INTRO</h1>
-    )
-  }
-
   else if (hash === ROUTES.GAME) {
-    screen = (<div>
-      <Status />
-      <Canvas />
-    </div>
-    )
+    screen = (<Stages />)
   }
 
   return (

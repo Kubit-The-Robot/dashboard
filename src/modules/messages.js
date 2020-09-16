@@ -4,7 +4,6 @@
 
 export const messages = {
   GAME: {
-
   },
   USERNAME: {
     greetings: () => 'Olááá! esse é o Qilbit, e eu sou a Ana Byte, Como posso te chamar?',
