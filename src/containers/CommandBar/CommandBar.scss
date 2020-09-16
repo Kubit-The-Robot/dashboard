@@ -1,6 +1,3 @@
-/* Modify me for different cooldown speed! */
-/* Modify me for a different cooldown color! */
-/* Modify me to be 'infinite' or a number! */
 @keyframes anim-cooldown-inner {
   0% {
     background: rgba(0, 0, 0, 0.5);
@@ -38,9 +35,9 @@
   backface-visibility: hidden;
   bottom: 0;
   left: 50%;
-  margin-left: -200px;
+  transform: translateX(-50%);
   border: 2px solid #888;
-  width: 400px;
+  max-width: 400px;
   height: 80px;
 }
 
