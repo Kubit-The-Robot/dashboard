@@ -64,6 +64,7 @@
     "lint": "eslint --ext js src",
     "lint:fix": "eslint --ext js src --fix",
     "start:dev": "webpack-dev-server --mode=development",
+    "deploy:prod": "sh deploy.sh",
     "test": "jest --config jest.config.js",
     "test:watch": "jest --watch --config jest.config.js --watch --verbose",
     "test:coverage": "NODE_ENV=test jest --config jest.config.js --bail --coverage",
