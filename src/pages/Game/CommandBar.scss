@@ -1,0 +1,24 @@
+.command-bar {
+  position: fixed;
+  backface-visibility: hidden;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #888;
+  max-width: 400px;
+  height: 80px;
+}
+
+.icon {
+  border: 1px solid #222;
+  width: 40px;
+  height: 40px;
+  background: #eee;
+  float: left;
+  margin: 20px;
+  margin-left: 20px;
+  position: relative;
+  background-size: 36px 36px;
+  background-position: 3px 3px;
+  background-repeat: no-repeat;
+}

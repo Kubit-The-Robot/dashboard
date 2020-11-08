@@ -2,7 +2,7 @@ import OverReact from 'overreact';
 import Status from 'containers/Status';
 
 import Kubit from 'containers/Kubit';
-import CommandBar from 'containers/CommandBar';
+import CommandBar from './CommandBar';
 
 import './Game.scss';
 
