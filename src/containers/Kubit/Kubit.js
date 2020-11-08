@@ -72,7 +72,7 @@ import './Kubit.scss';
 
 const { useState, useEffect } = OverReact;
 
-function Kubit(state = "IS_IDLE") {
+function Kubit(state = 'IS_IDLE') {
   let feedbackOutput;
   let playAnimation;
   const defaultAnimation = idleFloating;

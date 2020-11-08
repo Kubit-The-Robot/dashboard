@@ -61,7 +61,7 @@ function Game() {
         <Kubit />
 
         <div className="command-bar">
-          <button 
+          <button
             className="command command-battery"
             onClick={onClickBattery}
           >
@@ -70,7 +70,7 @@ function Game() {
             </div>
           </button>
 
-          <button 
+          <button
             className="command command-food"
             onClick={onClickFood}
           >
@@ -79,7 +79,7 @@ function Game() {
             </div>
           </button>
 
-          <button 
+          <button
             className="command command-talk"
             onClick={onClickTalk}
           >
@@ -88,7 +88,7 @@ function Game() {
             </div>
           </button>
 
-          <button 
+          <button
             className="command command-pets"
             onClick={onClickFriend}
           >
@@ -97,7 +97,7 @@ function Game() {
             </div>
           </button>
 
-          <button 
+          <button
             className="command command-stage"
             onClick={onClickStage}
           >
