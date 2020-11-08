@@ -5,15 +5,16 @@ import { setRoute } from 'actions';
 import { ROUTES } from 'constants';
 
 import Router from 'containers/Router';
-import Stages from 'containers/Stages';
 import Start from 'containers/Start';
 import Dashboard from 'pages/Dashboard';
 import Username from 'containers/Username';
 import Viewport from 'containers/Viewport';
 
+import Game from 'pages/Game';
+
 const { useEffect } = OverReact;
 
-function Game({ setRouteDispatcher }) {
+function App({ setRouteDispatcher }) {
   const { hash } = window.location;
 
   if (!hash) {
@@ -40,10 +41,10 @@ function Game({ setRouteDispatcher }) {
     screen = <Start />;
   } else if (hash === ROUTES.USERNAME) {
     screen = <Username />;
-  } else if (hash === ROUTES.GAME) {
-    screen = <Stages />;
   } else if (hash === ROUTES.DASHBOARD) {
     screen = <Dashboard />;
+  } else if (hash === ROUTES.GAME) {
+    screen = <Game />;
   }
 
   return (
@@ -61,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(() => {}, mapDispatchToProps)(Game);
+export default connect(() => {}, mapDispatchToProps)(App);
