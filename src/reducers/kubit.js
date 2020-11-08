@@ -1,4 +1,4 @@
-import { KubitConstants } from 'constants';
+import { KubitConstants, KUBIT_STATES } from 'constants';
 import { deepCopy } from 'modules';
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
   happiness: 0,
   hungry: 0,
   mood: '',
+  status: '',
 };
 
 const countReducer = (state = initialState, { type, payload }) => {
@@ -68,6 +69,13 @@ const countReducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         mood: payload.value,
+      };
+    }
+
+    case KubitConstants.SET_STATUS: {
+      return {
+        ...deepCopy(state),
+        status: payload.value,
       };
     }
 
