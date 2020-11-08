@@ -7,6 +7,12 @@
   max-width: 100wh;
   overflow: hidden;
 
+  @media (min-width: 960px) {
+    min-height: 100vh;
+    height: auto;
+    overflow: initial;
+  }
+
   &__router {
     display: flex;
     flex-direction: column;
@@ -17,5 +23,11 @@
     overflow: hidden;
     justify-content: center;
     align-items: center;
+
+    @media (min-width: 960px) {
+      min-height: 100vh;
+      height: auto;
+      overflow: initial;
+    }
   }
 }

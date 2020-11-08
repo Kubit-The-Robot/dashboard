@@ -10,4 +10,5 @@ export const ROUTES = {
   START: '#start',
   USERNAME: '#username',
   WORKSHOP: '#workshop',
-}
+  DASHBOARD: '#dashboard',
+};

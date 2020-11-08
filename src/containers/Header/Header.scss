@@ -1,0 +1,67 @@
+.header {
+  width: 100vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  // background: rgba(255, 0, 0, 0.5);
+  padding: 30px;
+
+  &__userAvatar {
+    display: flex;
+    align-items: center;
+
+    & span {
+      color: #fff;
+    }
+  }
+
+  &__userImageWrapper {
+    display: block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 15px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+  }
+
+  &__progress {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #fff;
+
+    &Item {
+      margin-right: 35px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      & i {
+        font-size: 25px;
+        margin-right: 10px;
+      }
+
+      & span {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+        background: #fff;
+        color: #000;
+        text-align: center;
+        border-radius: 50%;
+      }
+    }
+  }
+}

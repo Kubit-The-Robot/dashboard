@@ -7,6 +7,7 @@ import { ROUTES } from 'constants';
 import Router from 'containers/Router';
 import Stages from 'containers/Stages';
 import Start from 'containers/Start';
+import Dashboard from 'pages/Dashboard';
 import Username from 'containers/Username';
 import Viewport from 'containers/Viewport';
 
@@ -23,33 +24,31 @@ function Game({ setRouteDispatcher }) {
     const { newURL } = event;
 
     setRouteDispatcher(newURL);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('hashchange', onRouteChanged);
 
     return () => {
-      window.removeEventListener('hashchange', onRouteChanged)
-    }
+      window.removeEventListener('hashchange', onRouteChanged);
+    };
   }, [hash]);
 
   let screen;
 
   if (hash === ROUTES.START) {
-    screen = (<Start />)
-  }
-  else if (hash === ROUTES.USERNAME) {
-    screen = (<Username />)
-  }
-  else if (hash === ROUTES.GAME) {
-    screen = (<Stages />)
+    screen = <Start />;
+  } else if (hash === ROUTES.USERNAME) {
+    screen = <Username />;
+  } else if (hash === ROUTES.GAME) {
+    screen = <Stages />;
+  } else if (hash === ROUTES.DASHBOARD) {
+    screen = <Dashboard />;
   }
 
   return (
-    <Viewport style={{background: '(url)' }}>
-      <Router>
-        {screen}
-      </Router>
+    <Viewport style={{ background: '(url)' }}>
+      <Router>{screen}</Router>
     </Viewport>
   );
 }
