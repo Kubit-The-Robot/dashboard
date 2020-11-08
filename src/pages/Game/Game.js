@@ -4,9 +4,9 @@ import Status from 'containers/Status';
 import Kubit from 'containers/Kubit';
 import CommandBar from 'containers/CommandBar';
 
-import './Stages.scss';
+import './Game.scss';
 
-function Stages() {
+function Game() {
   return (
     <div className="stages stages--spaceship">
       <Status />
@@ -16,4 +16,4 @@ function Stages() {
   );
 }
 
-export default Stages;
+export default Game;
