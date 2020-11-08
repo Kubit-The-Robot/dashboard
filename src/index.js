@@ -6,10 +6,10 @@ import { store } from './store';
 import '@lottiefiles/lottie-player';
 import './styles/global.styles.scss';
 
-import Game from 'containers/Game';
+import App from './App';
 
 const initGame = () => {
-  OverReact.render(<Game />, document.getElementById('game-canvas'));
+  OverReact.render(<App />, document.getElementById('game-canvas'));
 };
 
 store.subscribe(initGame);
