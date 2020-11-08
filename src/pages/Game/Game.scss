@@ -1,8 +1,5 @@
 .stages {
   align-items: center;
-  background-position: center top;
-  background-size: 100% auto;
-  background: url('../../assets/scenarios/bg-space-transparent.png') no-repeat;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -11,15 +8,101 @@
   width: 100%;
 
   &:before {
-    background: rgb(31,38,89);
-    background: linear-gradient(222deg, rgba(31,38,89,1) 0%, rgba(20,31,54,1) 100%);
     position: absolute;
     content: "";
     width: 100%;
     height: 100%;
-    background-color: lightcoral;
     top: 0;
     left: 0;
     z-index: -1;
   }
+
+  &.stages--spaceship {
+    background: url('../../assets/scenarios/bg-space-transparent.png') no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+
+    &:before {
+      background: rgb(31,38,89);
+      background: linear-gradient(222deg, rgba(31,38,89,1) 0%, rgba(20,31,54,1) 100%);
+    }
+  }
+
+  &.stages--abstract {
+    background: url('../../assets/scenarios/bg-abstract.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #ED3947;
+    }
+  }
+
+  &.stages--blue {
+    background: url('../../assets/scenarios/bg-blue.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #310078;
+    }
+  }
+
+  &.stages--colorfull {
+    background: url('../../assets/scenarios/bg-colorfull.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #390954;
+    }
+  }
+
+  &.stages--light-blue {
+    background: url('../../assets/scenarios/bg-light-blue.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--yellow {
+    background: url('../../assets/scenarios/bg-yellow.jpg') no-repeat;
+    background-size: cover;
+
+    &:before {
+      background: #F39B39;
+    }
+  }
+
+  &.stages--mars {
+    background: url('../../assets/scenarios/bg-home-2.jpg') no-repeat;
+    background-size: cover;
+
+    &:before {
+      background: #FC9431;
+    }
+  }
+
+  &.stages--mars {
+    background: url('../../assets/scenarios/bg-home-2.jpg') no-repeat;
+    background-size: cover;
+
+    &:before {
+      background: #FC9431;
+    }
+  }
+}
+
+.game-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 960px;
 }
