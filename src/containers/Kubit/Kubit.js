@@ -1,20 +1,19 @@
 import OverReact from 'overreact';
 
 // Idle Animations
-import idleAffection from 'assets/kubit/kubit-idle-affection.json';
-import idleBattery from 'assets/kubit/kubit-idle-battery.json';
-import idleBug from 'assets/kubit/kubit-idle-bug.json';
-import idleHungry from 'assets/kubit/kubit-idle-hungry.json';
-import idleLoading from 'assets/kubit/kubit-idle-loading.json';
-import idleRunning from 'assets/kubit/kubit-idle-running.json';
-import idleSad from 'assets/kubit/kubit-idle-sad.json';
-import idleFloating from 'assets/kubit/kubit-idle-floating.json';
+import isBatteryLow from 'assets/kubit/kubit-idle-battery.json';
+import isDamaged from 'assets/kubit/kubit-idle-bug.json';
+import isHungry from 'assets/kubit/kubit-idle-hungry.json';
+import isFlying from 'assets/kubit/kubit-idle-running.json';
+import isSad from 'assets/kubit/kubit-idle-sad.json';
+import isIdle from 'assets/kubit/kubit-idle-floating.json';
 
 // Reactions Animations
-import reactionAngry from 'assets/kubit/kubit-reaction-angry.json';
-import reactionBattery from 'assets/kubit/kubit-reaction-battery.json';
-import reactionEating from 'assets/kubit/kubit-reaction-eating.json';
-import reactionTalking from 'assets/kubit/kubit-reaction-talking.json';
+import angry from 'assets/kubit/kubit-reaction-angry.json';
+import energizing from 'assets/kubit/kubit-reaction-battery.json';
+import eating from 'assets/kubit/kubit-reaction-eating.json';
+import smiling from 'assets/kubit/kubit-idle-affection.json';
+import talking from 'assets/kubit/kubit-reaction-talking.json';
 
 // Sound Effects
 import angrySound1 from 'assets/kubit-sounds/ANGRY-1.mp3';
@@ -72,29 +71,166 @@ import './Kubit.scss';
 
 const { useState, useEffect } = OverReact;
 
-function Kubit(state = 'IS_IDLE', mood = '') {
-  const [currentState, setCurrentState] = useState();
+const angrySFX_1 = new Audio(angrySound1);
+const angrySFX_2 = new Audio(angrySound2);
+const angrySFX_3 = new Audio(angrySound3);
+const angrySFX_4 = new Audio(angrySound4);
+const angrySFX_5 = new Audio(angrySound5);
+const angrySFX_6 = new Audio(angrySound6);
+const answerRightSFX_1 = new Audio(answerRightSound1);
+const answerWrongSFX_1 = new Audio(answerWrongSound1);
+const eatingSFX_1 = new Audio(eatingSound1);
+const energizingSFX_1 = new Audio(energizingSound1);
+const energizingSFX_2 = new Audio(energizingSound2);
+const energizingSFX_3 = new Audio(energizingSound3);
+const idleSFX_1 = new Audio(idleSound1);
+const idleSFX_2 = new Audio(idleSound2);
+const batteryLowSFX_1 = new Audio(batteryLowSound1);
+const damagedSFX_1 = new Audio(damagedSound1);
+const damagedSFX_2 = new Audio(damagedSound2);
+const damagedSFX_3 = new Audio(damagedSound3);
+const hungrySFX_1 = new Audio(hungrySound1);
+const hungrySFX_2 = new Audio(hungrySound2);
+const isSadSFX_1 = new Audio(isSadSound1);
+const levelUpSFX_1 = new Audio(levelUpSound1);
+const smilingSFX_1 = new Audio(smilingSound1);
+const smilingSFX_2 = new Audio(smilingSound2);
+const talkingBadSFX_1 = new Audio(talkingBadSound1);
+const talkingBadSFX_2 = new Audio(talkingBadSound2);
+const talkingBadSFX_3 = new Audio(talkingBadSound3);
+const talkingBadSFX_4 = new Audio(talkingBadSound4);
+const talkingBadSFX_5 = new Audio(talkingBadSound5);
+const talkingGoodSFX_1 = new Audio(talkingGoodSound1);
+const talkingGoodSFX_2 = new Audio(talkingGoodSound2);
+const talkingGoodSFX_3 = new Audio(talkingGoodSound3);
+const talkingGoodSFX_4 = new Audio(talkingGoodSound4);
+const talkingSFX_1 = new Audio(talkingSound1);
+const talkingSFX_2 = new Audio(talkingSound2);
+const talkingSFX_3 = new Audio(talkingSound3);
+const talkingSFX_4 = new Audio(talkingSound4);
+
+const kubitStates = {
+  ANGRY: {
+    animation: angry,
+    soundsPrefix: 'angrySFX_',
+  },
+  ANSWER_RIGHT: {
+    animation: '',
+    soundsPrefix: 'answerRightSFX_',
+    rangeStart: 1,
+    rangeEnd: 6,
+  },
+  ANSWER_WRONG: {
+    animation: '',
+    soundsPrefix: 'answerWrongSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  EATING: {
+    animation: eating,
+    soundsPrefix: 'eatingSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  ENERGIZING: {
+    animation: energizing,
+    soundsPrefix: 'energizingSFX_',
+    rangeStart: 1,
+    rangeEnd: 3,
+  },
+  FLYING: {
+    animation: isFlying,
+    soundsPrefix: '',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  IS_BATTERY_LOW: {
+    animation: isBatteryLow,
+    soundsPrefix: 'idleSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  IS_DAMAGED: {
+    animation: isDamaged,
+    soundsPrefix: 'damagedSFX_',
+    rangeStart: 1,
+    rangeEnd: 3,
+  },
+  IS_HUNGRY: {
+    animation: isHungry,
+    soundsPrefix: 'hungrySFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  IS_IDLE: {
+    animation: isIdle,
+    soundsPrefix: 'idleSFX_',
+    rangeStart: 1,
+    rangeEnd: 2,
+  },
+  IS_SAD: {
+    animation: isSad,
+    soundsPrefix: '',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  SMILING: {
+    animation: smiling,
+    soundsPrefix: 'smilingSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  TALKING: {
+    animation: talking,
+    soundsPrefix: 'talkingSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  TALKING_BAD: {
+    animation: isSad,
+    soundsPrefix: 'talkingBadSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  TALKING_GOOD: {
+    animation: smiling,
+    soundsPrefix: 'talkingGoodSFX_',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+  LEVEL_UP: {
+    animation: isFlying,
+    soundsPrefix: '',
+    rangeStart: 1,
+    rangeEnd: 1,
+  },
+};
+
+function Kubit({ status = 'IS_IDLE', mood = '' }) {
+  const [currentAnimation, setAnimation] = useState('');
+  const [currentSound, setCurrentSound] = useState('');
 
   let feedbackOutput;
   let playAnimation;
-  const defaultAnimation = idleFloating;
+  const defaultAnimation = isIdle;
 
   useEffect(() => {
-
-  }, [state]);
+    // if (mood) {
+    // }
+    // else {
+    // }
+  }, [status, mood]);
 
   return (
     <div className="kubit">
-      <div className="kubit__feedback">
-        {feedbackOutput}
-      </div>
+      <div className="kubit__feedback">{feedbackOutput}</div>
 
       <lottie-player
         id="kubit-character"
         autoplay
         loop
         preserveAspectRatio="xMidYMid slice"
-        src={playAnimation || defaultAnimation}
+        src={currentAnimation || kubitStates[status].animation}
       ></lottie-player>
     </div>
   );
