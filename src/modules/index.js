@@ -7,3 +7,5 @@ export * from './messages';
 export * from './speechApi';
 export * from './throtle-debounce';
 export * from './uuid';
+export * from './intentionAnalysis';
+export * from './speechRecognition';

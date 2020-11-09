@@ -74,7 +74,7 @@ const { useState, useEffect } = OverReact;
 
 function Kubit(state = 'IS_IDLE', mood = '') {
   const [currentState, setCurrentState] = useState();
-  
+
   let feedbackOutput;
   let playAnimation;
   const defaultAnimation = idleFloating;

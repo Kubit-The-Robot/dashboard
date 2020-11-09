@@ -12,9 +12,9 @@ import thunderIcon from 'assets/ui/thunder.svg';
 import './Status.scss';
 
 function Status({
-  energy, 
-  happiness, 
-  experience, 
+  energy,
+  happiness,
+  experience,
   hungry,
 }) {
   return (

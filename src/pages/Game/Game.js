@@ -3,7 +3,7 @@ import { connect } from 'store';
 
 import { KUBIT_STATES } from 'constants';
 
-import { 
+import {
   removeEnergy,
   removeHappiness,
   removeHungry,
@@ -14,6 +14,7 @@ import {
   setStatus,
 } from 'actions';
 
+import { Recognition, getIntention } from 'modules';
 import batteryIcon from 'assets/ui/game/battery-icon.svg';
 import forkIcon from 'assets/ui/game/fork-icon.svg';
 import micIcon from 'assets/ui/game/mic-icon.svg';
@@ -32,6 +33,9 @@ import './Game.scss';
 
 const batterySound = new Audio(batteryUpSFX);
 const clickSound = new Audio(clickSFX);
+const recognition = new Recognition({ namespace: 'kubit' });
+
+const { useEffect } = OverReact;
 
 function Game({
   energy,
@@ -43,6 +47,13 @@ function Game({
   addEnergyDispatcher,
   setMoodDispatcher,
 }) {
+  useEffect(() => {
+    document.addEventListener('recognition.end', (e) => {
+      const intention = getIntention(e.detail?.transcription);
+      console.log({ intention });
+    });
+  }, []);
+
   function onClickBattery(e) {
     e.preventDefault;
 
@@ -60,6 +71,12 @@ function Game({
   function onClickTalk(e) {
     e.preventDefault;
     batterySound.play();
+
+    if (!recognition.recognizing) {
+      recognition.start();
+    } else {
+      recognition.stop();
+    }
   }
 
   function onClickFriend(e) {
@@ -74,66 +91,43 @@ function Game({
 
   return (
     <div className="stages stages--yellow">
-      <audio autoplay style={{display: 'none'}}>
+      <audio autoplay style={{ display: 'none' }}>
         <source src="" type="audio/mp3" />
       </audio>
 
       <div className="game-container">
-        <Status 
-          energy={energy}
-          happiness={happiness}
-          experience={experience}
-          hungry={hungry}
-        />
+        <Status energy={energy} happiness={happiness} experience={experience} hungry={hungry} />
 
-        <Kubit 
-          mood={mood}
-          status={status}
-        />
+        <Kubit mood={mood} status={status} />
 
         <div className="command-bar">
-          <button
-            className="command command-battery"
-            onClick={onClickBattery}
-          >
+          <button className="command command-battery" onClick={onClickBattery}>
             <div className="command__image">
-              <img src={batteryIcon} alt=""/>
+              <img src={batteryIcon} alt="" />
             </div>
           </button>
 
-          <button
-            className="command command-food"
-            onClick={onClickFood}
-          >
+          <button className="command command-food" onClick={onClickFood}>
             <div className="command__image">
-              <img src={forkIcon} alt=""/>
+              <img src={forkIcon} alt="" />
             </div>
           </button>
 
-          <button
-            className="command command-talk"
-            onClick={onClickTalk}
-          >
+          <button className="command command-talk" onClick={onClickTalk}>
             <div className="command__image">
-              <img src={micIcon} alt=""/>
+              <img src={micIcon} alt="" />
             </div>
           </button>
 
-          <button
-            className="command command-pets"
-            onClick={onClickFriend}
-          >
+          <button className="command command-pets" onClick={onClickFriend}>
             <div className="command__image">
-              <img src={friendIcon} alt=""/>
+              <img src={friendIcon} alt="" />
             </div>
           </button>
 
-          <button
-            className="command command-stage"
-            onClick={onClickStage}
-          >
+          <button className="command command-stage" onClick={onClickStage}>
             <div className="command__image">
-              <img src={stageIcon} alt=""/>
+              <img src={stageIcon} alt="" />
             </div>
           </button>
         </div>
@@ -159,4 +153,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
-
