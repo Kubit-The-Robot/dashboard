@@ -170,7 +170,7 @@ function Shop({ title = '', type = 'hungry', onCloseHandler = () => {} }) {
       <div className="shop__header">
         {title}
 
-        <button 
+        <button
           className="shop__close"
           onClick={handleClose}
         >
