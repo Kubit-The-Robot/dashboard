@@ -121,96 +121,112 @@ const kubitStates = {
     soundsPrefix: 'angrySFX_',
     rangeStart: 1,
     rangeEnd: 6,
+    duration: 0,
   },
   ANSWER_RIGHT: {
     animation: '',
     soundsPrefix: 'answerRightSFX_',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   ANSWER_WRONG: {
     animation: '',
     soundsPrefix: 'answerWrongSFX_',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   EATING: {
     animation: eating,
     soundsPrefix: 'eatingSFX_',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   ENERGIZING: {
     animation: energizing,
     soundsPrefix: 'energizingSFX_',
     rangeStart: 1,
     rangeEnd: 3,
+    duration: 0,
   },
   FLYING: {
     animation: isFlying,
     soundsPrefix: '',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   IS_BATTERY_LOW: {
     animation: isBatteryLow,
     soundsPrefix: 'batteryLowSFX_1',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   IS_DAMAGED: {
     animation: isDamaged,
     soundsPrefix: 'damagedSFX_',
     rangeStart: 1,
     rangeEnd: 3,
+    duration: 0,
   },
   IS_HUNGRY: {
     animation: isHungry,
     soundsPrefix: 'hungrySFX_',
     rangeStart: 1,
     rangeEnd: 2,
+    duration: 0,
   },
   IS_IDLE: {
     animation: isIdle,
     soundsPrefix: 'idleSFX_',
     rangeStart: 1,
     rangeEnd: 2,
+    duration: 0,
   },
   IS_SAD: {
     animation: isSad,
     soundsPrefix: '',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
   SMILING: {
     animation: smiling,
     soundsPrefix: 'smilingSFX_',
     rangeStart: 1,
     rangeEnd: 2,
+    duration: 0,
   },
   TALKING: {
     animation: talking,
     soundsPrefix: 'talkingSFX_',
     rangeStart: 1,
     rangeEnd: 4,
+    duration: 0,
   },
   TALKING_BAD: {
     animation: isSad,
     soundsPrefix: 'talkingBadSFX_',
     rangeStart: 1,
     rangeEnd: 5,
+    duration: 0,
   },
   TALKING_GOOD: {
     animation: smiling,
     soundsPrefix: 'talkingGoodSFX_',
     rangeStart: 1,
     rangeEnd: 4,
+    duration: 0,
   },
   LEVEL_UP: {
     animation: isFlying,
     soundsPrefix: '',
     rangeStart: 1,
     rangeEnd: 1,
+    duration: 0,
   },
 };
 
@@ -226,7 +242,7 @@ const KubitMood = ({ type }) => (
       src={type}
     ></lottie-player>
   </div>
-)
+);
 
 const KubitStatus = ({ type }) => (
   <div id="status">
@@ -238,9 +254,9 @@ const KubitStatus = ({ type }) => (
       src={type}
     ></lottie-player>
   </div>
-)
+);
 
-function Kubit({ mood, status = "IS_IDLE", setMoodDispatcher }) {
+function Kubit({ mood, status = 'IS_IDLE', setMoodDispatcher }) {
   let feedbackOutput;
 
   useEffect(() => {
@@ -254,14 +270,14 @@ function Kubit({ mood, status = "IS_IDLE", setMoodDispatcher }) {
   const animationMood = kubitStates[mood]?.animation;
   const animationState = kubitStates[status]?.animation;
 
-  if (!!mood) {
+  if (mood) {
     return (
       <div className="kubit">
         <div className="kubit__feedback">
           {feedbackOutput}
         </div>
 
-        <KubitMood type={animationMood} />;
+        <KubitMood type={animationMood} />
       </div>
     );
   } else {
@@ -271,36 +287,10 @@ function Kubit({ mood, status = "IS_IDLE", setMoodDispatcher }) {
           {feedbackOutput}
         </div>
 
-        <KubitStatus type={animationState} />;
+        <KubitStatus type={animationState} />
       </div>
     );
   }
-
-  // return (
-  //   <div className="kubit">
-  //     <div className="kubit__feedback">
-  //       {feedbackOutput}
-  //     </div>
-
-  //     {!!mood && !!status ? (
-  //       <lottie-player
-  //         id="kubit-mood"
-  //         autoplay
-  //         loop
-  //         preserveAspectRatio="xMidYMid slice"
-  //         src={animationMood}
-  //       ></lottie-player>
-  //     ) : (
-  //       <lottie-player
-  //         id="kubit-status"
-  //         autoplay
-  //         loop
-  //         preserveAspectRatio="xMidYMid slice"
-  //         src={animationState}
-  //       ></lottie-player>
-  //     )}
-  //   </div>
-  // );
 }
 
 const mapStateToProps = (state) => ({

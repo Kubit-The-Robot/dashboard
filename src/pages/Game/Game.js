@@ -35,7 +35,7 @@ const batterySound = new Audio(batteryUpSFX);
 const clickSound = new Audio(clickSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
-const { useEffect } = OverReact;
+const { useState, useEffect } = OverReact;
 
 function Game({
   energy,
@@ -47,12 +47,21 @@ function Game({
   addEnergyDispatcher,
   setMoodDispatcher,
 }) {
+  const [isMicActive, setMicActive] = useState(false);
+
+  const handleIntentionRecognition = (e) => {
+    const intention = getIntention(e.detail?.transcription);
+    setMoodDispatcher(intention);
+    setMicActive(() => false);
+  }
+
   useEffect(() => {
-    document.addEventListener('recognition.end', (e) => {
-      const intention = getIntention(e.detail?.transcription);
-      console.log({ intention });
-    });
-  }, []);
+    document.addEventListener('recognition.end', handleIntentionRecognition);
+
+    return () => {
+      document.removeEventListener('recognition.end', handleIntentionRecognition);
+    }
+  }, [isMicActive]);
 
   function onClickBattery(e) {
     e.preventDefault;
@@ -72,9 +81,17 @@ function Game({
     e.preventDefault;
     batterySound.play();
 
+    if (!isMicActive) {
+      setMicActive(() => true);
+    }
+    else {
+      setMicActive(() => false);
+    }
+    
     if (!recognition.recognizing) {
       recognition.start();
-    } else {
+    }
+    else {
       recognition.stop();
     }
   }
@@ -96,38 +113,50 @@ function Game({
       </audio>
 
       <div className="game-container">
-        <Status energy={energy} happiness={happiness} experience={experience} hungry={hungry} />
+        <Status 
+          energy={energy} 
+          happiness={happiness} 
+          experience={experience} 
+          hungry={hungry} 
+        />
 
         <Kubit mood={mood} status={status} />
 
         <div className="command-bar">
           <button className="command command-battery" onClick={onClickBattery}>
             <div className="command__image">
-              <img src={batteryIcon} alt="" />
+              <img src={batteryIcon} alt="Recarregar" />
             </div>
           </button>
 
           <button className="command command-food" onClick={onClickFood}>
             <div className="command__image">
-              <img src={forkIcon} alt="" />
+              <img src={forkIcon} alt="Comer" />
             </div>
           </button>
 
-          <button className="command command-talk" onClick={onClickTalk}>
+          <button
+            className={`command command-talk ${isMicActive ? 'is-active' : ''}`}
+            onClick={onClickTalk}
+          >
             <div className="command__image">
-              <img src={micIcon} alt="" />
+              {isMicActive ? (
+                <img src={micActiveIcon} alt="Microfone" />
+              ) : (
+                <img src={micIcon} alt="Microfone Aberto" />
+              )}
             </div>
           </button>
 
           <button className="command command-pets" onClick={onClickFriend}>
             <div className="command__image">
-              <img src={friendIcon} alt="" />
+              <img src={friendIcon} alt="Pets" />
             </div>
           </button>
 
           <button className="command command-stage" onClick={onClickStage}>
             <div className="command__image">
-              <img src={stageIcon} alt="" />
+              <img src={stageIcon} alt="Cenários" />
             </div>
           </button>
         </div>

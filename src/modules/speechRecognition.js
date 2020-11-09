@@ -115,6 +115,7 @@ class Recognition {
 
       if (event.results[i].isFinal) {
         this.finalTranscript += transcript;
+        this.endRecognition();
       } else {
         interimTranscript += transcript;
       }
@@ -159,7 +160,7 @@ class Recognition {
 
     const phrase = {
       transcriptionId: data.transcriptionId || Math.floor(Date.now() / 1000),
-      transcription: transcription || 'no transcripted',
+      transcription: transcription?.toLowerCase() || 'no transcripted',
     };
 
     this.dataLayer.set('phrases', [...data.phrases, phrase]);
