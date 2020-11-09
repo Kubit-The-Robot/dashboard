@@ -17,8 +17,98 @@
     z-index: -1;
   }
 
-  &.stages--spaceship {
-    background: url('../../assets/scenarios/bg-space-transparent.png') no-repeat;
+  &.stages--abstract-blue {
+    background: url('../../assets/stages/bg-abstract-blue.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--abstract-light {
+    background: url('../../assets/stages/bg-abstract-light.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--abstract-purple {
+    background: url('../../assets/stages/bg-abstract-purple.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--abstract-yellow {
+    background: url('../../assets/stages/bg-abstract-yellow.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--abstract-red {
+    background: url('../../assets/stages/bg-abstract-red.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--cozmo {
+    background: url('../../assets/stages/bg-cozmo.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--kubit-room {
+    background: url('../../assets/stages/bg-kubit-room.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--mars {
+    background: url('../../assets/stages/bg-mars.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--pluto {
+    background: url('../../assets/stages/bg-pluto.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &:before {
+      background: #09A4A9;
+    }
+  }
+
+  &.stages--ship {
+    background: url('../../assets/stages/bg-ship.png') no-repeat;
     background-position: center top;
     background-size: 100% auto;
 
@@ -28,18 +118,8 @@
     }
   }
 
-  &.stages--abstract {
-    background: url('../../assets/scenarios/bg-abstract.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    &:before {
-      background: #ED3947;
-    }
-  }
-
-  &.stages--blue {
-    background: url('../../assets/scenarios/bg-blue.jpg') no-repeat;
+  &.stages--space {
+    background: url('../../assets/stages/bg-space.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 
@@ -48,50 +128,13 @@
     }
   }
 
-  &.stages--colorfull {
-    background: url('../../assets/scenarios/bg-colorfull.jpg') no-repeat;
+  &.stages--venus {
+    background: url('../../assets/stages/bg-venus.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 
     &:before {
       background: #390954;
-    }
-  }
-
-  &.stages--light-blue {
-    background: url('../../assets/scenarios/bg-light-blue.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    &:before {
-      background: #09A4A9;
-    }
-  }
-
-  &.stages--yellow {
-    background: url('../../assets/scenarios/bg-yellow.jpg') no-repeat;
-    background-size: cover;
-
-    &:before {
-      background: #F39B39;
-    }
-  }
-
-  &.stages--mars {
-    background: url('../../assets/scenarios/bg-home-2.jpg') no-repeat;
-    background-size: cover;
-
-    &:before {
-      background: #FC9431;
-    }
-  }
-
-  &.stages--mars {
-    background: url('../../assets/scenarios/bg-home-2.jpg') no-repeat;
-    background-size: cover;
-
-    &:before {
-      background: #FC9431;
     }
   }
 }
@@ -127,11 +170,11 @@
 
 .command {
   background: #000;
-  box-shadow: 6px 6px 0 0 #000;
+  box-shadow: 4px 4px 0 0 #000;
   border-radius: 8px;
-  border: 4px solid white;
+  border: 3px solid white;
   height: 60px;
-  margin: auto 4px;
+  margin: auto 2px;
   position: relative;
   width: 60px;
   overflow: hidden;
@@ -142,6 +185,10 @@
     height: 84px;
     margin: auto 8px;
     width: 84px;
+    box-shadow: 6px 6px 0 0 #000;
+    border-radius: 8px;
+    border: 4px solid white;
+    margin: auto 10px;
   }
 
   &__image {

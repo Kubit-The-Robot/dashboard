@@ -26,6 +26,7 @@ import batteryUpSFX from 'assets/sfx/energy-up.wav';
 import clickSFX from 'assets/sfx/coin.wav';
 
 import Kubit from 'containers/Kubit';
+import Shop from 'containers/Shop';
 
 import Status from './Status';
 
@@ -161,6 +162,8 @@ function Game({
           </button>
         </div>
       </div>
+
+      <Shop title="Comidas" />
     </div>
   );
 }

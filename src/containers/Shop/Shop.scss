@@ -1,0 +1,120 @@
+.shop {
+  backface-visibility: hidden;
+  background-color: #31C9EC;
+  border-radius: 8px;
+  border: 6px solid white;
+  box-shadow: 10px 10px 0 0 #212226;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  padding: 10px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - 30px);
+  max-width: 768px;
+  z-index: 999;
+
+  &__header {
+    color: white;
+    text-transform: uppercase;
+    height: 60px;
+    font-size: 40px;
+    text-shadow: 4px 4px #212226;
+  }
+
+  &__close {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 1;
+    border: 2px solid white;
+    transform: translate(30%, -50%);
+    text-shadow: 4px 4px #212226;
+    border-radius: 8px;
+    background-color: #F837A3;
+    box-shadow: 4px 4px 0 0 #212226;
+    font-size: 35px;
+    outline: none;
+
+    &:active {
+      border-color: #F837A3;
+      color: #F837A3;
+      background-color: white;
+    }
+  }
+
+  &__container {
+    display: flex;
+    height: calc(90vh - 100px);
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  &__items {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    width: 120px;
+    height: auto;
+    margin: 4px;
+    border-radius: 8px;
+    border: 4px solid white;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+    flex-direction: column;
+
+    &:active {
+      border-color: white;
+      color: #F837A3;
+      background-color: #F837A3;
+    }
+  }
+
+  &__image {
+    height: 112px;
+    padding: 10px;
+    width: 100%;
+
+    & img {
+      height: 100%;
+    }
+  }
+
+  &__info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+
+    &__bonus {
+      display: flex;
+      align-items: center;
+      background-color: #FEA836;
+      color: #F837A3;
+      padding: 5px;
+      border-radius: 8px;
+      font-weight: normal;
+    }
+
+    &__icon {
+      width: 15px;
+      height: 15px;
+    }
+
+    &__quantity {
+      color: #142035;
+    }
+  }
+}
