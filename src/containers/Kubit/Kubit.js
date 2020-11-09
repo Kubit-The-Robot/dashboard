@@ -1,4 +1,10 @@
 import OverReact from 'overreact';
+import { connect } from 'store';
+
+import {
+  addHappiness,
+  setMood,
+} from 'actions';
 
 // Idle Animations
 import isBatteryLow from 'assets/kubit/kubit-idle-battery.json';
@@ -69,56 +75,58 @@ import talkingSound4 from 'assets/kubit-sounds/TALKING-4.mp3';
 
 import './Kubit.scss';
 
-const { useState, useEffect } = OverReact;
-
-const angrySFX_1 = new Audio(angrySound1);
-const angrySFX_2 = new Audio(angrySound2);
-const angrySFX_3 = new Audio(angrySound3);
-const angrySFX_4 = new Audio(angrySound4);
-const angrySFX_5 = new Audio(angrySound5);
-const angrySFX_6 = new Audio(angrySound6);
-const answerRightSFX_1 = new Audio(answerRightSound1);
-const answerWrongSFX_1 = new Audio(answerWrongSound1);
-const eatingSFX_1 = new Audio(eatingSound1);
-const energizingSFX_1 = new Audio(energizingSound1);
-const energizingSFX_2 = new Audio(energizingSound2);
-const energizingSFX_3 = new Audio(energizingSound3);
-const idleSFX_1 = new Audio(idleSound1);
-const idleSFX_2 = new Audio(idleSound2);
-const batteryLowSFX_1 = new Audio(batteryLowSound1);
-const damagedSFX_1 = new Audio(damagedSound1);
-const damagedSFX_2 = new Audio(damagedSound2);
-const damagedSFX_3 = new Audio(damagedSound3);
-const hungrySFX_1 = new Audio(hungrySound1);
-const hungrySFX_2 = new Audio(hungrySound2);
-const isSadSFX_1 = new Audio(isSadSound1);
-const levelUpSFX_1 = new Audio(levelUpSound1);
-const smilingSFX_1 = new Audio(smilingSound1);
-const smilingSFX_2 = new Audio(smilingSound2);
-const talkingBadSFX_1 = new Audio(talkingBadSound1);
-const talkingBadSFX_2 = new Audio(talkingBadSound2);
-const talkingBadSFX_3 = new Audio(talkingBadSound3);
-const talkingBadSFX_4 = new Audio(talkingBadSound4);
-const talkingBadSFX_5 = new Audio(talkingBadSound5);
-const talkingGoodSFX_1 = new Audio(talkingGoodSound1);
-const talkingGoodSFX_2 = new Audio(talkingGoodSound2);
-const talkingGoodSFX_3 = new Audio(talkingGoodSound3);
-const talkingGoodSFX_4 = new Audio(talkingGoodSound4);
-const talkingSFX_1 = new Audio(talkingSound1);
-const talkingSFX_2 = new Audio(talkingSound2);
-const talkingSFX_3 = new Audio(talkingSound3);
-const talkingSFX_4 = new Audio(talkingSound4);
+const SFX = {
+  angrySFX_1: new Audio(angrySound1),
+  angrySFX_2: new Audio(angrySound2),
+  angrySFX_3: new Audio(angrySound3),
+  angrySFX_4: new Audio(angrySound4),
+  angrySFX_5: new Audio(angrySound5),
+  angrySFX_6: new Audio(angrySound6),
+  answerRightSFX_1: new Audio(answerRightSound1),
+  answerWrongSFX_1: new Audio(answerWrongSound1),
+  eatingSFX_1: new Audio(eatingSound1),
+  energizingSFX_1: new Audio(energizingSound1),
+  energizingSFX_2: new Audio(energizingSound2),
+  energizingSFX_3: new Audio(energizingSound3),
+  idleSFX_1: new Audio(idleSound1),
+  idleSFX_2: new Audio(idleSound2),
+  batteryLowSFX_1: new Audio(batteryLowSound1),
+  damagedSFX_1: new Audio(damagedSound1),
+  damagedSFX_2: new Audio(damagedSound2),
+  damagedSFX_3: new Audio(damagedSound3),
+  hungrySFX_1: new Audio(hungrySound1),
+  hungrySFX_2: new Audio(hungrySound2),
+  isSadSFX_1: new Audio(isSadSound1),
+  levelUpSFX_1: new Audio(levelUpSound1),
+  smilingSFX_1: new Audio(smilingSound1),
+  smilingSFX_2: new Audio(smilingSound2),
+  talkingBadSFX_1: new Audio(talkingBadSound1),
+  talkingBadSFX_2: new Audio(talkingBadSound2),
+  talkingBadSFX_3: new Audio(talkingBadSound3),
+  talkingBadSFX_4: new Audio(talkingBadSound4),
+  talkingBadSFX_5: new Audio(talkingBadSound5),
+  talkingGoodSFX_1: new Audio(talkingGoodSound1),
+  talkingGoodSFX_2: new Audio(talkingGoodSound2),
+  talkingGoodSFX_3: new Audio(talkingGoodSound3),
+  talkingGoodSFX_4: new Audio(talkingGoodSound4),
+  talkingSFX_1: new Audio(talkingSound1),
+  talkingSFX_2: new Audio(talkingSound2),
+  talkingSFX_3: new Audio(talkingSound3),
+  talkingSFX_4: new Audio(talkingSound4),
+}
 
 const kubitStates = {
   ANGRY: {
     animation: angry,
     soundsPrefix: 'angrySFX_',
+    rangeStart: 1,
+    rangeEnd: 6,
   },
   ANSWER_RIGHT: {
     animation: '',
     soundsPrefix: 'answerRightSFX_',
     rangeStart: 1,
-    rangeEnd: 6,
+    rangeEnd: 1,
   },
   ANSWER_WRONG: {
     animation: '',
@@ -146,7 +154,7 @@ const kubitStates = {
   },
   IS_BATTERY_LOW: {
     animation: isBatteryLow,
-    soundsPrefix: 'idleSFX_',
+    soundsPrefix: 'batteryLowSFX_1',
     rangeStart: 1,
     rangeEnd: 1,
   },
@@ -160,7 +168,7 @@ const kubitStates = {
     animation: isHungry,
     soundsPrefix: 'hungrySFX_',
     rangeStart: 1,
-    rangeEnd: 1,
+    rangeEnd: 2,
   },
   IS_IDLE: {
     animation: isIdle,
@@ -178,25 +186,25 @@ const kubitStates = {
     animation: smiling,
     soundsPrefix: 'smilingSFX_',
     rangeStart: 1,
-    rangeEnd: 1,
+    rangeEnd: 2,
   },
   TALKING: {
     animation: talking,
     soundsPrefix: 'talkingSFX_',
     rangeStart: 1,
-    rangeEnd: 1,
+    rangeEnd: 4,
   },
   TALKING_BAD: {
     animation: isSad,
     soundsPrefix: 'talkingBadSFX_',
     rangeStart: 1,
-    rangeEnd: 1,
+    rangeEnd: 5,
   },
   TALKING_GOOD: {
     animation: smiling,
     soundsPrefix: 'talkingGoodSFX_',
     rangeStart: 1,
-    rangeEnd: 1,
+    rangeEnd: 4,
   },
   LEVEL_UP: {
     animation: isFlying,
@@ -206,34 +214,104 @@ const kubitStates = {
   },
 };
 
-function Kubit({ status = 'IS_IDLE', mood = '' }) {
-  const [currentAnimation, setAnimation] = useState('');
-  const [currentSound, setCurrentSound] = useState('');
+const { useEffect } = OverReact;
 
+const KubitMood = ({ type }) => (
+  <div id="mood">
+    <lottie-player
+      id="kubit-character"
+      autoplay
+      loop
+      preserveAspectRatio="xMidYMid slice"
+      src={type}
+    ></lottie-player>
+  </div>
+)
+
+const KubitStatus = ({ type }) => (
+  <div id="status">
+    <lottie-player
+      id="kubit-status"
+      autoplay
+      loop
+      preserveAspectRatio="xMidYMid slice"
+      src={type}
+    ></lottie-player>
+  </div>
+)
+
+function Kubit({ mood, status = "IS_IDLE", setMoodDispatcher }) {
   let feedbackOutput;
-  let playAnimation;
-  const defaultAnimation = isIdle;
 
   useEffect(() => {
-    // if (mood) {
-    // }
-    // else {
-    // }
+    if (mood) {
+      const { rangeStart, rangeEnd, soundsPrefix } = kubitStates[mood];
+      SFX[soundsPrefix + (Math.floor(Math.random() * rangeEnd) + rangeStart)].play();
+      setTimeout(() => setMoodDispatcher(''), 3000);
+    }
   }, [status, mood]);
 
-  return (
-    <div className="kubit">
-      <div className="kubit__feedback">{feedbackOutput}</div>
+  const animationMood = kubitStates[mood]?.animation;
+  const animationState = kubitStates[status]?.animation;
 
-      <lottie-player
-        id="kubit-character"
-        autoplay
-        loop
-        preserveAspectRatio="xMidYMid slice"
-        src={currentAnimation || kubitStates[status].animation}
-      ></lottie-player>
-    </div>
-  );
+  if (!!mood) {
+    return (
+      <div className="kubit">
+        <div className="kubit__feedback">
+          {feedbackOutput}
+        </div>
+
+        <KubitMood type={animationMood} />;
+      </div>
+    );
+  } else {
+    return (
+      <div className="kubit">
+        <div className="kubit__feedback">
+          {feedbackOutput}
+        </div>
+
+        <KubitStatus type={animationState} />;
+      </div>
+    );
+  }
+
+  // return (
+  //   <div className="kubit">
+  //     <div className="kubit__feedback">
+  //       {feedbackOutput}
+  //     </div>
+
+  //     {!!mood && !!status ? (
+  //       <lottie-player
+  //         id="kubit-mood"
+  //         autoplay
+  //         loop
+  //         preserveAspectRatio="xMidYMid slice"
+  //         src={animationMood}
+  //       ></lottie-player>
+  //     ) : (
+  //       <lottie-player
+  //         id="kubit-status"
+  //         autoplay
+  //         loop
+  //         preserveAspectRatio="xMidYMid slice"
+  //         src={animationState}
+  //       ></lottie-player>
+  //     )}
+  //   </div>
+  // );
 }
 
-export default Kubit;
+const mapStateToProps = (state) => ({
+  mood: state.kubit.mood,
+  status: state.kubit.status,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMoodDispatcher: (value) => dispatch(setMood(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Kubit);

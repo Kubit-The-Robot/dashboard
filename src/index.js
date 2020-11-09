@@ -3,7 +3,6 @@ import { loadState, debounce, saveState } from 'modules';
 
 import { store } from './store';
 
-import '@lottiefiles/lottie-player';
 import './styles/global.styles.scss';
 
 import App from './App';
