@@ -1,46 +1,40 @@
-$statusBarSizeMobile: 35px;
-$statusBarSizeDesktop: 50px;
-
-$progressBarSizeMobile: 20px;
-$progressBarSizeDesktop: 20px;
-
 .status {
   align-items: center;
   backface-visibility: hidden;
   display: flex;
   height: auto;
   justify-content: space-between;
-  padding: 20px 10px;
+  padding: 10px;
   position: fixed;
   top: 0;
   width: 100%;
   max-width: 960px;
+
+  @media (min-width: 769px) {
+    padding: 20px;
+  }
 
   &__group {
     display: flex;
     flex-direction: column;
   }
 
-  &__item {
-    align-items: center;
-    display: flex;
-    height: $statusBarSizeMobile;
-    margin-bottom: 5px;
-    position: relative;
-    width: 130px;
-  }
-
   &__icon {
     align-items: center;
     display: flex;
-    height: $statusBarSizeMobile;
+    height: 35px;
     justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
     right: auto;
-    width: $statusBarSizeMobile;
+    width: 35px;
     z-index: 1;
+
+    @media (min-width: 769px) {
+      height: 50px;
+      width: 50px;
+    }
 
     & img {
       height: 100%;
@@ -48,33 +42,85 @@ $progressBarSizeDesktop: 20px;
   }
 
   &__progress {
-    background-color: #35495e;
-    border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
-    height: $progressBarSizeMobile;
+    background-color: #212226;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: 4px 4px 0 0 #212226;
+    height: 20px;
     margin-left: 10px;
     overflow: hidden;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2),
-                      0 2px 0 rgba(40, 56, 72, 1);
-    width: calc(100% - 10px);
-    padding: 5px;
+    width: calc(100% - 5px);
+    transform: skew(20deg);
+
+    @media (min-width: 769px) {
+      border-radius: 8px;
+      border: 4px solid white;
+      box-shadow: 6px 6px 0 0 #212226;
+      height: 35px;
+      margin-left: 15px;
+      width: calc(100% - 15px);
+    }
 
     &__wrapper {
       width: 100%;
       height: 100%;
-      border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
-      background-color: rgba(0, 0, 0, 0.5);
       position: relative;
+      overflow: hidden;
     }
 
     &__bar {
       height: 100%;
       box-shadow: inset 1px 4px 0 rgba(255, 255, 255, 0.3);
-      border-radius: 0 $progressBarSizeMobile $progressBarSizeMobile 0;
-      background-color: #f99e1d;
-      transition: all 0.3s ease-in-out;
+      background-color: white;
+      border: 2px solid #212226;
       position: absolute;
       left: 0;
       right: auto;
+    }
+  }
+
+  &__item {
+    align-items: center;
+    display: flex;
+    height: 35px;
+    margin-bottom: 5px;
+    position: relative;
+    width: 140px;
+
+    @media (min-width: 769px) {
+      width: 300px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    &.isLow {
+      .status__progress {
+        border-color: #CA3589;
+      }
+    }
+
+    &.status__item--energy {
+      .status__progress__bar {
+        background-color: #5BC582;
+      }
+    }
+
+    &.status__item--experience {
+      .status__progress__bar {
+        background-color: #9187FF;
+      }
+    }
+
+    &.status__item--hungry {
+      .status__progress__bar {
+        background-color: #FEA936;
+      }
+    }
+
+    &.status__item--happiness {
+      .status__progress__bar {
+        background-color: #EE9BD0;
+      }
     }
   }
 
@@ -85,19 +131,14 @@ $progressBarSizeDesktop: 20px;
     }
 
     .status__progress {
-      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
       margin-left: auto;
       margin-right: 10px;
-    }
-
-    .status__progress__wrapper {
-      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
+      transform: skew(-20deg);
     }
   
     .status__progress__bar {
       right: 0;
       left: auto;
-      border-radius: $progressBarSizeMobile 0 0 $progressBarSizeMobile;
     }
   }
 }

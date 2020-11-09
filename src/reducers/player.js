@@ -3,7 +3,7 @@ import { deepCopy } from 'modules';
 
 const initialState = {
   coins: 500,
-  experience: 0,
+  experience: 50,
   level: 1,
   mood: '',
   name: '',

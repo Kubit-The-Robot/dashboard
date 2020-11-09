@@ -87,7 +87,7 @@ function Game({
     else {
       setMicActive(() => false);
     }
-    
+
     if (!recognition.recognizing) {
       recognition.start();
     }
@@ -113,11 +113,11 @@ function Game({
       </audio>
 
       <div className="game-container">
-        <Status 
-          energy={energy} 
-          happiness={happiness} 
-          experience={experience} 
-          hungry={hungry} 
+        <Status
+          energy={energy}
+          happiness={happiness}
+          experience={experience}
+          hungry={hungry}
         />
 
         <Kubit mood={mood} status={status} />

@@ -1,10 +1,12 @@
 import OverReact from 'overreact';
 
 function StatusBar({ type, value, svgUrl, onClickHandler }) {
+  const isLow = value < 25 ? 'isLow' : '';
+
   return (
     <div
       onClick={onClickHandler}
-      className={`status__item status__item--${type}`}
+      className={`status__item status__item--${type} ${isLow}`}
     >
       <div className="status__icon">
         <img src={svgUrl} />

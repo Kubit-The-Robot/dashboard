@@ -2,9 +2,9 @@ import { KubitConstants, KUBIT_STATES } from 'constants';
 import { deepCopy } from 'modules';
 
 const initialState = {
-  energy: 0,
-  happiness: 0,
-  hungry: 0,
+  energy: 20,
+  happiness: 50,
+  hungry: 50,
   mood: '',
   status: KUBIT_STATES.IS_IDLE,
 };

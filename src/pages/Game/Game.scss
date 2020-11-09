@@ -109,20 +109,19 @@
 
 .command-bar {
   backface-visibility: hidden;
-  bottom: 10px;
-  height: 80px;
+  bottom: 0;
   left: 50%;
   position: fixed;
   transform: translateX(-50%);
   width: 100%;
+  padding: 10px;
   max-width: 960px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media (min-width: 769px) {
-    bottom: 20px;
-    height: 100px;
+    padding: 20px;
   }
 }
 
@@ -137,6 +136,7 @@
   width: 60px;
   overflow: hidden;
   outline: none;
+  
 
   @media (min-width: 769px) {
     height: 84px;
