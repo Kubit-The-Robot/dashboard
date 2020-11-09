@@ -3,7 +3,7 @@ import { connect } from 'store';
 
 import { KUBIT_STATES } from 'constants';
 
-import { 
+import {
   removeEnergy,
   removeHappiness,
   removeHungry,
@@ -79,14 +79,14 @@ function Game({
       </audio>
 
       <div className="game-container">
-        <Status 
+        <Status
           energy={energy}
           happiness={happiness}
           experience={experience}
           hungry={hungry}
         />
 
-        <Kubit 
+        <Kubit
           mood={mood}
           status={status}
         />

@@ -6,7 +6,7 @@ const initialState = {
   happiness: 0,
   hungry: 0,
   mood: '',
-  status: '',
+  status: KUBIT_STATES.IS_IDLE,
 };
 
 const countReducer = (state = initialState, { type, payload }) => {
