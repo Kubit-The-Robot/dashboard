@@ -23,7 +23,7 @@
     color: white;
     text-transform: uppercase;
     height: 60px;
-    font-size: 40px;
+    font-size: 36px;
     text-shadow: 4px 4px #212226;
   }
 
@@ -33,7 +33,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    line-height: 1;
+    line-height: 0;
     border: 2px solid white;
     transform: translate(30%, -50%);
     text-shadow: 4px 4px #212226;
@@ -54,6 +54,10 @@
     height: calc(90vh - 100px);
     overflow-y: auto;
     width: 100%;
+
+    @media (min-width: 768px) {
+      height: calc(68vh - 100px);
+    }
   }
 
   &__items {
@@ -67,14 +71,17 @@
     width: calc(100% / 2 - 10px);
     height: auto;
     margin: 4px auto;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 4px solid white;
     position: relative;
     outline: none;
     display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     padding: 0;
     flex-direction: column;
+    box-shadow: 2px 2px 0 0 #212226;
 
     @media (min-width: 768px) {
       width: calc(100% / 4 - 10px);
@@ -82,9 +89,20 @@
 
     &:active,
     &.is-active {
+      border-color: #1ECC4E;
+      color: white;
+      background-color: #1ECC4E;
+      text-shadow: 2px 2px #212226;
+    }
+
+    &.is-disabled {
       border-color: #F837A3;
       color: white;
       background-color: #F837A3;
+      
+      .shop__info__quantity {
+        color: white;
+      }
     }
   }
 
@@ -96,6 +114,18 @@
     & img {
       height: 100%;
       width: 100%;
+    }
+
+    &.is-hungry {
+      height: 100px;
+      padding: 5px;
+      width: auto;
+      overflow: hidden;
+
+      & img {
+        height: 100%;
+        width: auto;
+      }
     }
   }
 
@@ -118,10 +148,12 @@
     &__bonus {
       display: flex;
       align-items: center;
-      background-color: #FEA836;
-      color: #F837A3;
+      background-color: #5bc583;
+      color: white;
       padding: 5px;
-      border-radius: 8px;
+      font-size: 16px;
+      text-shadow: 1px 1px #212226;
+      border-radius: 12px;
       font-weight: normal;
     }
 
@@ -132,6 +164,7 @@
 
     &__quantity {
       color: #142035;
+      text-shadow: none;
     }
   }
 }

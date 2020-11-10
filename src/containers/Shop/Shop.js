@@ -57,7 +57,7 @@ const itemsImageMapper = {
   'eggs-bacon': eggsBaconImg,
   'fish': fishImg,
   'french-fries': frenchFriesImg,
-  'hamburguer': hamburgerImg,
+  'hamburger': hamburgerImg,
   'hotdog': hotdogImg,
   'pizza': pizzaImg,
   'salad': saladImg,
@@ -121,36 +121,41 @@ function Shop({
 
       <div className="shop__container">
         <div className="shop__items">
-          {items.map(({ name, slug, type }) => (
-            <button
-              className={`shop__item ${currentSelected === slug ? 'is-active' : '' }`}
-              id={slug}
-              onClick={handleClick}
-            >
-              <div className="shop__image">
-                <img src={itemsImageMapper[slug]} alt="" />
-              </div>
+          {items.map(({ name, slug, type, value, quantity = 0 }) => {
+            const isSelected = currentSelected === slug ? 'is-active' : '';
+            const isDisabled = (type === 'hungry' && quantity === 0) ? 'is-disabled' : '';
 
-              {name ? (<div className="shop__name">{name}</div>) : ''}
+            return (
+              <button
+                className={`shop__item ${isSelected} ${isDisabled}`}
+                id={slug}
+                onClick={handleClick}
+              >
+                <div className={`shop__image ${type === 'hungry' ? 'is-hungry' : ''}`}>
+                  <img src={itemsImageMapper[slug]} alt="" />
+                </div>
 
-              {type === 'hungry'
-                ? (
-                  <div className="shop__info">
-                    <div className="shop__info__bonus">
-                      <div className="shop__info__icon">
-                        <img src={foodIndicator} alt="Ícone de comida"/>
+                {name && type != 'hungry' ? (<div className="shop__name">{name}</div>) : ''}
+
+                {type === 'hungry'
+                  ? (
+                    <div className="shop__info">
+                      <div className="shop__info__bonus">
+                        <div className="shop__info__icon">
+                          <img src={foodIndicator} alt="Ícone de comida"/>
+                        </div>
+                        +{value}
                       </div>
-                      +10
-                    </div>
 
-                    <div className="shop__info__quantity">
-                      x3
+                      <div className="shop__info__quantity">
+                        x{quantity}
+                      </div>
                     </div>
-                  </div>
-                ): ''
-              }
-            </button>
-          ))}
+                  ): ''
+                }
+              </button>
+            )}
+          )}
         </div>
       </div>
     </div>

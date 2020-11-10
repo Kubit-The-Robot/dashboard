@@ -31,7 +31,6 @@ import stageIcon from 'assets/ui/game/stage-icon.svg';
 
 import batteryUpSFX from 'assets/sfx/energy-up.wav';
 import clickSFX from 'assets/sfx/coin.wav';
-// import backSFX from 'assets/sfx/coin.wav';
 
 // musics
 import music_1 from 'assets/musics/kubit-music.mp3';
@@ -68,6 +67,7 @@ function Game({
   isStageOpen,
   currentStage,
   stages,
+  foods,
   addEnergyDispatcher,
   setMoodDispatcher,
   toggleFoodsDispatcher,
@@ -138,13 +138,13 @@ function Game({
     }
   }, [isMicActive]);
 
-  useEffect(() => {
-    if (!!currentStage && !!stages) {
-      const { name } = stages.find(d => d.slug === currentStage);
+  // useEffect(() => {
+  //   if (!!currentStage && !!stages) {
+  //     const { name } = stages.find(d => d.slug === currentStage);
 
-      speak(messages.GAME.stageName(name));
-    }
-  }, [currentStage, stages]);
+  //     speak(messages.GAME.stageName(name));
+  //   }
+  // }, [currentStage, stages]);
 
   return (
     <div className={`stages stages--${currentStage}`}>
@@ -208,6 +208,7 @@ function Game({
             title="Comidas"
             shopType="food"
             onCloseHandler={() => toggleFoodsDispatcher(false)}
+            items={foods}
           />)
         : ''}
 
@@ -248,6 +249,7 @@ const mapStateToProps = (state) => ({
   isStageOpen: state.kubit.isStageOpen,
   currentStage: state.game.currentStage,
   stages: state.game.stages,
+  foods: state.game.foods,
 });
 
 const mapDispatchToProps = (dispatch) => {
