@@ -68,6 +68,7 @@ function Game({
   currentStage,
   stages,
   foods,
+  battery,
   addEnergyDispatcher,
   setMoodDispatcher,
   toggleFoodsDispatcher,
@@ -183,6 +184,10 @@ function Game({
             <div className="command__image">
               <img src={batteryIcon} alt="Recarregar" />
             </div>
+            
+            <div className="command__quantity">
+              <span>x</span>{battery}
+            </div>
           </button>
 
           <button className={`command command-food ${isFoodOpen ? 'is-active' : ''}`} onClick={onClickFood}>
@@ -266,6 +271,7 @@ const mapStateToProps = (state) => ({
   currentStage: state.game.currentStage,
   stages: state.game.stages,
   foods: state.game.foods,
+  battery: state.game.battery,
 });
 
 const mapDispatchToProps = (dispatch) => {
