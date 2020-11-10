@@ -95,3 +95,30 @@ export const setStatus = (value) => {
     },
   }
 };
+
+export const toggleFoodsModal = (value) => {
+  return {
+    type: KubitConstants.TOGGLE_FOODS_MODAL,
+    payload: {
+      value,
+    },
+  }
+};
+
+export const togglePetsModal = (value) => {
+  return {
+    type: KubitConstants.TOGGLE_PETS_MODAL,
+    payload: {
+      value,
+    },
+  }
+};
+
+export const toggleStagesModal = (value) => {
+  return {
+    type: KubitConstants.TOGGLE_STAGES_MODAL,
+    payload: {
+      value,
+    },
+  }
+};

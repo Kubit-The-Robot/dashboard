@@ -7,6 +7,9 @@ const initialState = {
   hungry: 50,
   mood: '',
   status: KUBIT_STATES.IS_IDLE,
+  isFoodOpen: false,
+  isPetOpen: false,
+  isStageOpen: false,
 };
 
 const countReducer = (state = initialState, { type, payload }) => {
@@ -76,6 +79,33 @@ const countReducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         status: payload.value,
+      };
+    }
+
+    case KubitConstants.TOGGLE_FOODS_MODAL: {
+      return {
+        ...deepCopy(state),
+        isPetOpen: false,
+        isStageOpen: false,
+        isFoodOpen: payload.value,
+      };
+    }
+
+    case KubitConstants.TOGGLE_PETS_MODAL: {
+      return {
+        ...deepCopy(state),
+        isFoodOpen: false,
+        isStageOpen: false,
+        isPetOpen: payload.value,
+      };
+    }
+
+    case KubitConstants.TOGGLE_STAGES_MODAL: {
+      return {
+        ...deepCopy(state),
+        isFoodOpen: false,
+        isPetOpen: false,
+        isStageOpen: payload.value,
       };
     }
 

@@ -4,15 +4,22 @@ import { connect } from 'store';
 import { KUBIT_STATES } from 'constants';
 
 import {
-  removeEnergy,
-  removeHappiness,
-  removeHungry,
   addEnergy,
   addHappiness,
   addHungry,
+  removeEnergy,
+  removeHappiness,
+  removeHungry,
   setMood,
   setStatus,
+  toggleFoodsModal,
+  togglePetsModal,
+  toggleStagesModal,
+  setStage,
+  setPet,
 } from 'actions';
+
+import { messages, speak } from 'modules';
 
 import { Recognition, getIntention } from 'modules';
 import batteryIcon from 'assets/ui/game/battery-icon.svg';
@@ -24,6 +31,10 @@ import stageIcon from 'assets/ui/game/stage-icon.svg';
 
 import batteryUpSFX from 'assets/sfx/energy-up.wav';
 import clickSFX from 'assets/sfx/coin.wav';
+// import backSFX from 'assets/sfx/coin.wav';
+
+// musics
+import music_1 from 'assets/musics/kubit-music.mp3';
 
 import Kubit from 'containers/Kubit';
 import Shop from 'containers/Shop';
@@ -34,6 +45,13 @@ import './Game.scss';
 
 const batterySound = new Audio(batteryUpSFX);
 const clickSound = new Audio(clickSFX);
+
+const kubitMusic = new Audio(music_1);
+kubitMusic.loop = true;
+kubitMusic.volume = 0.3;
+kubitMusic.play();
+
+// const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
 const { useState, useEffect } = OverReact;
@@ -45,8 +63,18 @@ function Game({
   hungry,
   mood,
   status,
+  isFoodOpen,
+  isPetOpen,
+  isStageOpen,
+  currentStage,
+  stages,
   addEnergyDispatcher,
   setMoodDispatcher,
+  toggleFoodsDispatcher,
+  togglePetsDispatcher,
+  toggleStagesDispatcher,
+  setStageDispatcher,
+  setPetDispatcher,
 }) {
   const [isMicActive, setMicActive] = useState(false);
 
@@ -55,14 +83,6 @@ function Game({
     setMoodDispatcher(intention);
     setMicActive(() => false);
   }
-
-  useEffect(() => {
-    document.addEventListener('recognition.end', handleIntentionRecognition);
-
-    return () => {
-      document.removeEventListener('recognition.end', handleIntentionRecognition);
-    }
-  }, [isMicActive]);
 
   function onClickBattery(e) {
     e.preventDefault;
@@ -76,6 +96,7 @@ function Game({
   function onClickFood(e) {
     e.preventDefault;
     clickSound.play();
+    toggleFoodsDispatcher(true);
   }
 
   function onClickTalk(e) {
@@ -100,15 +121,33 @@ function Game({
   function onClickFriend(e) {
     e.preventDefault;
     clickSound.play();
+    togglePetsDispatcher(true);
   }
 
   function onClickStage(e) {
     e.preventDefault;
     clickSound.play();
+    toggleStagesDispatcher(true);
   }
 
+  useEffect(() => {
+    document.addEventListener('recognition.end', handleIntentionRecognition);
+
+    return () => {
+      document.removeEventListener('recognition.end', handleIntentionRecognition);
+    }
+  }, [isMicActive]);
+
+  useEffect(() => {
+    if (!!currentStage && !!stages) {
+      const { name } = stages.find(d => d.slug === currentStage);
+
+      speak(messages.GAME.stageName(name));
+    }
+  }, [currentStage, stages]);
+
   return (
-    <div className="stages stages--yellow">
+    <div className={`stages stages--${currentStage}`}>
       <audio autoplay style={{ display: 'none' }}>
         <source src="" type="audio/mp3" />
       </audio>
@@ -163,7 +202,36 @@ function Game({
         </div>
       </div>
 
-      <Shop title="Comidas" />
+      {isFoodOpen
+        ? (
+          <Shop
+            title="Comidas"
+            shopType="food"
+            onCloseHandler={() => toggleFoodsDispatcher(false)}
+          />)
+        : ''}
+
+      {isPetOpen
+        ? (
+          <Shop
+            title="Amigos"
+            onCloseHandler={() => togglePetsDispatcher(false)}
+            shopType="pet"
+            onClickHandler={setStageDispatcher}
+          />
+        ) : ''}
+
+      {isStageOpen
+        ? (
+          <Shop
+            title="Cenários"
+            onCloseHandler={() => toggleStagesDispatcher(false)}
+            onClickHandler={setStageDispatcher}
+            shopType="stage"
+            currentSelected={currentStage}
+            items={stages}
+          />
+        ) : ''}
     </div>
   );
 }
@@ -175,12 +243,22 @@ const mapStateToProps = (state) => ({
   hungry: state.kubit.hungry,
   mood: state.kubit.mood,
   status: state.kubit.status,
+  isFoodOpen: state.kubit.isFoodOpen,
+  isPetOpen: state.kubit.isPetOpen,
+  isStageOpen: state.kubit.isStageOpen,
+  currentStage: state.game.currentStage,
+  stages: state.game.stages,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addEnergyDispatcher: (value) => dispatch(addEnergy(value)),
     setMoodDispatcher: (value) => dispatch(setMood(value)),
+    toggleFoodsDispatcher: (value) => dispatch(toggleFoodsModal(value)),
+    togglePetsDispatcher: (value) => dispatch(togglePetsModal(value)),
+    toggleStagesDispatcher: (value) => dispatch(toggleStagesModal(value)),
+    setStageDispatcher: (value) => dispatch(setStage(value)),
+    setPetDispatcher: (value) => dispatch(setPet(value)),
   };
 };
 

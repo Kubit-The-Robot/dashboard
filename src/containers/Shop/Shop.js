@@ -36,6 +36,15 @@ import thumbShip from 'assets/items/stages/thumb-ship.jpg';
 import thumbSpace from 'assets/items/stages/thumb-space.jpg';
 import thumbVenus from 'assets/items/stages/thumb-venus.jpg';
 
+// Sound SFX
+import clickSFX from 'assets/sfx/coin.wav';
+import backSFX from 'assets/sfx/back.wav';
+import stageSFX from 'assets/sfx/transition.wav';
+
+const clickSound = new Audio(clickSFX);
+const backSound = new Audio(backSFX);
+const stageSound = new Audio(stageSFX);
+
 const itemsImageMapper = {
   'alien-1': '',
   'cat-1': '',
@@ -71,98 +80,30 @@ const itemsImageMapper = {
   'venus': thumbVenus,
 }
 
-const data = [
-  {
-    id: 1,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 2,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 3,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 4,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-  {
-    id: 5,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 6,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 7,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 8,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-  {
-    id: 9,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 10,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-  {
-    id: 11,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-  {
-    id: 12,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-  {
-    id: 13,
-    equiped: false,
-    slug: 'pizza',
-    type: 'food',
-  },
-  {
-    id: 14,
-    equiped: true,
-
-    slug: 'pizza',
-    type: 'food' },
-];
-
-function Shop({ title = '', type = 'hungry', onCloseHandler = () => {} }) {
+function Shop({
+  title = '',
+  items = [],
+  shopType = '',
+  currentSelected = '',
+  onCloseHandler = () => {},
+  onClickHandler = () => {},
+}) {
   const handleClose = (e) => {
     e.preventDefault();
+    backSound.play();
 
     onCloseHandler();
+  }
+
+  const handleClick = (e) => {
+    const slug = e.currentTarget.id;
+
+    if (shopType === 'stage') {
+      stageSound.play();
+      onCloseHandler();
+    }
+
+    onClickHandler(slug);
   }
 
   return (
@@ -180,29 +121,34 @@ function Shop({ title = '', type = 'hungry', onCloseHandler = () => {} }) {
 
       <div className="shop__container">
         <div className="shop__items">
-          {data.map(({ id, slug }) => (
+          {items.map(({ name, slug, type }) => (
             <button
-              className="shop__item"
-              data-id={id}
+              className={`shop__item ${currentSelected === slug ? 'is-active' : '' }`}
+              id={slug}
+              onClick={handleClick}
             >
               <div className="shop__image">
                 <img src={itemsImageMapper[slug]} alt="" />
               </div>
 
-              {type === 'hungry' && (
-                <div className="shop__info">
-                  <div className="shop__info__bonus">
-                    <div className="shop__info__icon">
-                      <img src={foodIndicator} alt="Ícone de comida"/>
-                    </div>
-                    +10
-                  </div>
+              {name ? (<div className="shop__name">{name}</div>) : ''}
 
-                  <div className="shop__info__quantity">
-                    x3
+              {type === 'hungry'
+                ? (
+                  <div className="shop__info">
+                    <div className="shop__info__bonus">
+                      <div className="shop__info__icon">
+                        <img src={foodIndicator} alt="Ícone de comida"/>
+                      </div>
+                      +10
+                    </div>
+
+                    <div className="shop__info__quantity">
+                      x3
+                    </div>
                   </div>
-                </div>
-              )}
+                ): ''
+              }
             </button>
           ))}
         </div>

@@ -9,4 +9,7 @@ export const KubitConstants = keymirror({
   INCREASE_HUNGRY: undefined,
   SET_MOOD: undefined,
   SET_STATUS: undefined,
+  TOGGLE_FOODS_MODAL: undefined,
+  TOGGLE_PETS_MODAL: undefined,
+  TOGGLE_STAGES_MODAL: undefined,
 });

@@ -14,3 +14,17 @@ export const setRoute = (route) => {
     },
   }
 };
+
+export const setStage = (value) => {
+  return {
+    type: GameConstants.GAME_SET_STAGE,
+    payload: { value },
+  }
+};
+
+export const setPet = (value) => {
+  return {
+    type: GameConstants.GAME_SET_PET,
+    payload: { value },
+  }
+};
