@@ -11,12 +11,13 @@ import {
   removeHappiness,
   removeHungry,
   setMood,
+  setPet,
+  setStage,
   setStatus,
+  tickTack,
   toggleFoodsModal,
   togglePetsModal,
   toggleStagesModal,
-  setStage,
-  setPet,
 } from 'actions';
 
 import { Recognition, getIntention } from 'modules';
@@ -48,7 +49,7 @@ const clickSound = new Audio(clickSFX);
 const kubitMusic = new Audio(music_1);
 kubitMusic.loop = true;
 kubitMusic.volume = 0.3;
-kubitMusic.play();
+// kubitMusic.play();
 
 // const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
@@ -75,7 +76,10 @@ function Game({
   togglePetsDispatcher,
   toggleStagesDispatcher,
   setStageDispatcher,
+  tickTackDispatcher,
   setPetDispatcher,
+  removeEnergyDispatcher,
+  removeHungryDispatcher,
 }) {
   const [isMicActive, setMicActive] = useState(false);
 
@@ -162,6 +166,10 @@ function Game({
       document.removeEventListener('recognition.end', handleIntentionRecognition);
     }
   }, [isMicActive]);
+
+  useEffect(() => {
+    setInterval(tickTackDispatcher, 3000);
+  }, []);
 
   return (
     <div className={`stages stages--${currentStage}`}>
@@ -277,12 +285,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     addEnergyDispatcher: (value) => dispatch(addEnergy(value)),
+    removeEnergyDispatcher: (value) => dispatch(removeEnergy(value)),
+    removeHungryDispatcher: (value) => dispatch(removeHungry(value)),
     setMoodDispatcher: (value) => dispatch(setMood(value)),
+    setPetDispatcher: (value) => dispatch(setPet(value)),
+    setStageDispatcher: (value) => dispatch(setStage(value)),
+    tickTackDispatcher: () => dispatch(tickTack()),
     toggleFoodsDispatcher: (value) => dispatch(toggleFoodsModal(value)),
     togglePetsDispatcher: (value) => dispatch(togglePetsModal(value)),
     toggleStagesDispatcher: (value) => dispatch(toggleStagesModal(value)),
-    setStageDispatcher: (value) => dispatch(setStage(value)),
-    setPetDispatcher: (value) => dispatch(setPet(value)),
   };
 };
 

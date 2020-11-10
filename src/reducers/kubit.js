@@ -1,10 +1,10 @@
-import { KubitConstants, KUBIT_STATES } from 'constants';
+import { GameConstants, KubitConstants, KUBIT_STATES } from 'constants';
 import { deepCopy } from 'modules';
 
 const initialState = {
-  energy: 20,
-  happiness: 50,
-  hungry: 50,
+  energy: 15,
+  happiness: 15,
+  hungry: 15,
   mood: '',
   status: KUBIT_STATES.IS_IDLE,
   isFoodOpen: false,
@@ -12,7 +12,42 @@ const initialState = {
   isStageOpen: false,
 };
 
-const countReducer = (state = initialState, { type, payload }) => {
+const defineKubitStatus = (state) => {
+  const { energy, happiness, hungry } = state;
+
+  if (energy < 10 && happiness < 10 && hungry < 10) {
+    return {
+      ...deepCopy(state),
+      status: KUBIT_STATES.IS_DAMAGED,
+    }
+  }
+  else if (energy < 25) {
+    return {
+      ...deepCopy(state),
+      status: KUBIT_STATES.IS_BATTERY_LOW,
+    }
+  }
+  else if (hungry < 25) {
+    return {
+      ...deepCopy(state),
+      status: KUBIT_STATES.IS_HUNGRY,
+    }
+  }
+  else if (happiness < 25) {
+    return {
+      ...deepCopy(state),
+      status: KUBIT_STATES.IS_SAD,
+    }
+  }
+  else {
+    return {
+      ...deepCopy(state),
+      status: KUBIT_STATES.IS_IDLE,
+    }
+  }
+}
+
+const kubitReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case KubitConstants.DECREASE_ENERGY: {
       const newValue = state.energy - payload.value;
@@ -109,9 +144,22 @@ const countReducer = (state = initialState, { type, payload }) => {
       };
     }
 
+    case GameConstants.TICK_TACK: {
+      const energy = state.energy - 1;
+      const happiness = state.happiness - 1;
+      const hungry = state.hungry - 1;
+
+      return {
+        ...defineKubitStatus(state),
+        energy: (energy <= 0) ? 0 : energy,
+        happiness: (happiness <= 0) ? 0 : happiness,
+        hungry: (hungry <= 0) ? 0 : hungry,
+      };
+    }
+
     default:
       return state;
   }
 };
 
-export default countReducer;
+export default kubitReducer;

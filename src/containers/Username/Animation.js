@@ -1,5 +1,5 @@
 import OverReact from 'overreact';
-import loadingSrc from 'assets/kubit/kubit-idle-loading';
+import isLoading from 'assets/animations/isLoading.json';
 
 function Animation(props) {
   return (
@@ -9,7 +9,7 @@ function Animation(props) {
         autoplay
         loop
         preserveAspectRatio="xMidYMid slice"
-        src={loadingSrc}
+        src={isLoading}
       ></lottie-player>
     </div>
   );

@@ -7,6 +7,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lottiefiles/lottie-player": "^0.5.1",
     "deep-diff": "^1.0.2",
     "requestidlecallback-polyfill": "^1.0.2"
   },

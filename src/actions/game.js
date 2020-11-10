@@ -28,3 +28,9 @@ export const setPet = (value) => {
     payload: { value },
   }
 };
+
+export const tickTack = () => {
+  return {
+    type: GameConstants.TICK_TACK,
+  }
+};
