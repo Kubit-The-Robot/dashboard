@@ -184,7 +184,7 @@ function Game({
             <div className="command__image">
               <img src={batteryIcon} alt="Recarregar" />
             </div>
-            
+
             <div className="command__quantity">
               <span>x</span>{battery}
             </div>
