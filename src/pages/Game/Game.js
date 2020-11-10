@@ -19,8 +19,6 @@ import {
   setPet,
 } from 'actions';
 
-import { messages, speak } from 'modules';
-
 import { Recognition, getIntention } from 'modules';
 import batteryIcon from 'assets/ui/game/battery-icon.svg';
 import forkIcon from 'assets/ui/game/fork-icon.svg';
@@ -31,6 +29,7 @@ import stageIcon from 'assets/ui/game/stage-icon.svg';
 
 import batteryUpSFX from 'assets/sfx/energy-up.wav';
 import clickSFX from 'assets/sfx/coin.wav';
+import backSFX from 'assets/sfx/back.wav';
 
 // musics
 import music_1 from 'assets/musics/kubit-music.mp3';
@@ -43,6 +42,7 @@ import Status from './Status';
 import './Game.scss';
 
 const batterySound = new Audio(batteryUpSFX);
+const backSound = new Audio(backSFX);
 const clickSound = new Audio(clickSFX);
 
 const kubitMusic = new Audio(music_1);
@@ -95,8 +95,16 @@ function Game({
 
   function onClickFood(e) {
     e.preventDefault;
-    clickSound.play();
-    toggleFoodsDispatcher(true);
+
+    if (!isFoodOpen) {
+      clickSound.play();
+      toggleFoodsDispatcher(true);
+
+      return;
+    }
+
+    toggleFoodsDispatcher(false);
+    backSound.play();
   }
 
   function onClickTalk(e) {
@@ -120,14 +128,30 @@ function Game({
 
   function onClickFriend(e) {
     e.preventDefault;
-    clickSound.play();
-    togglePetsDispatcher(true);
+
+    if (!isPetOpen) {
+      clickSound.play();
+      togglePetsDispatcher(true);
+
+      return;
+    }
+
+    togglePetsDispatcher(false);
+    backSound.play();
   }
 
   function onClickStage(e) {
     e.preventDefault;
-    clickSound.play();
-    toggleStagesDispatcher(true);
+
+    if (!isStageOpen) {
+      clickSound.play();
+      toggleStagesDispatcher(true);
+
+      return;
+    }
+
+    toggleStagesDispatcher(false);
+    backSound.play();
   }
 
   useEffect(() => {
@@ -137,14 +161,6 @@ function Game({
       document.removeEventListener('recognition.end', handleIntentionRecognition);
     }
   }, [isMicActive]);
-
-  // useEffect(() => {
-  //   if (!!currentStage && !!stages) {
-  //     const { name } = stages.find(d => d.slug === currentStage);
-
-  //     speak(messages.GAME.stageName(name));
-  //   }
-  // }, [currentStage, stages]);
 
   return (
     <div className={`stages stages--${currentStage}`}>
@@ -169,7 +185,7 @@ function Game({
             </div>
           </button>
 
-          <button className="command command-food" onClick={onClickFood}>
+          <button className={`command command-food ${isFoodOpen ? 'is-active' : ''}`} onClick={onClickFood}>
             <div className="command__image">
               <img src={forkIcon} alt="Comer" />
             </div>
@@ -188,13 +204,13 @@ function Game({
             </div>
           </button>
 
-          <button className="command command-pets" onClick={onClickFriend}>
+          <button className={`command command-pets ${isPetOpen ? 'is-active' : ''}`} onClick={onClickFriend}>
             <div className="command__image">
               <img src={friendIcon} alt="Pets" />
             </div>
           </button>
 
-          <button className="command command-stage" onClick={onClickStage}>
+          <button className={`command command-stage ${isStageOpen ? 'is-active' : ''}`} onClick={onClickStage}>
             <div className="command__image">
               <img src={stageIcon} alt="Cenários" />
             </div>

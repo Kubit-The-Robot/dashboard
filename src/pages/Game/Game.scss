@@ -157,14 +157,18 @@
   position: fixed;
   transform: translateX(-50%);
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 20px;
   max-width: 960px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  @media (min-width: 375px) {
+    padding: 15px 15px 20px;
+  }
+
   @media (min-width: 768px) {
-    padding: 20px;
+    padding: 20px 20px 30px;
   }
 }
 
@@ -173,13 +177,22 @@
   box-shadow: 4px 4px 0 0 #000;
   border-radius: 8px;
   border: 3px solid white;
-  height: 60px;
+  height: 50px;
   margin: auto 2px;
   position: relative;
-  width: 60px;
+  width: 50px;
   overflow: hidden;
   outline: none;
-  
+
+  @media (min-width: 375px) {
+    height: 55px;
+    width: 55px;
+    margin: auto 4px;
+  }
+
+  @media (min-width: 414px) {
+    margin: auto 6px;
+  }
 
   @media (min-width: 768px) {
     height: 84px;
@@ -215,7 +228,12 @@
   }
 
   &.command-battery {
+    transform: skew(-10deg);
     background-color: #5BC582;
+
+    & img {
+      transform: skew(10deg);
+    }
 
     &.is-active {
       border-color: #2EDBDE;
@@ -224,7 +242,12 @@
   }
 
   &.command-food {
+    transform: skew(-10deg);
     background-color: #FEA936;
+
+    & img {
+      transform: skew(10deg);
+    }
 
     &.is-active {
       border-color: #2EDBDE;
@@ -234,6 +257,12 @@
 
   &.command-talk {
     background-color: #9187FF;
+    margin: auto 10px;
+    transform: scale(1.2);
+
+    @media (min-width: 768px) {
+      margin: auto 20px;
+    }
 
     &.is-active {
       border-color: #2EDBDE;
@@ -243,6 +272,11 @@
 
   &.command-pets {
     background-color: #EE9BD0;
+    transform: skew(10deg);
+
+    & img {
+      transform: skew(-10deg);
+    }
 
     &.is-active {
       border-color: #2EDBDE;
@@ -251,6 +285,11 @@
   }
   &.command-stage {
     background-color: #89C7F6;
+    transform: skew(10deg);
+
+    & img {
+      transform: skew(-10deg);
+    }
 
     &.is-active {
       border-color: #2EDBDE;
