@@ -40,10 +40,14 @@ import thumbVenus from 'assets/items/stages/thumb-venus.jpg';
 import clickSFX from 'assets/sfx/coin.wav';
 import backSFX from 'assets/sfx/back.wav';
 import stageSFX from 'assets/sfx/transition.wav';
+import foodSFX from 'assets/sfx/life-up.wav';
+import blockSFX from 'assets/sfx/wrong-sfx.wav';
 
 const clickSound = new Audio(clickSFX);
 const backSound = new Audio(backSFX);
 const stageSound = new Audio(stageSFX);
+const foodSound = new Audio(foodSFX);
+const blockSound = new Audio(blockSFX);
 
 const itemsImageMapper = {
   'alien-1': '',
@@ -97,10 +101,21 @@ function Shop({
 
   const handleClick = (e) => {
     const slug = e.currentTarget.id;
+    const elementClassList = e.currentTarget.classList;
+    const isDisabled = elementClassList.contains('is-disabled');
 
     if (shopType === 'stage') {
       stageSound.play();
       onCloseHandler();
+    }
+    else if (shopType === 'food') {
+      if (!isDisabled) {
+        foodSound.play();
+        onCloseHandler();
+      }
+      else {
+        blockSound.play();
+      }
     }
 
     onClickHandler(slug);
@@ -122,16 +137,17 @@ function Shop({
       <div className="shop__container">
         <div className="shop__items">
           {items.map(({ name, slug, type, value, quantity = 0 }) => {
-            const isSelected = currentSelected === slug ? 'is-active' : '';
+            const isSelected = (currentSelected === slug) ? 'is-active' : '';
             const isDisabled = (type === 'hungry' && quantity === 0) ? 'is-disabled' : '';
+            const isHungry = (type === 'hungry') ? 'is-hungry' : '';
 
             return (
               <button
-                className={`shop__item ${isSelected} ${isDisabled}`}
+                className={`shop__item ${isSelected} ${isDisabled} ${isHungry}`}
                 id={slug}
                 onClick={handleClick}
               >
-                <div className={`shop__image ${type === 'hungry' ? 'is-hungry' : ''}`}>
+                <div className="shop__image">
                   <img src={itemsImageMapper[slug]} alt="" />
                 </div>
 

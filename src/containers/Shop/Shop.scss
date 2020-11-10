@@ -68,6 +68,7 @@
   }
 
   &__item {
+    background-color: white;
     width: calc(100% / 2 - 10px);
     height: auto;
     margin: 4px auto;
@@ -87,6 +88,22 @@
       width: calc(100% / 4 - 10px);
     }
 
+    &.is-hungry {
+      background-color: #5bc583;
+
+      & .shop__image {
+        height: 80px;
+        padding: 5px;
+        width: auto;
+        overflow: hidden;
+  
+        & img {
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+
     &:active,
     &.is-active {
       border-color: #1ECC4E;
@@ -99,6 +116,10 @@
       border-color: #F837A3;
       color: white;
       background-color: #F837A3;
+
+      &:hover {
+        cursor: url(../../assets/ui/forbidden.svg), auto;
+      }
       
       .shop__info__quantity {
         color: white;
@@ -114,18 +135,6 @@
     & img {
       height: 100%;
       width: 100%;
-    }
-
-    &.is-hungry {
-      height: 100px;
-      padding: 5px;
-      width: auto;
-      overflow: hidden;
-
-      & img {
-        height: 100%;
-        width: auto;
-      }
     }
   }
 
