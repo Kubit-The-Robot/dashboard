@@ -119,11 +119,16 @@ function Shop({
     if (shopType === 'stage') {
       stageSound.play();
       onCloseHandler();
+
+      onClickHandler(slug);
     }
     else if (shopType === 'food') {
       if (!isDisabled) {
+
         foodSound.play();
         onCloseHandler();
+
+        onClickHandler(slug);
       }
       else {
         blockSound.play();
@@ -132,9 +137,9 @@ function Shop({
     else if (shopType === 'pet') {
       petSound.play();
       onCloseHandler();
-    }
 
-    onClickHandler(slug);
+      onClickHandler(slug);
+    }
   }
 
   return (
@@ -177,10 +182,10 @@ function Shop({
                         <div className="shop__info__icon">
                           <img src={foodIndicator} alt="Ícone de comida"/>
                         </div>
-                        +{value}
+                        +<span class="item-value">{value}</span>
                       </div>
 
-                      <div className="shop__info__quantity">
+                      <div className="shop__info__quantity item-quantity">
                         x{quantity}
                       </div>
                     </div>

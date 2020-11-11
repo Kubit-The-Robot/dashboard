@@ -34,3 +34,16 @@ export const tickTack = () => {
     type: GameConstants.TICK_TACK,
   }
 };
+
+export const removeBattery = () => {
+  return {
+    type: GameConstants.GAME_REMOVE_BATTERY,
+  }
+};
+
+export const removeFood = (value) => {
+  return {
+    type: GameConstants.GAME_REMOVE_FOOD,
+    payload: { value },
+  }
+};

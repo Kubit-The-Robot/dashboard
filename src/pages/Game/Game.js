@@ -12,6 +12,8 @@ import {
   toggleFoodsModal,
   togglePetsModal,
   toggleStagesModal,
+  removeBattery,
+  removeFood,
 } from 'actions';
 
 import { Recognition, getIntention } from 'modules';
@@ -83,6 +85,8 @@ function Game({
   setStageDispatcher,
   tickTackDispatcher,
   setPetDispatcher,
+  removeBatteryDispatcher,
+  removeFoodDispatcher,
 }) {
   const [isMicActive, setMicActive] = useState(false);
 
@@ -98,6 +102,7 @@ function Game({
     batterySound.play();
 
     addEnergyDispatcher(100);
+    removeBatteryDispatcher();
     setMoodDispatcher(KUBIT_STATES.ENERGIZING);
   }
 
@@ -162,6 +167,24 @@ function Game({
     backSound.play();
   }
 
+  function onUseFood(slug) {
+    removeFoodDispatcher(slug);
+  }
+
+  function foodsCounter(foods) {
+    if (!foods.length) {
+      return 0;
+    }
+
+    return foods.reduce((acc, item) => {
+      acc = acc + item.quantity;
+
+      console.log(acc);
+
+      return acc;
+    }, 0);
+  }
+
   useEffect(() => {
     document.addEventListener('recognition.end', handleIntentionRecognition);
 
@@ -219,6 +242,10 @@ function Game({
             <div className="command__image">
               <img src={forkIcon} alt="Comer" />
             </div>
+
+            <div className="command__quantity">
+              <span>x</span>{foodsCounter(foods)}
+            </div>
           </button>
 
           <button
@@ -254,6 +281,7 @@ function Game({
             title="Comidas"
             shopType="food"
             onCloseHandler={() => toggleFoodsDispatcher(false)}
+            onClickHandler={onUseFood}
             items={foods}
           />)
         : ''}
@@ -313,6 +341,8 @@ const mapDispatchToProps = (dispatch) => {
     toggleFoodsDispatcher: (value) => dispatch(toggleFoodsModal(value)),
     togglePetsDispatcher: (value) => dispatch(togglePetsModal(value)),
     toggleStagesDispatcher: (value) => dispatch(toggleStagesModal(value)),
+    removeBatteryDispatcher: (value) => dispatch(removeBattery(value)),
+    removeFoodDispatcher: (value) => dispatch(removeFood(value)),
   };
 };
 

@@ -151,6 +151,7 @@ const initialState = {
       name: 'Cenoura',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 4,
@@ -158,6 +159,7 @@ const initialState = {
       name: 'Frango',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 5,
@@ -165,6 +167,7 @@ const initialState = {
       name: 'Ovos com Bacon',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 6,
@@ -172,6 +175,7 @@ const initialState = {
       name: 'Ovos',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 7,
@@ -179,6 +183,7 @@ const initialState = {
       name: 'Peixe',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 8,
@@ -186,6 +191,7 @@ const initialState = {
       name: 'Batata Frita',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 9,
@@ -193,6 +199,7 @@ const initialState = {
       name: 'Hamburguer',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 10,
@@ -200,6 +207,7 @@ const initialState = {
       name: 'Cachorro-Quente',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 11,
@@ -207,6 +215,7 @@ const initialState = {
       name: 'Pizza',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 12,
@@ -214,6 +223,7 @@ const initialState = {
       name: 'Salada',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 13,
@@ -221,6 +231,7 @@ const initialState = {
       name: 'Salmão',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 14,
@@ -228,6 +239,7 @@ const initialState = {
       name: 'Sopa',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 15,
@@ -235,6 +247,7 @@ const initialState = {
       name: 'Macarrão',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
     {
       id: 16,
@@ -242,6 +255,7 @@ const initialState = {
       name: 'Carne',
       type: 'hungry',
       value: 20,
+      quantity: 0,
     },
     {
       id: 17,
@@ -249,6 +263,7 @@ const initialState = {
       name: 'Taco',
       type: 'hungry',
       value: 10,
+      quantity: 0,
     },
   ],
 };
@@ -274,6 +289,29 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         currentPet: payload.value,
+      };
+    }
+
+    case GameConstants.GAME_REMOVE_BATTERY: {
+      const battery = state.battery - 1;
+
+      return {
+        ...deepCopy(state),
+        battery: battery > 0 ? battery : 0,
+      };
+    }
+
+    case GameConstants.GAME_REMOVE_FOOD: {
+      const slug = payload.value;
+      const found = state.foods.find(item => item.slug === slug);
+      const updatedItem = {
+        ...found,
+        quantity: found.quantity > 0 ? found.quantity - 1 : 0,
+      }
+
+      return {
+        ...deepCopy(state),
+        foods: [...state.foods.filter(item => item.slug !== slug), updatedItem],
       };
     }
 
