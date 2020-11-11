@@ -75,11 +75,12 @@ export const addHungry = (value) => {
 /**
  * @param {string} value
  */
-export const setMood = (value) => {
+export const setMood = (value, duration) => {
   return {
     type: KubitConstants.SET_MOOD,
     payload: {
       value,
+      duration,
     },
   }
 };

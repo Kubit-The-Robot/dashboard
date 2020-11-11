@@ -5,15 +5,9 @@ import { KUBIT_STATES } from 'constants';
 
 import {
   addEnergy,
-  addHappiness,
-  addHungry,
-  removeEnergy,
-  removeHappiness,
-  removeHungry,
   setMood,
   setPet,
   setStage,
-  setStatus,
   tickTack,
   toggleFoodsModal,
   togglePetsModal,
@@ -38,6 +32,13 @@ import music_1 from 'assets/musics/kubit-music.mp3';
 import Kubit from 'containers/Kubit';
 import Shop from 'containers/Shop';
 
+import Alien1 from 'containers/Pets/Alien1';
+import Alien2 from 'containers/Pets/Alien2';
+import Cat1 from 'containers/Pets/Cat1';
+import Cat2 from 'containers/Pets/Cat2';
+import Dog1 from 'containers/Pets/Dog1';
+import Dog2 from 'containers/Pets/Dog2';
+
 import Status from './Status';
 
 import './Game.scss';
@@ -48,13 +49,15 @@ const clickSound = new Audio(clickSFX);
 
 const kubitMusic = new Audio(music_1);
 kubitMusic.loop = true;
-kubitMusic.volume = 0.3;
-// kubitMusic.play();
+kubitMusic.volume = 0.2;
+kubitMusic.play();
 
 // const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
 const { useState, useEffect } = OverReact;
+
+let interval;
 
 function Game({
   energy,
@@ -67,8 +70,10 @@ function Game({
   isPetOpen,
   isStageOpen,
   currentStage,
+  currentPet,
   stages,
   foods,
+  pets,
   battery,
   addEnergyDispatcher,
   setMoodDispatcher,
@@ -78,8 +83,6 @@ function Game({
   setStageDispatcher,
   tickTackDispatcher,
   setPetDispatcher,
-  removeEnergyDispatcher,
-  removeHungryDispatcher,
 }) {
   const [isMicActive, setMicActive] = useState(false);
 
@@ -168,8 +171,13 @@ function Game({
   }, [isMicActive]);
 
   useEffect(() => {
-    setInterval(tickTackDispatcher, 3000);
-  }, []);
+    if (isFoodOpen || isPetOpen ||isStageOpen) {
+      clearInterval(interval);
+    }
+    else {
+      interval = setInterval(tickTackDispatcher, 3000);
+    }
+  }, [isFoodOpen, isPetOpen, isStageOpen]);
 
   return (
     <div className={`stages stages--${currentStage}`}>
@@ -185,7 +193,16 @@ function Game({
           hungry={hungry}
         />
 
-        <Kubit mood={mood} status={status} />
+        <div className="kubit">
+          {currentPet === 'alien-1' ? (<Alien1 />) : ''}
+          {currentPet === 'alien-2' ? (<Alien2 />) : ''}
+          {currentPet === 'cat-1' ? (<Cat1 />) : ''}
+          {currentPet === 'cat-2' ? (<Cat2 />) : ''}
+          {currentPet === 'dog-1' ? (<Dog1 />) : ''}
+          {currentPet === 'dog-2' ? (<Dog2 />) : ''}
+
+          <Kubit mood={mood} status={status} />
+        </div>
 
         <div className="command-bar">
           <button className="command command-battery" onClick={onClickBattery}>
@@ -247,7 +264,9 @@ function Game({
             title="Amigos"
             onCloseHandler={() => togglePetsDispatcher(false)}
             shopType="pet"
-            onClickHandler={setStageDispatcher}
+            currentSelected={currentPet}
+            onClickHandler={setPetDispatcher}
+            items={pets}
           />
         ) : ''}
 
@@ -277,16 +296,16 @@ const mapStateToProps = (state) => ({
   isPetOpen: state.kubit.isPetOpen,
   isStageOpen: state.kubit.isStageOpen,
   currentStage: state.game.currentStage,
+  currentPet: state.game.currentPet,
   stages: state.game.stages,
   foods: state.game.foods,
+  pets: state.game.pets,
   battery: state.game.battery,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addEnergyDispatcher: (value) => dispatch(addEnergy(value)),
-    removeEnergyDispatcher: (value) => dispatch(removeEnergy(value)),
-    removeHungryDispatcher: (value) => dispatch(removeHungry(value)),
     setMoodDispatcher: (value) => dispatch(setMood(value)),
     setPetDispatcher: (value) => dispatch(setPet(value)),
     setStageDispatcher: (value) => dispatch(setStage(value)),

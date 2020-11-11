@@ -115,6 +115,8 @@ const badIntentionList = [
   'xibiu',
   'xoxota',
   'chochota',
+  'bolsonaro',
+  'donald trump',
   '*',
 ];
 

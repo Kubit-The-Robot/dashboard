@@ -17,7 +17,7 @@ function IsDamaged(props) {
         id="kubit-isDamaged"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isDamaged}
       >
       </lottie-player>

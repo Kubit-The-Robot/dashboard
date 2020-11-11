@@ -17,7 +17,7 @@ function PreFlight(props) {
         id="kubit-preFlight"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={preFlight}
       >
       </lottie-player>

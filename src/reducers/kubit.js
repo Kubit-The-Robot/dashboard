@@ -1,11 +1,27 @@
-import { GameConstants, KubitConstants, KUBIT_STATES } from 'constants';
+import { GameConstants, KubitConstants, KUBIT_STATES, ANIMATION_DURATION } from 'constants';
 import { deepCopy } from 'modules';
 
+const moodsList = [
+  'ANGRY',
+  'ANSWER_RIGHT',
+  'ANSWER_WRONG',
+  'EATING',
+  'ENERGIZING',
+  'LEVEL_UP',
+  'PRE_FLIGHT',
+  'SMILING',
+  'TALKING',
+  'TALKING_BAD',
+  'TALKING_GOOD',
+];
+
 const initialState = {
-  energy: 15,
-  happiness: 15,
-  hungry: 15,
+  energy: 100,
+  happiness: 100,
+  hungry: 0,
   mood: '',
+  nextUpdate: Date.now(),
+  nextUpdateDuration: 2000,
   status: KUBIT_STATES.IS_IDLE,
   isFoodOpen: false,
   isPetOpen: false,
@@ -13,7 +29,17 @@ const initialState = {
 };
 
 const defineKubitStatus = (state) => {
-  const { energy, happiness, hungry } = state;
+  const {
+    energy,
+    happiness,
+    hungry,
+    mood,
+    nextUpdate,
+  } = state;
+
+  if (mood && nextUpdate > Date.now()) {
+    return { ...deepCopy(state) };
+  }
 
   if (energy < 10 && happiness < 10 && hungry < 10) {
     return {
@@ -104,9 +130,13 @@ const kubitReducer = (state = initialState, { type, payload }) => {
     }
 
     case KubitConstants.SET_MOOD: {
+      const duration = ANIMATION_DURATION[payload.value] || state.nextUpdateDuration;
+
       return {
         ...deepCopy(state),
+        nextUpdate: Date.now() + duration,
         mood: payload.value,
+        status: payload.value,
       };
     }
 

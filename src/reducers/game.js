@@ -14,7 +14,7 @@ const initialState = {
     {
       id: 30,
       slug: 'kubit-room',
-      name: 'Quarto',
+      name: 'Kripton',
       type: 'stage',
       value: 0,
     },
@@ -96,7 +96,46 @@ const initialState = {
       value: 0,
     },
   ],
-  pets: [],
+  pets: [
+    {
+      id: 18,
+      slug: 'dog-1',
+      name: 'Caramelo',
+      type: 'pet',
+      value: 10,
+      quantity: 1,
+    },
+    {
+      id: 19,
+      slug: 'dog-2',
+      name: 'k-9',
+      type: 'pet',
+    },
+    {
+      id: 20,
+      slug: 'cat-1',
+      name: 'Pestana',
+      type: 'pet',
+    },
+    {
+      id: 21,
+      slug: 'cat-2',
+      name: 'Petit Gatô',
+      type: 'pet',
+    },
+    {
+      id: 22,
+      slug: 'alien-1',
+      name: 'Bowie',
+      type: 'pet',
+    },
+    {
+      id: 23,
+      slug: 'alien-2',
+      name: 'Boo',
+      type: 'pet',
+    },
+  ],
   foods: [
     {
       id: 2,

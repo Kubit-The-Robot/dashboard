@@ -17,7 +17,7 @@ function IsLoading(props) {
         id="kubit-isLoading"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isLoading}
       >
       </lottie-player>

@@ -17,7 +17,7 @@ function IsIdle(props) {
         id="kubit-isIdle"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isIdle}
       >
       </lottie-player>

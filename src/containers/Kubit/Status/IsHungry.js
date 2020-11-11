@@ -17,7 +17,7 @@ function IsHungry(props) {
         id="kubit-isHungry"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isHungry}
       >
       </lottie-player>

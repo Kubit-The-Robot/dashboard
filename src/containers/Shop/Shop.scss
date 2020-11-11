@@ -104,6 +104,12 @@
       }
     }
 
+    &.is-pet {
+      @media (min-width: 768px) {
+        width: calc(100% / 3 - 10px);
+      }
+    }
+
     &:active,
     &.is-active {
       border-color: #1ECC4E;

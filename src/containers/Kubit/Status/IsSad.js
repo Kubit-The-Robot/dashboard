@@ -17,7 +17,7 @@ function IsSad(props) {
         id="kubit-isSad"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isSad}
       >
       </lottie-player>

@@ -18,7 +18,7 @@ function IsBatteryLow(props) {
         id="kubit-isBatteryLow"
         autoplay
         loop
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio="xMidYMid meet"
         src={isBatteryLow}
       >
       </lottie-player>
