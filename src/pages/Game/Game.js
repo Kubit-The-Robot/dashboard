@@ -14,6 +14,11 @@ import {
   toggleStagesModal,
   removeBattery,
   removeFood,
+  toggleMic,
+  removeHappiness,
+  removeHungry,
+  addHappiness,
+  addHungry,
 } from 'actions';
 
 import { Recognition, getIntention } from 'modules';
@@ -27,6 +32,7 @@ import stageIcon from 'assets/ui/game/stage-icon.svg';
 import batteryUpSFX from 'assets/sfx/energy-up.wav';
 import clickSFX from 'assets/sfx/coin.wav';
 import backSFX from 'assets/sfx/back.wav';
+import blockSFX from 'assets/sfx/wrong-sfx.wav';
 
 // musics
 import music_1 from 'assets/musics/kubit-music.mp3';
@@ -45,8 +51,9 @@ import Status from './Status';
 
 import './Game.scss';
 
-const batterySound = new Audio(batteryUpSFX);
 const backSound = new Audio(backSFX);
+const batterySound = new Audio(batteryUpSFX);
+const blockSound = new Audio(blockSFX);
 const clickSound = new Audio(clickSFX);
 
 const kubitMusic = new Audio(music_1);
@@ -57,7 +64,7 @@ kubitMusic.play();
 // const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
-const { useState, useEffect } = OverReact;
+const { useEffect } = OverReact;
 
 let interval;
 
@@ -77,6 +84,7 @@ function Game({
   foods,
   pets,
   battery,
+  isTalking,
   addEnergyDispatcher,
   setMoodDispatcher,
   toggleFoodsDispatcher,
@@ -87,23 +95,41 @@ function Game({
   setPetDispatcher,
   removeBatteryDispatcher,
   removeFoodDispatcher,
+  removeHappinessDispatcher,
+  addHappinessDispatcher,
+  addHungryDispatcher,
+  toggleMicDispatcher,
 }) {
-  const [isMicActive, setMicActive] = useState(false);
-
   const handleIntentionRecognition = (e) => {
     const intention = getIntention(e.detail?.transcription);
     setMoodDispatcher(intention);
-    setMicActive(() => false);
+    toggleMicDispatcher(false);
+
+    if (intention === KUBIT_STATES.TALKING_BAD) {
+      removeHappinessDispatcher(50);
+    }
+    else if (intention === KUBIT_STATES.TALKING_GOOD) {
+      addHappinessDispatcher(20);
+    }
+    else if (intention === KUBIT_STATES.TALKING) {
+      addHappinessDispatcher(5);
+    }
   }
 
   function onClickBattery(e) {
     e.preventDefault;
 
-    batterySound.play();
+    if (battery <= 0) {
+      blockSound.play();
 
-    addEnergyDispatcher(100);
-    removeBatteryDispatcher();
-    setMoodDispatcher(KUBIT_STATES.ENERGIZING);
+      return;
+    }
+    else {
+      batterySound.play();
+      addEnergyDispatcher(100);
+      removeBatteryDispatcher();
+      setMoodDispatcher(KUBIT_STATES.ENERGIZING);
+    }
   }
 
   function onClickFood(e) {
@@ -124,18 +150,15 @@ function Game({
     e.preventDefault;
     batterySound.play();
 
-    if (!isMicActive) {
-      setMicActive(() => true);
-    }
-    else {
-      setMicActive(() => false);
+    if (!isTalking) {
+      toggleMicDispatcher(true);
+    } else {
+      const evt = new CustomEvent('recognition.stop');
+      document.dispatchEvent(evt);
     }
 
     if (!recognition.recognizing) {
       recognition.start();
-    }
-    else {
-      recognition.stop();
     }
   }
 
@@ -168,7 +191,10 @@ function Game({
   }
 
   function onUseFood(slug) {
+    const item = foods.find(item => item.slug === slug);
     removeFoodDispatcher(slug);
+    addHungryDispatcher(item.value);
+    setMoodDispatcher(KUBIT_STATES.EATING);
   }
 
   function foodsCounter(foods) {
@@ -178,27 +204,20 @@ function Game({
 
     return foods.reduce((acc, item) => {
       acc = acc + item.quantity;
-
-      console.log(acc);
-
       return acc;
     }, 0);
   }
 
   useEffect(() => {
     document.addEventListener('recognition.end', handleIntentionRecognition);
-
-    return () => {
-      document.removeEventListener('recognition.end', handleIntentionRecognition);
-    }
-  }, [isMicActive]);
+  }, []);
 
   useEffect(() => {
     if (isFoodOpen || isPetOpen ||isStageOpen) {
       clearInterval(interval);
     }
     else {
-      interval = setInterval(tickTackDispatcher, 3000);
+      interval = setInterval(tickTackDispatcher, 2000);
     }
   }, [isFoodOpen, isPetOpen, isStageOpen]);
 
@@ -228,7 +247,7 @@ function Game({
         </div>
 
         <div className="command-bar">
-          <button className="command command-battery" onClick={onClickBattery}>
+          <button className={`command command-battery ${battery === 0 ? 'is-disabled' : ''}`} onClick={onClickBattery}>
             <div className="command__image">
               <img src={batteryIcon} alt="Recarregar" />
             </div>
@@ -238,7 +257,7 @@ function Game({
             </div>
           </button>
 
-          <button className={`command command-food ${isFoodOpen ? 'is-active' : ''}`} onClick={onClickFood}>
+          <button className={`command command-food ${isFoodOpen ? 'is-active' : ''} ${foodsCounter(foods) === 0 ? 'is-disabled' : ''}`} onClick={onClickFood}>
             <div className="command__image">
               <img src={forkIcon} alt="Comer" />
             </div>
@@ -249,11 +268,11 @@ function Game({
           </button>
 
           <button
-            className={`command command-talk ${isMicActive ? 'is-active' : ''}`}
+            className={`command command-talk ${isTalking ? 'is-active' : ''}`}
             onClick={onClickTalk}
           >
             <div className="command__image">
-              {isMicActive ? (
+              {isTalking ? (
                 <img src={micActiveIcon} alt="Microfone" />
               ) : (
                 <img src={micIcon} alt="Microfone Aberto" />
@@ -329,6 +348,7 @@ const mapStateToProps = (state) => ({
   foods: state.game.foods,
   pets: state.game.pets,
   battery: state.game.battery,
+  isTalking: state.game.isTalking,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -343,6 +363,11 @@ const mapDispatchToProps = (dispatch) => {
     toggleStagesDispatcher: (value) => dispatch(toggleStagesModal(value)),
     removeBatteryDispatcher: (value) => dispatch(removeBattery(value)),
     removeFoodDispatcher: (value) => dispatch(removeFood(value)),
+    removeHappinessDispatcher: (value) => dispatch(removeHappiness(value)),
+    removeHungryDispatcher: (value) => dispatch(removeHungry(value)),
+    addHappinessDispatcher: (value) => dispatch(addHappiness(value)),
+    addHungryDispatcher: (value) => dispatch(addHungry(value)),
+    toggleMicDispatcher: (value) => dispatch(toggleMic(value)),
   };
 };
 

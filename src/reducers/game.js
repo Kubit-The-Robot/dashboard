@@ -8,6 +8,7 @@ const initialState = {
   skipIntro: false,
   route: ROUTES.START,
   currentPet: '',
+  isTalking: false,
   currentStage: 'ship',
   battery: 1,
   stages: [
@@ -281,7 +282,6 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         currentStage: payload.value,
-
       };
     }
 
@@ -312,6 +312,13 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...deepCopy(state),
         foods: [...state.foods.filter(item => item.slug !== slug), updatedItem],
+      };
+    }
+
+    case GameConstants.TOGGLE_MIC: {
+      return {
+        ...deepCopy(state),
+        isTalking: payload.value,
       };
     }
 

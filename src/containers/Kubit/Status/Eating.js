@@ -19,7 +19,7 @@ function Eating(props) {
           id="eating"
           autoplay
           loop
-          speed={2}
+          speed={1}
           preserveAspectRatio="xMidYMid meet"
           src={eatingEffects}
         >

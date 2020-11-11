@@ -47,3 +47,10 @@ export const removeFood = (value) => {
     payload: { value },
   }
 };
+
+export const toggleMic = (value) => {
+  return {
+    type: GameConstants.TOGGLE_MIC,
+    payload: { value },
+  }
+};

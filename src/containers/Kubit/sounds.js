@@ -106,7 +106,7 @@ export const statusMapper = {
     duration: 0,
   },
   IS_SAD: {
-    sound: '',
+    sound: 'isSadSFX_',
     rangeStart: 1,
     rangeEnd: 1,
     duration: 0,
@@ -190,6 +190,7 @@ const SFX = {
 }
 
 export const playKubitSound = (status) => {
+  console.log(status);
   const { sound, rangeStart, rangeEnd } = statusMapper[status];
   const track = sound + (Math.floor(Math.random() * rangeEnd) + rangeStart);
 

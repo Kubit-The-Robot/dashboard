@@ -1,7 +1,7 @@
 import OverReact from 'overreact';
 import '@lottiefiles/lottie-player';
 
-import { loadState, debounce, saveState } from 'modules';
+import { loadState, debounce, saveState, initWebsockets } from 'modules';
 
 import { store } from './store';
 
@@ -18,5 +18,6 @@ store.subscribe(initGame);
 // store.subscribe(debounce(() => {
 //   saveState(store.getState);
 // }, 500));
+initWebsockets();
 
 initGame();

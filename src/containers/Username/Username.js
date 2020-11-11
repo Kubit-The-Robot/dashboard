@@ -15,30 +15,15 @@ import './Username.scss';
 const { useEffect, useState } = OverReact;
 
 function Username({ setPlayerNameDispatcher }) {
-
-  useEffect(() => {
-    speak(messages.USERNAME.greetings());
-  }, []);
-
-  const onSpeakEnd = () => {
-    window.location.hash = ROUTES.GAME;
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const inputValue = e.target.elements['screen-username-input'].value || '';
 
-    if (inputValue.length === 0 ) {
-      speak(messages.USERNAME.ifIsEmpty());
-    }
-    else if (inputValue.length === 1) {
+    if (inputValue.length >= 2 ) {
       setPlayerNameDispatcher(inputValue);
-      speak(messages.USERNAME.ifMinChars(inputValue));
-    }
-    else if (inputValue.length >= 2 ) {
-      setPlayerNameDispatcher(inputValue);
-      speak(messages.USERNAME.IfKnowYourName(inputValue), onSpeakEnd);
+
+      window.location.hash = ROUTES.GAME;
     }
   }
 

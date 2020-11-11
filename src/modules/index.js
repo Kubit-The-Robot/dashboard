@@ -9,3 +9,4 @@ export * from './throtle-debounce';
 export * from './uuid';
 export * from './intentionAnalysis';
 export * from './speechRecognition';
+export * from './websockets';

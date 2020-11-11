@@ -17,8 +17,8 @@ const moodsList = [
 
 const initialState = {
   energy: 100,
-  happiness: 100,
-  hungry: 0,
+  happiness: 0,
+  hungry: 100,
   mood: '',
   nextUpdate: Date.now(),
   nextUpdateDuration: 2000,

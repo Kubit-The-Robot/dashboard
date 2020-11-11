@@ -14,7 +14,7 @@ import Game from 'pages/Game';
 
 const { useEffect } = OverReact;
 
-function App({ setRouteDispatcher }) {
+function App({ setRouteDispatcher, status }) {
   const { hash } = window.location;
 
   if (!hash) {
@@ -35,6 +35,12 @@ function App({ setRouteDispatcher }) {
     };
   }, [hash]);
 
+  useEffect(() => {
+    const event = new CustomEvent('kubit.message', { detail: status });
+
+    document.dispatchEvent(event);
+  }, [status])
+
   let screen;
 
   if (hash === ROUTES.START) {
@@ -54,6 +60,10 @@ function App({ setRouteDispatcher }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  status: state.kubit.status,
+});
+
 const mapDispatchToProps = (dispatch) => {
   return {
     setRouteDispatcher: (route) => {
@@ -62,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(() => {}, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -124,10 +124,8 @@ function Shop({
     }
     else if (shopType === 'food') {
       if (!isDisabled) {
-
         foodSound.play();
         onCloseHandler();
-
         onClickHandler(slug);
       }
       else {

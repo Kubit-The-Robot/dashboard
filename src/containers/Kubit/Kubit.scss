@@ -127,7 +127,8 @@
     &.talking,
     &.talking-bad,
     &.smiling,
-    &.angry {
+    &.angry,
+    &.is-sad {
       height: 80px;
 
       @media (min-width: 768px) {
@@ -140,14 +141,9 @@
       transform: translateY(-50%);
     }
 
-    &.talking-good {
-      height: 250px;
-      transform: translateY(-50%);
-    }
-
     &.eating {
-      height: 250px;
-      transform: translateY(-50%);
+      height: 150px;
+      transform: translateY(0);
     }
   }
 }

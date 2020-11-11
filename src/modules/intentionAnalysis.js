@@ -488,6 +488,8 @@ const goodIntentionList = [
   'disney',
   'devotado',
   'dandy',
+  'lula',
+  'boulos',
   'daimon',
   'afável',
   'destacamento',

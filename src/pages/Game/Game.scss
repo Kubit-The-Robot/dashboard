@@ -252,6 +252,10 @@
       border-color: #2EDBDE;
       background-color: #CA3589;
     }
+
+    &.is-disabled {
+      background-color: #999;
+    }
   }
 
   &.command-food {
@@ -260,6 +264,10 @@
 
     & img {
       transform: skew(10deg);
+    }
+
+    &.is-disabled {
+      background-color: #999;
     }
 
     &.is-active {
