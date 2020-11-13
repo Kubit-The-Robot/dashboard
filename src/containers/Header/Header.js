@@ -11,7 +11,7 @@ function Header(props) {
         </div>
         <span>Sopinha Linhaus</span>
       </div>
- 
+
       <div className="header__progress__group">
         <div className="header__progress">
           <div className="header__progressItem battery">

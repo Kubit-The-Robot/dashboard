@@ -26,7 +26,7 @@ function Lessons(props) {
                 <button>Toque para começar</button>
               </div>
             </div>
-          </div> 
+          </div>
 
           <div className="lessons__padding">
             <div className="lessons__item">
@@ -36,7 +36,7 @@ function Lessons(props) {
                 <button>Toque para começar</button>
               </div>
             </div>
-          </div> 
+          </div>
 
           <div className="lessons__padding">
             <div className="lessons__item">
@@ -46,7 +46,7 @@ function Lessons(props) {
                 <button>Toque para começar</button>
               </div>
             </div>
-          </div> 
+          </div>
 
           <div className="lessons__padding">
             <div className="lessons__item">
@@ -56,7 +56,7 @@ function Lessons(props) {
                 <button>Toque para começar</button>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     </section>
