@@ -1,14 +1,16 @@
 import OverReact from 'overreact';
+
 import { connect } from 'store';
 
 import { setRoute } from 'actions';
 import { ROUTES } from 'constants';
 
-import Router from 'containers/Router';
-import Start from 'containers/Start';
+import Start from 'pages/Start';
 import Dashboard from 'pages/Dashboard';
-import Username from 'containers/Username';
+import Username from 'pages/Username';
+
 import Viewport from 'containers/Viewport';
+import Router from 'containers/Router';
 
 import Game from 'pages/Game';
 

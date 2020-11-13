@@ -1,6 +1,6 @@
 .dashboard {
-  background: url('../../assets/stages/bg-space.jpg') no-repeat center;
-  background-size: auto 120%;
+  background: url('../../assets/stages/bg-cozmo.jpg') no-repeat center;
+  background-size: cover;
   display: block;
   height: 100vh;
   width: 100%;
@@ -28,9 +28,8 @@
 
   &__content {
     width: 100vw;
-    height: 100vh;
+    height: auto;
     display: block;
-    position: absolute;
     top: 0;
     left: 0;
 

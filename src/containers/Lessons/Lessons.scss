@@ -1,10 +1,10 @@
 .lessons {
   width: 100vw;
-  height: 70vh;
+  height: auto;
   display: block;
   position: relative;
-  background: linear-gradient(to top, #9087ff 70%, transparent 30%);
-  padding: 0 30px;
+  background: linear-gradient(to top, #345DAA 50%, transparent 30%);
+  padding: 0;
 
   @media (max-width: 480px) {
     padding: 0 0 0 0;
@@ -14,11 +14,21 @@
     height: auto;
   }
 
+  & h2 {
+    font-weight: normal;
+    padding: 0 16px;
+    width: 100%;
+    color: white;
+    margin: 0;
+    text-shadow: 4px 4px #212226;
+  }
+
   &__wrapper {
     width: 100%;
     height: 100%;
     display: block;
     overflow-y: hidden;
+    padding: 16px 0;
 
     @media (min-width: 960px) {
       width: 980px;
@@ -32,65 +42,70 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    padding: 0 16px;
     justify-content: flex-start;
-    align-items: stretch;
 
     @media (min-width: 960px) {
       flex-wrap: wrap;
-      padding-left: 20px;
+      padding-left: 10px;
     }
   }
 
-  &__sliderPadding {
-    width: 10px;
-    height: 1px;
-    display: block;
+  &__padding {
+    padding-right: 20px;
 
-    div {
-      width: 10px;
-      height: 1px;
-      display: block;
+    &:nth-of-type(1) {
+      .lessons__item {
+        background-color: #E85488;
+      }
+    }
+
+    &:nth-of-type(2) {
+      .lessons__item {
+        background-color: #FEA836;
+      }
+    }
+
+    &:nth-of-type(3) {
+      .lessons__item {
+        background-color: #60C787;
+      }
+    }
+
+    &:nth-of-type(4) {
+      .lessons__item {
+        background-color: #9087FF;
+      }
+    }
+
+    &:nth-of-type(5) {
+      .lessons__item {
+        background-color: #ECA69C;
+      }
     }
   }
+
+  &__day {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
+
 
   &__item {
-    display: block;
-    width: 300px;
-    margin-right: 20px;
-    background: #ed6380;
-    border: 8px solid #fff;
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 1), 4px 4px 0 rgba(0, 0, 0, 1);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-color: #212226;
+    border-radius: 8px;
+    box-shadow: 6px 6px 0 0 #212226;
+    overflow: hidden;
+    width: 200px;
 
     @media (min-width: 960px) {
       margin-bottom: 20px;
     }
 
-    &:first-child {
-      margin-left: 30px;
-
-      @media (min-width: 960px) {
-        margin-left: 0;
-      }
-    }
-
-    &:hover {
-      box-shadow: 8px 8px 0 rgba(0, 0, 0, 1), 6px 6px 0 rgba(0, 0, 0, 1);
-    }
-
-    &Image {
-      width: 100%;
-      display: flex;
-
-      img {
-        width: 100%;
-        object-fit: cover;
-      }
-    }
-
     &Content {
       display: block;
-      padding: 15px;
+      padding: 5px;
       text-transform: uppercase;
 
       & *:nth-child(1) {
@@ -106,10 +121,11 @@
       }
 
       h2 {
-        color: #f7a837;
-        font-size: 28px;
-        text-shadow: 1px 1px #000;
-        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        margin: 15px auto;
       }
 
       button {

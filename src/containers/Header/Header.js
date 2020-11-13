@@ -11,19 +11,21 @@ function Header(props) {
         </div>
         <span>Sopinha Linhaus</span>
       </div>
-
-      <div className="header__progress">
-        <div className="header__progressItem">
-          <i className="fas fa-battery-full"></i>
-          <span>10</span>
-        </div>
-        <div className="header__progressItem">
-          <i className="fas fa-star"></i>
-          <span>6</span>
-        </div>
-        <div className="header__progressItem">
-          <i className="fas fa-medal"></i>
-          <span>4</span>
+ 
+      <div className="header__progress__group">
+        <div className="header__progress">
+          <div className="header__progressItem battery">
+            <i className="fas fa-battery-full"></i>
+            <span>10</span>
+          </div>
+          <div className="header__progressItem stars">
+            <i className="fas fa-star"></i>
+            <span>6</span>
+          </div>
+          <div className="header__progressItem medals">
+            <i className="fas fa-medal"></i>
+            <span>4</span>
+          </div>
         </div>
       </div>
     </section>

@@ -1,66 +1,136 @@
 .header {
-  width: 100vw;
-  height: 20vh;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  // background: rgba(255, 0, 0, 0.5);
-  padding: 30px;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto 40px;
+  padding: 10px 16px;
+
+  &__title {
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px #212226;
+  }
 
   &__userAvatar {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 
     & span {
       color: #fff;
+      text-transform: uppercase;
+      text-shadow: 2px 2px #212226;
+
+      @media (min-width: 728px) {
+        font-size: 20px;
+        width: auto;
+      }
     }
   }
 
   &__userImageWrapper {
-    display: block;
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    border-radius: 50%;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid white;
+    box-shadow: 4px 4px 0 0 #212226;
+    display: flex;
+    flex-direction: column;
+    height: 40px;
+    justify-content: center;
     margin-right: 15px;
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 40px;
+
+    @media (min-width: 728px) {
+      border-radius: 4px;
+      border: 4px solid white;
+      box-shadow: 6px 6px 0 0 #212226;
+      height: 60px;
+      margin-right: 20px;
+      width: 60px;
+    }
 
     img {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       object-fit: cover;
+    }
+  }
+
+  &__progress__group {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @media (min-width: 728px) {
+      width: auto;
     }
   }
 
   &__progress {
     display: flex;
+    width: 100%;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
     color: #fff;
 
     &Item {
-      margin-right: 35px;
-
-      &:last-child {
-        margin: 0;
-      }
+      background-color: white;
+      color: #000;
+      width: 45px;
+      height: 45px;
+      margin: 2px 5px;
+      border-radius: 6px;
+      border: 2px solid white;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+      flex-direction: column;
+      box-shadow: 2px 2px 0 0 #212226;
 
       & i {
+        position: absolute;
         font-size: 25px;
-        margin-right: 10px;
+        color: #212226;
+      }
+
+      &.battery {
+        background-color: #5BC582;
+        transform: skew(-20deg);
+      }
+
+      &.stars {
+        background-color: #FEA936;
+        transform: skew(-20deg);
+      }
+
+      &.medals {
+        background-color: #9087FF;
+        transform: skew(-20deg);
       }
 
       & span {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
         font-size: 18px;
-        background: #fff;
-        color: #000;
-        text-align: center;
-        border-radius: 50%;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        right: 2px;
+        text-shadow: 2px 2px #212226;
       }
     }
   }
