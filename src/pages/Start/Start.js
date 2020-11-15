@@ -15,7 +15,7 @@ function Start() {
         <Loading className="screen-start__kubit" />
 
         <div className="screen-start__options">
-          <a href={ROUTES.DASHBOARD}>
+          <a href={ROUTES.LOGIN}>
             <span>N</span>
             <span>O</span>
             <span>V</span>

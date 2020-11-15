@@ -49,7 +49,14 @@ function App({ setRouteDispatcher, status }) {
     setRouteDispatcher(newURL);
   };
 
-  const handleArtsRoute = () => {
+  const handleLoginRoute = () => {
+    clearInterval(window.KUBIT_INTERVAL);
+    dashboardMusic.pause();
+    kubitMusic.pause();
+    startMusic.play();
+  }
+
+  const handlePauseAll = () => {
     clearInterval(window.KUBIT_INTERVAL);
     dashboardMusic.pause();
     kubitMusic.pause();
@@ -95,7 +102,7 @@ function App({ setRouteDispatcher, status }) {
     const event = new CustomEvent('kubit.message', { detail: status });
 
     document.dispatchEvent(event);
-  }, [status])
+  }, [status]);
 
   let screen;
 
@@ -104,11 +111,10 @@ function App({ setRouteDispatcher, status }) {
 
     handleStartRoute();
   }
-  else if (hash === ROUTES.USERNAME) {
+  else if (hash === ROUTES.LOGIN) {
     screen = <Username />;
 
-    kubitMusic.pause();
-    dashboardMusic.pause();
+    handleLoginRoute();
   }
   else if (hash === ROUTES.DASHBOARD) {
     screen = <Dashboard />;
@@ -127,9 +133,13 @@ function App({ setRouteDispatcher, status }) {
   }
   else if (hash === ROUTES.OPENING) {
     screen = <Opening />;
+
+    handlePauseAll();
   }
   else if (hash === ROUTES.TUTORIAL) {
     screen = <Tutorial />;
+
+    handlePauseAll();
   }
 
 

@@ -13,7 +13,7 @@ export const ROUTES = {
   OPENING: '#abertura',
   TUTORIAL: '#comojogar',
   MATH: '#matematica',
-  USERNAME: '#username',
+  LOGIN: '#login',
 };
 
 export const KUBIT_STATES = keymirror({

@@ -15,9 +15,6 @@ const initGame = () => {
 
 store.subscribe(initGame);
 
-// store.subscribe(debounce(() => {
-//   saveState(store.getState);
-// }, 500));
 initWebsockets();
 
 initGame();

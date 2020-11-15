@@ -6,8 +6,6 @@ import { setPlayerName } from 'actions';
 
 import { ROUTES } from 'constants';
 
-import { messages, speak } from 'modules';
-
 import Animation from './Animation';
 
 import './Username.scss';
@@ -23,7 +21,7 @@ function Username({ setPlayerNameDispatcher }) {
     if (inputValue.length >= 2 ) {
       setPlayerNameDispatcher(inputValue);
 
-      window.location.hash = ROUTES.GAME;
+      window.location.hash = ROUTES.DASHBOARD;
     }
   }
 
@@ -32,23 +30,25 @@ function Username({ setPlayerNameDispatcher }) {
       <div className="screen-username__content">
         <Animation className="screen-username__kubit" />
 
-        <form onSubmit={handleSubmit} className="screen-username__wrapper">
-          <div className="screen-username__header">
-            <h2>NOME</h2>
-          </div>
+        <div className="screen-username__group">
+          <form onSubmit={handleSubmit} className="screen-username__wrapper">
+            <div className="screen-username__header">
+              <h2>NOME</h2>
+            </div>
 
-          <input
-            name="screen-username-input"
-            className="screen-username__input"
-            type="text"
-          />
+            <input
+              name="screen-username-input"
+              className="screen-username__input"
+              type="text"
+            />
 
-          <div className="screen-username__footer">
-            <button className='screen-username__button is-active'>
-              COMEÇAR
-            </button>
-          </div>
-        </form>
+            <div className="screen-username__footer">
+              <button className='screen-username__button is-active'>
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

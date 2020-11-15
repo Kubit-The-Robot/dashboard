@@ -228,7 +228,6 @@ SFX.talkingSFX_3.volume = 0.2;
 SFX.talkingSFX_4.volume = 0.2;
 
 export const playKubitSound = (status) => {
-  console.log(status);
   const { sound, rangeStart, rangeEnd } = statusMapper[status];
   const track = sound + (Math.floor(Math.random() * rangeEnd) + rangeStart);
 
