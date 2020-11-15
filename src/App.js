@@ -25,13 +25,13 @@ const dashboardMusic = new Audio(dashboardTheme);
 const startMusic = new Audio(startTheme);
 
 kubitMusic.loop = true;
-kubitMusic.volume = 0.2;
+kubitMusic.volume = 0.1;
 
 dashboardMusic.loop = true;
 dashboardMusic.volume = 0.1;
 
 startMusic.loop = true;
-startMusic.volume = 0.2;
+startMusic.volume = 0.1;
 
 
 function App({ setRouteDispatcher, status }) {
