@@ -166,6 +166,33 @@ th {
   padding: 0;
 }
 
+.backButton {
+  margin: 0 auto;
+  display: flex;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  background-color: white;
+  border-radius: 8px;
+  border: 4px solid #212226;
+  box-shadow: 4px 4px 0 0 #212226;
+  height: 60px;
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  text-transform: uppercase;
+
+  & i {
+    font-size: 40px;
+    margin-right: 10px;
+  }
+
+  @media (min-width: 960px) {
+    font-size: 16px;
+  }
+}
+
 .preload-images {
   background: url(../assets/stages/bg-cozmo.jpg) no-repeat -9999px -9999px,
     url(../assets/stages/bg-abstract-blue.jpg) no-repeat -9999px -9999px,

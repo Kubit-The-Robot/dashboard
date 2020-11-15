@@ -18,7 +18,7 @@ const initialState = {
       slug: 'artes',
       name: 'Artes',
       day: 'Terça',
-      isBlocked: false,
+      isBlocked: true,
       hasFinished: false,
       experience: 100,
     },

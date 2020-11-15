@@ -10,7 +10,8 @@ export const ROUTES = {
   GAME: '#game',
   INTRO: '#intro',
   START: '#start',
-  ARTS: '#artes',
+  OPENING: '#abertura',
+  TUTORIAL: '#comojogar',
   MATH: '#matematica',
   USERNAME: '#username',
 };

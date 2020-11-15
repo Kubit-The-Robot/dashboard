@@ -11,6 +11,14 @@ function PlaySection() {
     window.location.hash = ROUTES.GAME;
   }
 
+  const handleClickTutorial = () => {
+    window.location.hash = ROUTES.TUTORIAL;
+  }
+
+  const handleClickOpening = () => {
+    window.location.hash = ROUTES.OPENING;
+  }
+
   return (
     <section className="play-section">
       <div className="lessons__activities">
@@ -19,7 +27,7 @@ function PlaySection() {
 
       <div className="play-section__wrapper">
         <div className="play-section__options">
-          <button className="play-section__option is-opening">
+          <button className="play-section__option is-opening" onClick={handleClickOpening}>
             <div className="play-section__content">
               <span>
                 Abertura
@@ -27,7 +35,7 @@ function PlaySection() {
             </div>
           </button>
 
-          <button className="play-section__option is-tutorial">
+          <button className="play-section__option is-tutorial" onClick={handleClickTutorial}>
             <div className="play-section__content">
               <span>
                 Instruções

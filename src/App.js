@@ -6,12 +6,14 @@ import { connect } from 'store';
 import { setRoute } from 'actions';
 import { ROUTES } from 'constants';
 
-import Arts from 'pages/Arts';
 import Dashboard from 'pages/Dashboard';
 import Game from 'pages/Game';
-import Math from 'pages/Arts';
+import Math from 'pages/Math';
 import Start from 'pages/Start';
 import Username from 'pages/Username';
+
+import Tutorial from 'pages/Tutorial/Tutorial';
+import Opening from 'pages/Tutorial/Opening';
 
 import Viewport from 'containers/Viewport';
 import Router from 'containers/Router';
@@ -113,11 +115,6 @@ function App({ setRouteDispatcher, status }) {
 
     handleDashboardRoute();
   }
-  else if (hash === ROUTES.ARTS) {
-    screen = <Arts />;
-
-    handleArtsRoute();
-  }
   else if (hash === ROUTES.MATH) {
     screen = <Math />;
 
@@ -128,6 +125,13 @@ function App({ setRouteDispatcher, status }) {
 
     handleGameRoute();
   }
+  else if (hash === ROUTES.OPENING) {
+    screen = <Opening />;
+  }
+  else if (hash === ROUTES.TUTORIAL) {
+    screen = <Tutorial />;
+  }
+
 
   return (
     <Viewport style={{ background: '(url)' }}>

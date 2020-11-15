@@ -35,11 +35,7 @@ function Lessons({ lessons }) {
   const handleClickLesson = (e) => {
     const slug = e.currentTarget.id;
 
-    if (slug === 'artes') {
-      window.location.hash = ROUTES.ARTS;
-      clickSound.play();
-    }
-    else if (slug === 'matematica') {
+    if (slug === 'matematica') {
       window.location.hash = ROUTES.MATH;
       clickSound.play();
     }
