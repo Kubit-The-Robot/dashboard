@@ -187,7 +187,45 @@ const SFX = {
   talkingSFX_2: new Audio(talkingSound2),
   talkingSFX_3: new Audio(talkingSound3),
   talkingSFX_4: new Audio(talkingSound4),
-}
+};
+
+SFX.angrySFX_1.volume = 0.2;
+SFX.angrySFX_2.volume = 0.2;
+SFX.angrySFX_3.volume = 0.2;
+SFX.angrySFX_4.volume = 0.2;
+SFX.angrySFX_5.volume = 0.2;
+SFX.angrySFX_6.volume = 0.2;
+SFX.answerRightSFX_1.volume = 0.2;
+SFX.answerWrongSFX_1.volume = 0.2;
+SFX.eatingSFX_1.volume = 0.2;
+SFX.energizingSFX_1.volume = 0.2;
+SFX.energizingSFX_2.volume = 0.2;
+SFX.energizingSFX_3.volume = 0.2;
+SFX.idleSFX_1.volume = 0.2;
+SFX.idleSFX_2.volume = 0.2;
+SFX.batteryLowSFX_1.volume = 0.2;
+SFX.damagedSFX_1.volume = 0.2;
+SFX.damagedSFX_2.volume = 0.2;
+SFX.damagedSFX_3.volume = 0.2;
+SFX.hungrySFX_1.volume = 0.2;
+SFX.hungrySFX_2.volume = 0.2;
+SFX.isSadSFX_1.volume = 0.2;
+SFX.levelUpSFX_1.volume = 0.2;
+SFX.smilingSFX_1.volume = 0.2;
+SFX.smilingSFX_2.volume = 0.2;
+SFX.talkingBadSFX_1.volume = 0.2;
+SFX.talkingBadSFX_2.volume = 0.2;
+SFX.talkingBadSFX_3.volume = 0.2;
+SFX.talkingBadSFX_4.volume = 0.2;
+SFX.talkingBadSFX_5.volume = 0.2;
+SFX.talkingGoodSFX_1.volume = 0.2;
+SFX.talkingGoodSFX_2.volume = 0.2;
+SFX.talkingGoodSFX_3.volume = 0.2;
+SFX.talkingGoodSFX_4.volume = 0.2;
+SFX.talkingSFX_1.volume = 0.2;
+SFX.talkingSFX_2.volume = 0.2;
+SFX.talkingSFX_3.volume = 0.2;
+SFX.talkingSFX_4.volume = 0.2;
 
 export const playKubitSound = (status) => {
   console.log(status);

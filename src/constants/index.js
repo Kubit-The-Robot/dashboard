@@ -6,14 +6,13 @@ export * from './player';
 export * from './dashboard';
 
 export const ROUTES = {
-  FOOD: '#food',
+  DASHBOARD: '#dashboard',
   GAME: '#game',
   INTRO: '#intro',
-  SHOP: '#shop',
   START: '#start',
+  ARTS: '#artes',
+  MATH: '#matematica',
   USERNAME: '#username',
-  WORKSHOP: '#workshop',
-  DASHBOARD: '#dashboard',
 };
 
 export const KUBIT_STATES = keymirror({

@@ -6,14 +6,15 @@ import { connect } from 'store';
 import { setRoute } from 'actions';
 import { ROUTES } from 'constants';
 
-import Start from 'pages/Start';
+import Arts from 'pages/Arts';
 import Dashboard from 'pages/Dashboard';
+import Game from 'pages/Game';
+import Math from 'pages/Arts';
+import Start from 'pages/Start';
 import Username from 'pages/Username';
 
 import Viewport from 'containers/Viewport';
 import Router from 'containers/Router';
-
-import Game from 'pages/Game';
 
 // musics
 import kubitTheme from 'assets/musics/kubit-music.mp3';
@@ -33,7 +34,6 @@ dashboardMusic.volume = 0.1;
 startMusic.loop = true;
 startMusic.volume = 0.1;
 
-
 function App({ setRouteDispatcher, status }) {
   const { hash } = window.location;
 
@@ -47,9 +47,29 @@ function App({ setRouteDispatcher, status }) {
     setRouteDispatcher(newURL);
   };
 
+  const handleArtsRoute = () => {
+    clearInterval(window.KUBIT_INTERVAL);
+    dashboardMusic.pause();
+    kubitMusic.pause();
+    startMusic.pause();
+  }
+
+  const handleGameRoute = () => {
+    dashboardMusic.pause();
+    kubitMusic.play();
+    startMusic.pause();
+  }
+
   const handleDashboardRoute = () => {
     clearInterval(window.KUBIT_INTERVAL);
     dashboardMusic.play();
+    kubitMusic.pause();
+    startMusic.pause();
+  }
+
+  const handleMathRoute = () => {
+    clearInterval(window.KUBIT_INTERVAL);
+    dashboardMusic.pause();
     kubitMusic.pause();
     startMusic.pause();
   }
@@ -59,12 +79,6 @@ function App({ setRouteDispatcher, status }) {
     dashboardMusic.pause();
     kubitMusic.pause();
     startMusic.play();
-  }
-
-  const handleGameRoute = () => {
-    dashboardMusic.pause();
-    kubitMusic.play();
-    startMusic.pause();
   }
 
   useEffect(() => {
@@ -98,6 +112,16 @@ function App({ setRouteDispatcher, status }) {
     screen = <Dashboard />;
 
     handleDashboardRoute();
+  }
+  else if (hash === ROUTES.ARTS) {
+    screen = <Arts />;
+
+    handleArtsRoute();
+  }
+  else if (hash === ROUTES.MATH) {
+    screen = <Math />;
+
+    handleMathRoute();
   }
   else if (hash === ROUTES.GAME) {
     screen = <Game />;

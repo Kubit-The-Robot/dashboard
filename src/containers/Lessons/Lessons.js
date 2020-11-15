@@ -1,6 +1,8 @@
 import OverReact from 'overreact';
 import { connect } from 'store';
 
+import { ROUTES } from 'constants';
+
 import artesImg from 'assets/lessons/artes.png';
 import cienciasImg from 'assets/lessons/ciencias.png';
 import inglesImg from 'assets/lessons/ingles.png';
@@ -9,7 +11,13 @@ import portuguesImg from 'assets/lessons/portugues.png';
 
 import lockImg from 'assets/ui/lock.svg';
 
+import clickSFX from 'assets/sfx/coin.wav';
+import blockSFX from 'assets/sfx/wrong-sfx.wav';
+
 import './Lessons.scss';
+
+const blockSound = new Audio(blockSFX);
+const clickSound = new Audio(clickSFX);
 
 const imageMapper = {
   artes: artesImg,
@@ -22,6 +30,22 @@ const imageMapper = {
 function Lessons({ lessons }) {
   if (lessons.length && lessons.length === 0) {
     return '';
+  }
+
+  const handleClickLesson = (e) => {
+    const slug = e.currentTarget.id;
+
+    if (slug === 'artes') {
+      window.location.hash = ROUTES.ARTS;
+      clickSound.play();
+    }
+    else if (slug === 'matematica') {
+      window.location.hash = ROUTES.MATH;
+      clickSound.play();
+    }
+    else {
+      blockSound.play();
+    }
   }
 
   return (
@@ -45,7 +69,9 @@ function Lessons({ lessons }) {
             }
 
             return (
-              <div className={`lessons__padding ${isBlocked ? 'is-disabled' : ''} ${hasFinished ? 'is-finished' : ''}`}>
+              <div
+                className={`lessons__padding ${isBlocked ? 'is-disabled' : ''} ${hasFinished ? 'is-finished' : ''}`}
+              >
                 <div className="lessons__item">
                   <div className="lessons__itemContent">
                     <div className="lessons__day">{day}</div>
@@ -53,7 +79,8 @@ function Lessons({ lessons }) {
                       <img src={imageMapper[slug]} alt={name} />
                     </div>
                     <h2>{name}</h2>
-                    <button>
+
+                    <button id={slug} onClick={handleClickLesson}>
                       {isBlocked ? (<img src={lockImg} alt="bloqueado" />) : ''}
                       {hasFinished ? (<i className="fas fa-medal"></i>) : ''}
                       {buttonLabel}
