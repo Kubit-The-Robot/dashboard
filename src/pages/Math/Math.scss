@@ -150,7 +150,7 @@
     align-items: center;
     width: auto;
     padding: 0 40px;
-    background-color: #FFBD10;
+    background-color: #CA3589;
     border-radius: 8px;
     border: 4px solid #212226;
     box-shadow: 4px 4px 0 0 #212226;
@@ -166,5 +166,35 @@
     @media (min-width: 960px) {
       font-size: 16px;
     }
+  }
+
+  &__right {
+    width: 100%;
+    max-width: 728px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #31C9EC;
+    border-radius: 8px;
+    border: 4px solid white;
+    box-shadow: 8px 8px 0 0 #212226;
+
+    .math__container {
+      flex-direction: column;
+    }
+
+    .math__title {
+      margin: 0;
+    }
+  }
+
+  &__prizes {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
   }
 }

@@ -8,6 +8,8 @@ export const messages = {
   },
   LESSON: {
     math: () => 'Quantas frutas e legumes de cada tipo, existem na imagem?',
+    mathRight: () => 'Certo!, você tem novos itens!',
+    mathWrong: () => 'Resposta errada, tente de novo.',
   },
   USERNAME: {
     greetings: () => 'Olááá! esse é o Qilbit, e eu sou a Ana Byte, Como posso te chamar?',
