@@ -194,5 +194,7 @@ export const playKubitSound = (status) => {
   const { sound, rangeStart, rangeEnd } = statusMapper[status];
   const track = sound + (Math.floor(Math.random() * rangeEnd) + rangeStart);
 
-  SFX[track].play();
+  if (SFX[track]) {
+    SFX[track].play();
+  }
 }

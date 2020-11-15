@@ -34,9 +34,6 @@ import clickSFX from 'assets/sfx/coin.wav';
 import backSFX from 'assets/sfx/back.wav';
 import blockSFX from 'assets/sfx/wrong-sfx.wav';
 
-// musics
-import music_1 from 'assets/musics/kubit-music.mp3';
-
 import Kubit from 'containers/Kubit';
 import Shop from 'containers/Shop';
 
@@ -56,17 +53,12 @@ const batterySound = new Audio(batteryUpSFX);
 const blockSound = new Audio(blockSFX);
 const clickSound = new Audio(clickSFX);
 
-const kubitMusic = new Audio(music_1);
-kubitMusic.loop = true;
-kubitMusic.volume = 0.2;
-kubitMusic.play();
-
 // const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
 const { useEffect } = OverReact;
 
-let interval;
+window.KUBIT_INTERVAL;
 
 function Game({
   energy,
@@ -109,10 +101,10 @@ function Game({
       removeHappinessDispatcher(50);
     }
     else if (intention === KUBIT_STATES.TALKING_GOOD) {
-      addHappinessDispatcher(20);
+      addHappinessDispatcher(50);
     }
     else if (intention === KUBIT_STATES.TALKING) {
-      addHappinessDispatcher(5);
+      addHappinessDispatcher(10);
     }
   }
 
@@ -214,10 +206,10 @@ function Game({
 
   useEffect(() => {
     if (isFoodOpen || isPetOpen ||isStageOpen) {
-      clearInterval(interval);
+      clearInterval(window.KUBIT_INTERVAL);
     }
     else {
-      interval = setInterval(tickTackDispatcher, 2000);
+      window.KUBIT_INTERVAL = setInterval(tickTackDispatcher, 2000);
     }
   }, [isFoodOpen, isPetOpen, isStageOpen]);
 

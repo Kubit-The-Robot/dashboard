@@ -1,4 +1,5 @@
 import OverReact from 'overreact';
+const { useEffect } = OverReact;
 
 import { connect } from 'store';
 
@@ -14,7 +15,24 @@ import Router from 'containers/Router';
 
 import Game from 'pages/Game';
 
-const { useEffect } = OverReact;
+// musics
+import kubitTheme from 'assets/musics/kubit-music.mp3';
+import dashboardTheme from 'assets/musics/star-wars.mp3';
+import startTheme from 'assets/musics/number-one.mp3';
+
+const kubitMusic = new Audio(kubitTheme);
+const dashboardMusic = new Audio(dashboardTheme);
+const startMusic = new Audio(startTheme);
+
+kubitMusic.loop = true;
+kubitMusic.volume = 0.2;
+
+dashboardMusic.loop = true;
+dashboardMusic.volume = 0.1;
+
+startMusic.loop = true;
+startMusic.volume = 0.2;
+
 
 function App({ setRouteDispatcher, status }) {
   const { hash } = window.location;
@@ -28,6 +46,26 @@ function App({ setRouteDispatcher, status }) {
 
     setRouteDispatcher(newURL);
   };
+
+  const handleDashboardRoute = () => {
+    clearInterval(window.KUBIT_INTERVAL);
+    dashboardMusic.play();
+    kubitMusic.pause();
+    startMusic.pause();
+  }
+
+  const handleStartRoute = () => {
+    clearInterval(window.KUBIT_INTERVAL);
+    dashboardMusic.pause();
+    kubitMusic.pause();
+    startMusic.play();
+  }
+
+  const handleGameRoute = () => {
+    dashboardMusic.pause();
+    kubitMusic.play();
+    startMusic.pause();
+  }
 
   useEffect(() => {
     window.addEventListener('hashchange', onRouteChanged);
@@ -47,16 +85,29 @@ function App({ setRouteDispatcher, status }) {
 
   if (hash === ROUTES.START) {
     screen = <Start />;
-  } else if (hash === ROUTES.USERNAME) {
+
+    handleStartRoute();
+  }
+  else if (hash === ROUTES.USERNAME) {
     screen = <Username />;
-  } else if (hash === ROUTES.DASHBOARD) {
+
+    kubitMusic.pause();
+    dashboardMusic.pause();
+  }
+  else if (hash === ROUTES.DASHBOARD) {
     screen = <Dashboard />;
-  } else if (hash === ROUTES.GAME) {
+
+    handleDashboardRoute();
+  }
+  else if (hash === ROUTES.GAME) {
     screen = <Game />;
+
+    handleGameRoute();
   }
 
   return (
     <Viewport style={{ background: '(url)' }}>
+      <div className="preload-images"></div>
       <Router>{screen}</Router>
     </Viewport>
   );

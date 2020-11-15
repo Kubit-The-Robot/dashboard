@@ -1,29 +1,32 @@
 .dashboard {
   background: url('../../assets/stages/bg-cozmo.jpg') no-repeat center;
+  background-color: red;
   background-size: cover;
   display: block;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   position: relative;
+  overflow-y: auto;
   animation-name: kenburns;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 30s;
-
-  @media (min-width: 960px) {
-    min-height: 100vh;
-    height: auto;
-  }
 
   &:before {
     content: '';
     display: block;
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: inherit;
     top: 0;
     left: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
+    bottom: 0;
+    right: 0;
+
+    @media (min-width: 728px) {
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+
+    }
   }
 
   &__content {

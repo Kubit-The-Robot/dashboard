@@ -3,6 +3,7 @@ import { keymirror } from 'modules';
 export * from './game';
 export * from './kubit';
 export * from './player';
+export * from './dashboard';
 
 export const ROUTES = {
   FOOD: '#food',

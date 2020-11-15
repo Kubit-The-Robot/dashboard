@@ -3,24 +3,37 @@
   height: auto;
   display: block;
   position: relative;
-  background: linear-gradient(to top, #345DAA 50%, transparent 30%);
   padding: 0;
-
-  @media (max-width: 480px) {
-    padding: 0 0 0 0;
-  }
+  padding-bottom: 20px;
 
   @media (min-width: 960px) {
     height: auto;
   }
 
-  & h2 {
+  &__activities {
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px #212226;
+    display: flex;
     font-weight: normal;
+    justify-content: space-between;
+    margin: 0 auto;
     padding: 0 16px;
     width: 100%;
-    color: white;
-    margin: 0;
-    text-shadow: 4px 4px #212226;
+    max-width: 960px;
+
+    @media (min-width: 960px) {
+      padding: 0;
+    }
+
+    & h2 {
+      display: inline-block;
+      font-weight: normal;
+      font-size: 22px;
+      text-transform: uppercase;
+      width: auto;
+      margin: 0;
+    }
   }
 
   &__wrapper {
@@ -31,7 +44,7 @@
     padding: 16px 0;
 
     @media (min-width: 960px) {
-      width: 980px;
+      width: 960px;
       height: auto;
       overflow: initial;
       margin: 0 auto;
@@ -47,40 +60,107 @@
 
     @media (min-width: 960px) {
       flex-wrap: wrap;
-      padding-left: 10px;
+      padding: 0;
     }
   }
 
   &__padding {
     padding-right: 20px;
 
+    @media (min-width: 960px) {
+      padding-right: 10px;
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+    }
+
     &:nth-of-type(1) {
       .lessons__item {
         background-color: #E85488;
+
+        & button {
+          color: #E85488;
+        }
       }
     }
 
     &:nth-of-type(2) {
       .lessons__item {
         background-color: #FEA836;
+
+        & button {
+          color: #FEA836;
+        }
       }
     }
 
     &:nth-of-type(3) {
       .lessons__item {
-        background-color: #60C787;
+        background-color: #406bb9;
+
+        & button {
+          color: #406bb9;
+        }
       }
     }
 
     &:nth-of-type(4) {
       .lessons__item {
         background-color: #9087FF;
+
+        & button {
+          color: #9087FF;
+        }
       }
     }
 
     &:nth-of-type(5) {
       .lessons__item {
-        background-color: #ECA69C;
+        background-color: #EE9BD1;
+
+        & button {
+          color: #EE9BD1;
+        }
+      }
+    }
+
+    & .lessons__item {
+      & button {
+        &:active {
+          background-color: transparent;
+          color: white;
+          border-color: white;
+        }
+      }
+    }
+
+    &.is-disabled {
+      .lessons__item {
+        border-color:#666;
+
+        button {
+            color:#212226;
+            background-color: #999;
+
+            &:active {
+              color:#212226;
+              background-color: #999;
+              border-color: #212226;
+            }
+        }
+      }
+    }
+
+    &.is-finished {
+      .lessons__item {
+        background-color: #5BC583;
+        border-color: #5BC583;
+
+        button {
+          color: white;
+          background-color: #FA34A2;
+        }
       }
     }
   }
@@ -88,19 +168,40 @@
   &__day {
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+
+    @media (min-width: 960px) {
+      margin-bottom: 10px;
+    }
   }
 
+  &__image {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+    }
+  }
 
   &__item {
-    background-color: #212226;
+    background-color: white;
+    border: 4px solid white;
     border-radius: 8px;
     box-shadow: 6px 6px 0 0 #212226;
     overflow: hidden;
-    width: 200px;
+    width: 250px;
+    padding: 5px;
 
     @media (min-width: 960px) {
       margin-bottom: 20px;
+      width: 184px;
+      padding: 2px;
     }
 
     &Content {
@@ -112,32 +213,55 @@
         margin-top: 0;
       }
 
-      small {
-        font-family: 'Montserrat', sans-serif;
-        text-transform: uppercase;
-        margin: 0 0 15px;
-        font-size: 14px;
-        font-weight: 300;
-      }
-
       h2 {
         width: 100%;
         text-align: center;
         color: #fff;
-        font-size: 20px;
+        font-weight: normal;
+        text-shadow: 2px 2px #212226;
+        font-size: 28px;
+        letter-spacing: 2px;
         margin: 15px auto;
+
+        @media (min-width: 960px) {
+          font-size: 24px;
+          letter-spacing: 0;
+        }
       }
 
       button {
+        margin: 0 auto;
+        display: flex;
+        outline: none;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        line-height: 100%;
-        height: 51px;
-        font-size: 20px;
-        border-radius: 6px;
+        background-color: white;
+        border-radius: 8px;
+        border: 4px solid #212226;
+        box-shadow: 4px 4px 0 0 #212226;
+        height: 60px;
+        font-size: 22px;
         text-transform: uppercase;
-        background: #eba69d;
-        border: none;
-        color: #345eaa;
+
+        & i {
+          font-size: 40px;
+          margin-right: 10px;
+        }
+
+        @media (min-width: 960px) {
+          font-size: 16px;
+        }
+
+        & img {
+          height: 30px;
+          margin-right: 15px;
+
+          @media (min-width: 960px) {
+            height: 30px;
+            margin-right: 8px;
+          }
+        }
       }
     }
   }

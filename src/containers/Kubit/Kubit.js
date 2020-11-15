@@ -51,6 +51,9 @@ function Kubit({ status }) {
   else if (status === KUBIT_STATES.PRE_FLIGHT) {
     output = (<PreFlight />);
   }
+  else if (status === KUBIT_STATES.IS_LOADING) {
+    output = (<IsLoading />);
+  }
   else if (status === KUBIT_STATES.SMILING) {
     output = (<Smiling />);
   }
