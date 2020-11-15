@@ -121,109 +121,109 @@ function Math({ finishLessonDispatcher }) {
             </div>
           </div>
         ) : ''}
-        {!isRight
+      {!isRight
         ? (
-        <div>
-          <div className="math__container">
-            <h2 className="math__title">
+          <div>
+            <div className="math__container">
+              <h2 className="math__title">
               Quantas frutas e legumes de cada tipo, existem na imagem?
-            </h2>
-          </div>
-          <div className="math__container">
-            <form onSubmit={handleSubmit} className="math__form">
-              <div className="math__fruits">
-                <img src={fruitsImg} alt=""/>
-              </div>
-
-              <div className="math__group">
-                <div className="math__input-wrapper">
-                  <div className="math__image-wrapper">
-                    <img src={alfaceImg} alt=""/>
-                  </div>
-
-                  <input
-                    name="alface"
-                    className="math__input"
-                    type="number"
-                    value={0}
-                    max="15"
-                    min="0"
-                  />
+              </h2>
+            </div>
+            <div className="math__container">
+              <form onSubmit={handleSubmit} className="math__form">
+                <div className="math__fruits">
+                  <img src={fruitsImg} alt=""/>
                 </div>
 
-                <div className="math__input-wrapper">
-                  <div className="math__image-wrapper">
-                    <img src={brocolisImg} alt=""/>
+                <div className="math__group">
+                  <div className="math__input-wrapper">
+                    <div className="math__image-wrapper">
+                      <img src={alfaceImg} alt=""/>
+                    </div>
+
+                    <input
+                      name="alface"
+                      className="math__input"
+                      type="number"
+                      value={0}
+                      max="15"
+                      min="0"
+                    />
                   </div>
 
-                  <input
-                    name="brocolis"
-                    className="math__input"
-                    type="number"
-                    value={0}
-                    max="15"
-                    min="0"
-                  />
-                </div>
+                  <div className="math__input-wrapper">
+                    <div className="math__image-wrapper">
+                      <img src={brocolisImg} alt=""/>
+                    </div>
 
-                <div className="math__input-wrapper">
-                  <div className="math__image-wrapper">
-                    <img src={cebolaImg} alt=""/>
+                    <input
+                      name="brocolis"
+                      className="math__input"
+                      type="number"
+                      value={0}
+                      max="15"
+                      min="0"
+                    />
                   </div>
 
-                  <input
-                    name="cebola"
-                    className="math__input"
-                    type="number"
-                    value={0}
-                    max="15"
-                    min="0"
-                  />
-                </div>
+                  <div className="math__input-wrapper">
+                    <div className="math__image-wrapper">
+                      <img src={cebolaImg} alt=""/>
+                    </div>
 
-                <div className="math__input-wrapper">
-                  <div className="math__image-wrapper">
-                    <img src={milhoImg} alt=""/>
+                    <input
+                      name="cebola"
+                      className="math__input"
+                      type="number"
+                      value={0}
+                      max="15"
+                      min="0"
+                    />
                   </div>
 
-                  <input
-                    name="milho"
-                    className="math__input"
-                    type="number"
-                    value={0}
-                    max="15"
-                    min="0"
-                  />
-                </div>
+                  <div className="math__input-wrapper">
+                    <div className="math__image-wrapper">
+                      <img src={milhoImg} alt=""/>
+                    </div>
 
-                <div className="math__input-wrapper">
-                  <div className="math__image-wrapper">
-                    <img src={tomateImg} alt=""/>
+                    <input
+                      name="milho"
+                      className="math__input"
+                      type="number"
+                      value={0}
+                      max="15"
+                      min="0"
+                    />
                   </div>
 
-                  <input
-                    name="tomate"
-                    className="math__input"
-                    type="number"
-                    value={0}
-                    max="15"
-                    min="0"
-                  />
-                </div>
-              </div>
+                  <div className="math__input-wrapper">
+                    <div className="math__image-wrapper">
+                      <img src={tomateImg} alt=""/>
+                    </div>
 
-              <div className="math__footer">
-                <div className='math__back' onClick={handleBackButton}>
+                    <input
+                      name="tomate"
+                      className="math__input"
+                      type="number"
+                      value={0}
+                      max="15"
+                      min="0"
+                    />
+                  </div>
+                </div>
+
+                <div className="math__footer">
+                  <div className='math__back' onClick={handleBackButton}>
                   Voltar
-                </div>
+                  </div>
 
-                <button type="submit" className='math__finish'>
+                  <button type="submit" className='math__finish'>
                   RESPONDER
-                </button>
-              </div>
-            </form>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
         ) : '' }
     </div>
   );
