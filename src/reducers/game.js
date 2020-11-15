@@ -316,7 +316,6 @@ const reducer = (state = initialState, { type, payload }) => {
     }
 
     // DashboardConstants
-
     case GameConstants.TOGGLE_MIC: {
       return {
         ...deepCopy(state),

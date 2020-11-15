@@ -27,7 +27,7 @@ const imageMapper = {
   portugues: portuguesImg,
 }
 
-function Lessons({ lessons }) {
+function Lessons({ lessons, finished }) {
   if (lessons.length && lessons.length === 0) {
     return '';
   }
@@ -49,7 +49,7 @@ function Lessons({ lessons }) {
       <div className="lessons__activities">
         <h2>Atividades</h2>
 
-        <div>0/5</div>
+        <div>{finished}/5</div>
       </div>
 
       <div className="lessons__wrapper">

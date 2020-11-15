@@ -2,6 +2,7 @@ import { DashboardConstants } from 'constants';
 import { deepCopy } from 'modules';
 
 const initialState = {
+  finished: 0,
   lessons: [
     {
       id: 2,
@@ -61,8 +62,11 @@ const reducer = (state = initialState, { type, payload }) => {
         hasFinished: true,
       }
 
+      const finished = [...state.lessons.filter(item => item.slug !== slug), updatedItem].filter((item) => item.hasFinished);
+
       return {
         ...deepCopy(state),
+        finished: finished.length,
         lessons: [...state.lessons.filter(item => item.slug !== slug), updatedItem],
       };
     }

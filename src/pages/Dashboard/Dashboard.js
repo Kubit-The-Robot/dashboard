@@ -8,14 +8,13 @@ import Footer from 'containers/Footer';
 
 import './Dashboard.scss';
 
-function Dashboard({ lessons }) {
+function Dashboard({ lessons, battery, finished, name }) {
   return (
     <div className="dashboard">
       <div className="dashboard__content">
-        <Header />
-        <Lessons lessons={lessons} />
+        <Header battery={battery} finished={finished} name={name} />
+        <Lessons lessons={lessons} finished={finished} />
         <PlaySection />
-        <Footer />
       </div>
     </div>
   );
@@ -23,6 +22,9 @@ function Dashboard({ lessons }) {
 
 const mapStateToProps = (state) => ({
   lessons: state.dashboard.lessons,
+  finished: state.dashboard.finished,
+  battery: state.game.battery,
+  name: state.player.name,
 });
 
 const mapDispatchToProps = (dispatch) => {
