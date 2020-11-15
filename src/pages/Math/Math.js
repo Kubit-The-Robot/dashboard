@@ -1,4 +1,9 @@
 import OverReact from 'overreact';
+import { connect } from 'store';
+
+import {
+  finishLesson,
+} from 'actions';
 
 import { ROUTES } from 'constants';
 
@@ -11,6 +16,10 @@ import cebolaImg from '../../assets/lessons/math/cebola.svg';
 import milhoImg from '../../assets/lessons/math/milho.svg';
 import tomateImg from '../../assets/lessons/math/tomate.svg';
 
+import backSFX from 'assets/sfx/back.wav';
+import successAnswerSFX from 'assets/sfx/success-answer.wav';
+import wrongAnswerSFX from 'assets/sfx/wrong-sfx.wav';
+
 import './Math.scss';
 
 const gabarito = {
@@ -21,9 +30,13 @@ const gabarito = {
   tomate: 5,
 };
 
+const backSound = new Audio(backSFX);
+const successSound = new Audio(successAnswerSFX);
+const wrongSound = new Audio(wrongAnswerSFX);
+
 const { useEffect } = OverReact;
 
-function Math() {
+function Math({ finishLessonDispatcher }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -43,15 +56,23 @@ function Math() {
       (userResponse.tomate == gabarito.tomate)
     ) {
       console.log('certo');
+      successSound.play();
+      finishLessonDispatcher('matematica');
     }
     else {
       console.log('errado');
+      wrongSound.play();
     }
   };
 
+  const handleBackButton = () => {
+    window.location.hash = ROUTES.DASHBOARD;
+    backSound.play();
+  }
+
   useEffect(() => {
     speak(messages.LESSON.math());
-  }, [])
+  }, []);
 
   return (
     <div className="math">
@@ -60,90 +81,97 @@ function Math() {
           Quantas frutas e legumes de cada tipo, existem na imagem?
         </h2>
       </div>
+
       <div className="math__container">
-        <div className="math__fruits">
-          <img src={fruitsImg} alt=""/>
-        </div>
-
         <form onSubmit={handleSubmit} className="math__form">
-          <div className="math__input-wrapper">
-            <div className="math__image-wrapper">
-              <img src={alfaceImg} alt=""/>
-            </div>
-
-            <input
-              name="alface"
-              className="math__input"
-              type="number"
-              value={0}
-              max="15"
-              min="0"
-            />
+          <div className="math__fruits">
+            <img src={fruitsImg} alt=""/>
           </div>
 
-          <div className="math__input-wrapper">
-            <div className="math__image-wrapper">
-              <img src={brocolisImg} alt=""/>
+          <div className="math__group">
+            <div className="math__input-wrapper">
+              <div className="math__image-wrapper">
+                <img src={alfaceImg} alt=""/>
+              </div>
+
+              <input
+                name="alface"
+                className="math__input"
+                type="number"
+                value={0}
+                max="15"
+                min="0"
+              />
             </div>
 
-            <input
-              name="brocolis"
-              className="math__input"
-              type="number"
-              value={0}
-              max="15"
-              min="0"
-            />
-          </div>
+            <div className="math__input-wrapper">
+              <div className="math__image-wrapper">
+                <img src={brocolisImg} alt=""/>
+              </div>
 
-          <div className="math__input-wrapper">
-            <div className="math__image-wrapper">
-              <img src={cebolaImg} alt=""/>
+              <input
+                name="brocolis"
+                className="math__input"
+                type="number"
+                value={0}
+                max="15"
+                min="0"
+              />
             </div>
 
-            <input
-              name="cebola"
-              className="math__input"
-              type="number"
-              value={0}
-              max="15"
-              min="0"
-            />
-          </div>
+            <div className="math__input-wrapper">
+              <div className="math__image-wrapper">
+                <img src={cebolaImg} alt=""/>
+              </div>
 
-          <div className="math__input-wrapper">
-            <div className="math__image-wrapper">
-              <img src={milhoImg} alt=""/>
+              <input
+                name="cebola"
+                className="math__input"
+                type="number"
+                value={0}
+                max="15"
+                min="0"
+              />
             </div>
 
-            <input
-              name="milho"
-              className="math__input"
-              type="number"
-              value={0}
-              max="15"
-              min="0"
-            />
-          </div>
+            <div className="math__input-wrapper">
+              <div className="math__image-wrapper">
+                <img src={milhoImg} alt=""/>
+              </div>
 
-          <div className="math__input-wrapper">
-            <div className="math__image-wrapper">
-              <img src={tomateImg} alt=""/>
+              <input
+                name="milho"
+                className="math__input"
+                type="number"
+                value={0}
+                max="15"
+                min="0"
+              />
             </div>
 
-            <input
-              name="tomate"
-              className="math__input"
-              type="number"
-              value={0}
-              max="15"
-              min="0"
-            />
+            <div className="math__input-wrapper">
+              <div className="math__image-wrapper">
+                <img src={tomateImg} alt=""/>
+              </div>
+
+              <input
+                name="tomate"
+                className="math__input"
+                type="number"
+                value={0}
+                max="15"
+                min="0"
+              />
+            </div>
           </div>
 
           <div className="math__footer">
-            <button type="submit" className='math__finish is-active'>
-              CONCLUIR
+            <div className='math__back' onClick={handleBackButton}>
+              Voltar
+            </div>
+
+            <button type="submit" className='math__finish'>
+              RESPONDER
             </button>
           </div>
         </form>
@@ -152,4 +180,10 @@ function Math() {
   );
 }
 
-export default Math;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    finishLessonDispatcher: (value) => dispatch(finishLesson(value)),
+  };
+};
+
+export default connect(() => {}, mapDispatchToProps)(Math);

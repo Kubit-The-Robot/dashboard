@@ -18,10 +18,6 @@ function Header(props) {
             <i className="fas fa-battery-full"></i>
             <span>10</span>
           </div>
-          <div className="header__progressItem stars">
-            <i className="fas fa-star"></i>
-            <span>6</span>
-          </div>
           <div className="header__progressItem medals">
             <i className="fas fa-medal"></i>
             <span>4</span>

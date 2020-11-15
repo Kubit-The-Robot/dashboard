@@ -1,5 +1,5 @@
 import { keymirror } from 'modules';
 
 export const DashboardConstants = keymirror({
-  DASHBOARD: undefined,
+  FINISH_LESSON: undefined,
 });

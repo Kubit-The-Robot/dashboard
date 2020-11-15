@@ -1,4 +1,4 @@
-import { GameConstants } from 'constants';
+import { GameConstants, DashboardConstants } from 'constants';
 import { deepCopy } from 'modules';
 import { ROUTES } from 'constants';
 
@@ -10,7 +10,7 @@ const initialState = {
   currentPet: '',
   isTalking: false,
   currentStage: 'ship',
-  battery: 20,
+  battery: 1,
   stages: [
     {
       id: 30,
@@ -144,7 +144,7 @@ const initialState = {
       name: 'Churrasco',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 3,
@@ -152,7 +152,7 @@ const initialState = {
       name: 'Cenoura',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 4,
@@ -160,7 +160,7 @@ const initialState = {
       name: 'Frango',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 5,
@@ -168,7 +168,7 @@ const initialState = {
       name: 'Ovos com Bacon',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 6,
@@ -176,7 +176,7 @@ const initialState = {
       name: 'Ovos',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 7,
@@ -184,7 +184,7 @@ const initialState = {
       name: 'Peixe',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 8,
@@ -192,7 +192,7 @@ const initialState = {
       name: 'Batata Frita',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 9,
@@ -200,7 +200,7 @@ const initialState = {
       name: 'Hamburguer',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 10,
@@ -208,7 +208,7 @@ const initialState = {
       name: 'Cachorro-Quente',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 11,
@@ -216,7 +216,7 @@ const initialState = {
       name: 'Pizza',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 12,
@@ -224,7 +224,7 @@ const initialState = {
       name: 'Salada',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 13,
@@ -232,7 +232,7 @@ const initialState = {
       name: 'Salmão',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 14,
@@ -240,7 +240,7 @@ const initialState = {
       name: 'Sopa',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 15,
@@ -248,7 +248,7 @@ const initialState = {
       name: 'Macarrão',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 16,
@@ -256,7 +256,7 @@ const initialState = {
       name: 'Carne',
       type: 'hungry',
       value: 20,
-      quantity: 10,
+      quantity: 1,
     },
     {
       id: 17,
@@ -264,7 +264,7 @@ const initialState = {
       name: 'Taco',
       type: 'hungry',
       value: 10,
-      quantity: 10,
+      quantity: 1,
     },
   ],
 };
@@ -315,10 +315,25 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
 
+    // DashboardConstants
+
     case GameConstants.TOGGLE_MIC: {
       return {
         ...deepCopy(state),
         isTalking: payload.value,
+      };
+    }
+
+    case DashboardConstants.FINISH_LESSON: {
+      const newFoods = state.foods.map(item => ({
+        ...item,
+        quantity: item.quantity + 1,
+      }))
+
+      return {
+        ...deepCopy(state),
+        battery: state.battery + 1,
+        foods: [...newFoods],
       };
     }
 

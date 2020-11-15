@@ -1,6 +1,5 @@
-import { GameConstants } from 'constants';
+import { DashboardConstants } from 'constants';
 import { deepCopy } from 'modules';
-import { ROUTES } from 'constants';
 
 const initialState = {
   lessons: [
@@ -50,15 +49,21 @@ const initialState = {
       experience: 100,
     },
   ],
-  matematica: {},
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GameConstants.GAME_SET_ROUTE: {
+    case DashboardConstants.FINISH_LESSON: {
+      const slug = payload.value;
+      const found = state.lessons.find(item => item.slug === slug);
+      const updatedItem = {
+        ...found,
+        hasFinished: true,
+      }
+
       return {
         ...deepCopy(state),
-        route: payload.route,
+        lessons: [...state.lessons.filter(item => item.slug !== slug), updatedItem],
       };
     }
 
