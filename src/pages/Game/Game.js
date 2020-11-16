@@ -1,6 +1,8 @@
 import OverReact from 'overreact';
 import { connect } from 'store';
 
+import { ROUTES } from 'constants';
+
 import { KUBIT_STATES } from 'constants';
 
 import {
@@ -105,6 +107,16 @@ function Game({
     else if (intention === KUBIT_STATES.TALKING) {
       addHappinessDispatcher(10);
     }
+  }
+
+  const handleBackButton = () => {
+    window.location.hash = ROUTES.DASHBOARD;
+
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
   }
 
   function onClickBattery(e) {
@@ -274,6 +286,10 @@ function Game({
           {currentPet === 'dog-2' ? (<Dog2 />) : ''}
 
           <Kubit mood={mood} status={status} />
+
+          <button className="backButton" onClick={handleBackButton}>
+            <i className="fa fa-arrow-left"></i>
+          </button>
         </div>
 
         <div className="command-bar">

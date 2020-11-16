@@ -17,6 +17,24 @@
     z-index: -1;
   }
 
+  .kubit {
+    .backButton {
+      position: fixed;
+      left: -8px;
+      bottom: 16px;
+      background: #212226;
+      color: white;
+      box-shadow: 2px 4px 0 0 #212226;
+      border-radius: 0 8px 8px;
+      border: 2px solid white;
+      height: 40px;
+      overflow: hidden;
+      outline: none;
+      transform: skew(-10deg);
+      font-size: 16px;
+    }
+  }
+
   &.stages--abstract-blue {
     background: url('../../assets/stages/bg-abstract-blue.jpg') no-repeat;
     background-size: cover;
@@ -324,3 +342,5 @@
     background-color: #CA3589;
   }
 }
+
+
