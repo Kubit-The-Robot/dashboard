@@ -235,7 +235,7 @@ export const playKubitSound = (status) => {
     SFX[track].play().then(() => {
       console.log(`canplay ${track}`);
     }).catch((error) => {
-      console.log(`error petSound`);
+      console.log('error petSound');
     });
   }
 }

@@ -72,7 +72,7 @@ function Math({ finishLessonDispatcher }) {
     }
     else {
       speak(messages.LESSON.mathWrong());
-      
+
       wrongSound.play().then(() => {
         console.log('canplay wrongSound');
       }).catch((error) => {
