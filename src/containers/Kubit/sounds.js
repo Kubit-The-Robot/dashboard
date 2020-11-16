@@ -232,6 +232,10 @@ export const playKubitSound = (status) => {
   const track = sound + (Math.floor(Math.random() * rangeEnd) + rangeStart);
 
   if (SFX[track]) {
-    SFX[track].play();
+    SFX[track].play().then(() => {
+      console.log(`canplay ${track}`);
+    }).catch((error) => {
+      console.log(`error petSound`);
+    });
   }
 }

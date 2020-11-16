@@ -106,7 +106,11 @@ function Shop({
 }) {
   const handleClose = (e) => {
     e.preventDefault();
-    backSound.play();
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
 
     onCloseHandler();
   }
@@ -117,23 +121,39 @@ function Shop({
     const isDisabled = elementClassList.contains('is-disabled');
 
     if (shopType === 'stage') {
-      stageSound.play();
+      stageSound.play().then(() => {
+        console.log('canplay stageSound');
+      }).catch((error) => {
+        console.log('error stageSound');
+      });
       onCloseHandler();
 
       onClickHandler(slug);
     }
     else if (shopType === 'food') {
       if (!isDisabled) {
-        foodSound.play();
+        foodSound.play().then(() => {
+          console.log('canplay foodSound');
+        }).catch((error) => {
+          console.log('error foodSound');
+        });
         onCloseHandler();
         onClickHandler(slug);
       }
       else {
-        blockSound.play();
+        blockSound.play().then(() => {
+          console.log('canplay blockSound');
+        }).catch((error) => {
+          console.log('error blockSound');
+        });
       }
     }
     else if (shopType === 'pet') {
-      petSound.play();
+      petSound.play().then(() => {
+        console.log('canplay petSound');
+      }).catch((error) => {
+        console.log('error petSound');
+      });
       onCloseHandler();
 
       onClickHandler(slug);

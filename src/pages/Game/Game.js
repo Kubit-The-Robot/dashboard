@@ -111,12 +111,21 @@ function Game({
     e.preventDefault;
 
     if (battery <= 0) {
-      blockSound.play();
+      blockSound.play().then(() => {
+        console.log('canplay blockSound');
+      }).catch((error) => {
+        console.log('error blockSound');
+      });
 
       return;
     }
     else {
-      batterySound.play();
+      batterySound.play().then(() => {
+        console.log('canplay batterySound');
+      }).catch((error) => {
+        console.log('error batterySound');
+      });
+
       addEnergyDispatcher(100);
       removeBatteryDispatcher();
       setMoodDispatcher(KUBIT_STATES.ENERGIZING);
@@ -127,19 +136,32 @@ function Game({
     e.preventDefault;
 
     if (!isFoodOpen) {
-      clickSound.play();
+      clickSound.play().then(() => {
+        console.log('canplay clickSound');
+      }).catch((error) => {
+        console.log('error clickSound');
+      });
+
       toggleFoodsDispatcher(true);
 
       return;
     }
 
     toggleFoodsDispatcher(false);
-    backSound.play();
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
   }
 
   function onClickTalk(e) {
     e.preventDefault;
-    batterySound.play();
+    batterySound.play().then(() => {
+      console.log('canplay batterySound');
+    }).catch((error) => {
+      console.log('error batterySound');
+    });
 
     if (!isTalking) {
       toggleMicDispatcher(true);
@@ -157,28 +179,45 @@ function Game({
     e.preventDefault;
 
     if (!isPetOpen) {
-      clickSound.play();
+      clickSound.play().then(() => {
+        console.log('canplay clickSound');
+      }).catch((error) => {
+        console.log('error clickSound');
+      });
+
       togglePetsDispatcher(true);
 
       return;
     }
 
     togglePetsDispatcher(false);
-    backSound.play();
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
   }
 
   function onClickStage(e) {
     e.preventDefault;
 
     if (!isStageOpen) {
-      clickSound.play();
+      clickSound.play().then(() => {
+        console.log('canplay clickSound');
+      }).catch((error) => {
+        console.log('error clickSound');
+      });
       toggleStagesDispatcher(true);
 
       return;
     }
 
     toggleStagesDispatcher(false);
-    backSound.play();
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
   }
 
   function onUseFood(slug) {

@@ -60,21 +60,35 @@ function Math({ finishLessonDispatcher }) {
       (userResponse.milho == gabarito.milho) &&
       (userResponse.tomate == gabarito.tomate)
     ) {
-      console.log('certo');
-      successSound.play();
+      successSound.play().then(() => {
+        console.log('canplay successSound');
+      }).catch((error) => {
+        console.log('error successSound');
+      });
+
       finishLessonDispatcher('matematica');
       setIsRight(() => true);
       speak(messages.LESSON.mathRight());
     }
     else {
       speak(messages.LESSON.mathWrong());
-      wrongSound.play();
+      
+      wrongSound.play().then(() => {
+        console.log('canplay wrongSound');
+      }).catch((error) => {
+        console.log('error wrongSound');
+      });
     }
   };
 
   const handleBackButton = () => {
     window.location.hash = ROUTES.DASHBOARD;
-    backSound.play();
+
+    backSound.play().then(() => {
+      console.log('canplay backSound');
+    }).catch((error) => {
+      console.log('error backSound');
+    });
   }
 
   useEffect(() => {
