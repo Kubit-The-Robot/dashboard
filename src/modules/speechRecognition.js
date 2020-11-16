@@ -69,13 +69,19 @@ class DataLayer {
   }
 }
 
+const kubitRecognition = window.webkitSpeechRecognition;
+
+if (!('webkitSpeechRecognition' in window)) {
+  alert("Seu navegador não suporta os recursos de voz do Jogo. Por favor, Utilize o Google Chrome");
+}
+
 class Recognition {
   constructor({ namespace }) {
     this.doc = document;
     this.dataLayer = new DataLayer(namespace);
     this.finalTranscript = '';
     this.recognizing = false;
-    this.recognition = new window.webkitSpeechRecognition();
+    this.recognition = new kubitRecognition();
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = 'pt-BR';

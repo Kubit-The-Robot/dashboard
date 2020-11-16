@@ -4,7 +4,6 @@ import { connect } from 'store';
 import Header from 'containers/Header';
 import Lessons from 'containers/Lessons';
 import PlaySection from 'containers/PlaySection';
-import Footer from 'containers/Footer';
 
 import './Dashboard.scss';
 
@@ -28,9 +27,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // addEnergyDispatcher: (value) => dispatch(addEnergy(value)),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

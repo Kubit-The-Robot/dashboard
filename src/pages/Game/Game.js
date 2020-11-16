@@ -53,7 +53,6 @@ const batterySound = new Audio(batteryUpSFX);
 const blockSound = new Audio(blockSFX);
 const clickSound = new Audio(clickSFX);
 
-// const backSound = new Audio(backSFX);
 const recognition = new Recognition({ namespace: 'kubit' });
 
 const { useEffect } = OverReact;
