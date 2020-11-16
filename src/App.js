@@ -10,6 +10,7 @@ import Dashboard from 'pages/Dashboard';
 import Game from 'pages/Game';
 import Math from 'pages/Math';
 import Start from 'pages/Start';
+import Parents from 'pages/Parents';
 import Username from 'pages/Username';
 
 import Tutorial from 'pages/Tutorial/Tutorial';
@@ -140,6 +141,10 @@ function App({ setRouteDispatcher, status }) {
     screen = <Dashboard />;
 
     handleDashboardRoute();
+  }
+  else if (hash === ROUTES.PARENTS) {
+    screen = <Parents />;
+    clearInterval(window.KUBIT_INTERVAL);
   }
   else if (hash === ROUTES.MATH) {
     screen = <Math />;

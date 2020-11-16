@@ -252,6 +252,7 @@ function Game({
 
   useEffect(() => {
     document.addEventListener('recognition.end', handleIntentionRecognition);
+    window.KUBIT_PLAYED = true;
   }, []);
 
   useEffect(() => {

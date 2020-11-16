@@ -11,6 +11,7 @@ export const ROUTES = {
   INTRO: '#intro',
   START: '#start',
   OPENING: '#abertura',
+  PARENTS: '#area-dos-pais',
   TUTORIAL: '#comojogar',
   MATH: '#matematica',
   LOGIN: '#login',

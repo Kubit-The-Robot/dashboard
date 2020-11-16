@@ -67,6 +67,7 @@ function Math({ finishLessonDispatcher }) {
       });
 
       finishLessonDispatcher('matematica');
+      window.KUBIT_FINISHED = 1;
       setIsRight(() => true);
       speak(messages.LESSON.mathRight());
     }

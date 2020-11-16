@@ -1,5 +1,6 @@
 import OverReact from 'overreact';
 
+import { ROUTES } from 'constants';
 import './Header.scss';
 
 import avatar_1 from '../../assets/avatars/avatar-1.svg';
@@ -27,6 +28,10 @@ const avatars = {
 const avatarImage = `avatar_${(Math.floor(Math.random() * 9) + 1)}`;
 
 function Header({ battery, finished, name }) {
+  const handleBackButton = () => {
+    window.location.hash = ROUTES.PARENTS;
+  }
+
   return (
     <section className="header">
       <div className="header__userAvatar">
@@ -38,6 +43,10 @@ function Header({ battery, finished, name }) {
 
       <div className="header__progress__group">
         <div className="header__progress">
+          <button className="header__parents" onClick={handleBackButton}>
+            Área dos Pais
+          </button>
+
           <div className="header__progressItem battery" title="Pilhas">
             <i className="fas fa-battery-full"></i>
             <span>{battery}</span>
