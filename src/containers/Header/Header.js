@@ -33,7 +33,7 @@ function Header({ battery, finished, name }) {
         <div className="header__userImageWrapper">
           <img src={avatars[avatarImage]} />
         </div>
-        <span>{name}</span>
+        <span>{name || window.KUBIT_USERNAME}</span>
       </div>
 
       <div className="header__progress__group">

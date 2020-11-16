@@ -165,7 +165,6 @@ function App({ setRouteDispatcher, status }) {
 
   return (
     <Viewport style={{ background: '(url)' }}>
-      <div className="preload-images"></div>
       <Router>{screen}</Router>
     </Viewport>
   );

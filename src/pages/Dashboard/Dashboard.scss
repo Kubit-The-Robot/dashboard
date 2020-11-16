@@ -11,21 +11,6 @@
   animation-iteration-count: infinite;
   animation-duration: 30s;
 
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-
-    @media (min-width: 728px) {
-      background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
-    }
-  }
-
   &__content {
     width: 100vw;
     height: auto;

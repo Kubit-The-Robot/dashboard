@@ -20,6 +20,7 @@ function Username({ setPlayerNameDispatcher }) {
 
     if (inputValue.length >= 2 ) {
       setPlayerNameDispatcher(inputValue);
+      window.KUBIT_USERNAME = inputValue;
 
       window.location.hash = ROUTES.DASHBOARD;
     }
