@@ -72,7 +72,7 @@ class DataLayer {
 const kubitRecognition = window.webkitSpeechRecognition;
 
 if (!('webkitSpeechRecognition' in window)) {
-  alert("Seu navegador não suporta os recursos de voz do Jogo. Por favor, Utilize o Google Chrome");
+  alert('Seu navegador não suporta os recursos de voz do Jogo. Por favor, Utilize o Google Chrome');
 }
 
 class Recognition {

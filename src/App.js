@@ -53,7 +53,12 @@ function App({ setRouteDispatcher, status }) {
     clearInterval(window.KUBIT_INTERVAL);
     dashboardMusic.pause();
     kubitMusic.pause();
-    startMusic.play();
+
+    startMusic.play().then(() => {
+      console.log('canplay startMusic');
+    }).catch((error) => {
+      console.log('canplay startMusic');
+    });
   }
 
   const handlePauseAll = () => {
@@ -65,15 +70,25 @@ function App({ setRouteDispatcher, status }) {
 
   const handleGameRoute = () => {
     dashboardMusic.pause();
-    kubitMusic.play();
     startMusic.pause();
+
+    kubitMusic.play().then(() => {
+      console.log('canplay kubitMusic');
+    }).catch((error) => {
+      console.log('error kubitMusic');
+    });
   }
 
   const handleDashboardRoute = () => {
     clearInterval(window.KUBIT_INTERVAL);
-    dashboardMusic.play();
     kubitMusic.pause();
     startMusic.pause();
+
+    dashboardMusic.play().then(() => {
+      console.log('canplay dashboardMusic');
+    }).catch((error) => {
+      console.log('error dashboardMusic');
+    });
   }
 
   const handleMathRoute = () => {
@@ -87,7 +102,12 @@ function App({ setRouteDispatcher, status }) {
     clearInterval(window.KUBIT_INTERVAL);
     dashboardMusic.pause();
     kubitMusic.pause();
-    startMusic.play();
+
+    startMusic.play().then(() => {
+      console.log('canplay startMusic');
+    }).catch((error) => {
+      console.log('error startMusic');
+    });
   }
 
   useEffect(() => {
